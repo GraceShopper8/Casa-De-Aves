@@ -23,9 +23,8 @@ const seedScript = async () => {
 
     const seedProducts = Product.bulkCreate(productData, { returning: true })
     const seedReview = Review.bulkCreate(reviewData, { returning: true })
-
     await Promise.all([
-      seedProducts, 
+      seedProducts,
       seedReview,
       User.create({email: 'cody@email.com', password: '123'}),
       User.create({email: 'murphy@email.com', password: '123'})

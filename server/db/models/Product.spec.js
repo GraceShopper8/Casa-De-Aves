@@ -1,6 +1,5 @@
 const {expect} = require('chai')
 const sinon = require('sinon')
-const sinonChai = require('sinon-chai')
 const db = require('../index')
 const Product = db.model('product')
 
@@ -13,10 +12,6 @@ describe('Product model', () => {
     describe('calcAvgRating', () => {
       let widget
 
-     //  beforeEach(() => {
-     //  sinon.spy(widget, 'calcAvgRating')
-     // });
-
       beforeEach(() => {
         return Product.create({
           name: 'WidetA',
@@ -25,18 +20,19 @@ describe('Product model', () => {
           .then(wid => {
             wid.submitRating(5)
             widget = wid
+            sinon.spy(widget, 'calcAvgRating')
           })
        })
-
-      //  afterEach(() => {
-      //   widget.calcAvgRating.restore()
-      // })
 
       it('it returns totalRating / totalCount as an Interger', () => {
         expect(widget.avgRating).to.be.equal(5)
       })
 
+      it('expect calcAvg to have been called', () => {
+        expect(widget.calcAvgRating).to.have.been.called
+      })
 
-    }) // end describe('calcAvgRating')
-  }) // end describe('instanceMethods')
-}) // end describe('Product model')
+
+    })
+  })
+})

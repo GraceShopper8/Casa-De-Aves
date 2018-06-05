@@ -2,6 +2,7 @@ const {expect} = require('chai')
 const db = require('../index')
 const Review = db.model('review')
 
+
 describe('Review model', () => {
   beforeEach(() => {
     return db.sync({force: true})
@@ -37,6 +38,7 @@ describe('attributes definition', () => {
   })
 })
 
+
 it('it can handle a long review', () => {
       return review.save()
       .then((savedReview) => {
@@ -44,5 +46,12 @@ it('it can handle a long review', () => {
         expect(savedReview.rating).to.equal(4);
       });
     });
+
+    it('it belongs to a User', () => {
+          return review.save()
+          .then((savedReview) => {
+            expect(savedReview.userId).to.equal(null)
+          });
+        });
 
 }) // end describe('User model')
