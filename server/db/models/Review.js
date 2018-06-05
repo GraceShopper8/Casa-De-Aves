@@ -13,9 +13,9 @@ const Review = db.define('review', {
     defaultValue: 5,
   },
 
-  reviewDetail: {
-    type: Sequelize.TEXT,
-  },
+ reviewDetail: {
+   type: Sequelize.TEXT,
+ },
 })
 
 module.exports = Review
