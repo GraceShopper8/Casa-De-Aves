@@ -3,11 +3,6 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Review = db.define('review', {
-  thumbsUp: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: true,
-  },
-
   rating: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -23,4 +18,4 @@ const Review = db.define('review', {
   },
 })
 
-module.exports = Review;
+module.exports = Review
