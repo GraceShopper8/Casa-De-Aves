@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-
+const ADD_TO_CART = 'ADD_TO_CART';
 /**
  * INITIAL STATE
  */
@@ -17,10 +17,18 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-
+const addToCart = () => ({type:ADD_TO_CART, item})
 /**
  * THUNK CREATORS
  */
+
+export const addedToUsersCart =  () => {
+  return async (dispatch) => {
+
+  }
+}
+
+
 export const me = () =>
   dispatch =>
     axios.get('/auth/me')
