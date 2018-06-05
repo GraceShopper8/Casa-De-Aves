@@ -8,7 +8,7 @@ describe('Review model', () => {
     return db.sync({force: true})
   })
 
-const thumbsUp = true
+
 const rating = 4
 const contentDetail = "The Capitals have this because ... their team defense is machine-like, their goaltender is saving everything, and the stuff he isn't saving is bouncing off his posts. Washington owns so much of the neutral zone that it might start asking Vegas to pay rent to use it. The Caps have taken away the front of the net: 10 of the Golden Knights' past 19 goals were scored on the doorstep of the goaltender, yet they've scored none in that manner since Game 1 of the Final."
 
@@ -16,7 +16,6 @@ const contentDetail = "The Capitals have this because ... their team defense is 
 let review;
 beforeEach(() => {
   review = Review.build({
-     thumbsUp: thumbsUp,
      rating: rating,
      reviewDetail: contentDetail
   })
@@ -29,10 +28,9 @@ afterEach(() => {
   });
 
 describe('attributes definition', () => {
-  it("includes 'thumbsUp' && 'rating' field ", () => {
+  it("includes 'reviewDetail' && 'rating' field ", () => {
     return review.save()
     .then((savedReview) => {
-      expect(savedReview.thumbsUp).to.equal(true)
       expect(savedReview.rating).to.equal(4)
     })
   })
