@@ -40,6 +40,9 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING,
   },
+  cart: {
+    type: Sequelize.ARRAY(Sequelize.INTEGER)
+  }
 })
 
 User.prototype.correctPassword = function(candidatePwd) {

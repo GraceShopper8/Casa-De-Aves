@@ -6,7 +6,7 @@ import { Login, Signup, UserHome } from './components'
 import ProductList from './components/ProductList'
 import ProductDetail from './components/ProductDetail'
 import { me } from './store'
-
+import CreateUser from './components/createUserForm'
 /**
  * COMPONENT
  */
@@ -22,9 +22,10 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/signup" component={CreateUser} />
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/products/:id" component={ProductDetail} />
+        {/* <Route exact path="/users/signup" component={CreateUser} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
