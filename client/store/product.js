@@ -54,6 +54,8 @@ const productReducer = (state = initState, action) => {
         ...state,
         singleProduct: action.product
       };
+    default:
+      return state;  
   }
 };
 
