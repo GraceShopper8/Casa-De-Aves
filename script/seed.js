@@ -20,9 +20,18 @@ const seedScript = async () => {
   try {
     await db.sync({ force: true })
 
-    const seedProducts = Product.bulkCreate(productData, { returning: true })
-    const seedReview = Review.bulkCreate(reviewData, { returning: true })
-    const seedUser = User.bulkCreate(userData, { returning: true })
+    const seedProducts = Product.bulkCreate(productData, {
+      returning: true,
+      individualHooks: true,
+    })
+    const seedReview = Review.bulkCreate(reviewData, {
+      returning: true,
+      individualHooks: true,
+    })
+    const seedUser = User.bulkCreate(userData, {
+      returning: true,
+      individualHooks: true,
+    })
 
     await Promise.all([seedProducts, seedReview, seedUser])
     console.log('Database successfully seeded.')
