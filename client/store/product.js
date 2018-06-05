@@ -1,62 +1,62 @@
-import axios from "axios";
+import axios from 'axios'
 
-const FETCH_ALL_PRODUCTS = "FETCH_ALL_PRODUCTS";
-const FETCH_SINGLE_PRODUCT = "FETCH_SINGLE_PRODUCT";
+const FETCH_ALL_PRODUCTS = 'FETCH_ALL_PRODUCTS'
+const FETCH_SINGLE_PRODUCT = 'FETCH_SINGLE_PRODUCT'
 
 const initState = {
   allProducts: [],
-  singleProduct: {}
-};
+  singleProduct: {},
+}
 
-const gotAllProducts = (products) => {
+const gotAllProducts = products => {
   return {
     type: FETCH_ALL_PRODUCTS,
-    products
-  };
-};
+    products,
+  }
+}
 
-const gotSingleProducts = (product) => {
+const gotSingleProducts = product => {
   return {
     type: FETCH_SINGLE_PRODUCT,
-    product
-  };
-};
+    product,
+  }
+}
 
 export const getAllProducts = () => {
-  return async (dispatch) => {
+  return async dispatch => {
     // ASSUMING API ROUTE IS SET
-    const { data } = await axios.get("/api/products");
-    console.log("ALL PRODUCTS - from product thunk creator\n", data);
-    const action = gotAllProducts(data);
-    dispatch(action);
-  };
-};
+    const { data } = await axios.get('/api/products')
+    console.log('ALL PRODUCTS - from product thunk creator\n', data)
+    const action = gotAllProducts(data)
+    dispatch(action)
+  }
+}
 
-export const getSingleProducts = (id) => {
-  return async (dispatch) => {
+export const getSingleProducts = id => {
+  return async dispatch => {
     // ASSUMING API ROUTE IS SET
-    const { data } = await axios.get(`/api/products/${id}`);
-    console.log("SINGLE PRODUCTS - from product thunk creator\n", data);
-    const action = gotSingleProducts(data);
-    dispatch(action);
-  };
-};
+    const { data } = await axios.get(`/api/products/${id}`)
+    console.log('SINGLE PRODUCTS - from product thunk creator\n', data)
+    const action = gotSingleProducts(data)
+    dispatch(action)
+  }
+}
 
 const productReducer = (state = initState, action) => {
   switch (action.type) {
     case FETCH_ALL_PRODUCTS:
       return {
         ...state,
-        allProducts: action.products
-      };
+        allProducts: action.products,
+      }
     case FETCH_SINGLE_PRODUCT:
       return {
         ...state,
-        singleProduct: action.product
-      };
+        singleProduct: action.product,
+      }
     default:
-      return state;  
+      return state
   }
-};
+}
 
-export default productReducer;
+export default productReducer

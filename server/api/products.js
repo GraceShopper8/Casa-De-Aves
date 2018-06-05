@@ -16,10 +16,7 @@ router.get(
 router.get(
   '/:id',
   asyncHandler(async (req, res) => {
-    const product = await Product.findOne(
-      { where: { id: req.params.id } },
-      { include: [Review] }
-    )
+    const product = await Product.findById(req.params.id)
     res.json(product)
   })
 )
