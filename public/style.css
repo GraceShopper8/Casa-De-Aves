@@ -1,3 +1,27 @@
+/* CUSTOM CSS  START*/
+.container--top-gutter{
+  padding-top: 10%;
+}
+
+.custom__price{
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 15px 0;
+}
+
+.custom__description{
+  font-weight: 100;
+  font-size: 1.1rem;
+  text-indent: 15px;
+  padding: 15px 0;
+
+}
+
+.custom__text-size{
+  font-size: 1.5rem;
+}
+/* CUSTOM CSS END */
+
 #home-icon {
   font-size: 2.1rem;
 }
@@ -7,9 +31,9 @@
 }
 
 .landing-title {
-  margin-top: -25px;
   margin-bottom: 5px;
 }
+
 
 .products-box {
   display: flex;
@@ -24,11 +48,8 @@
   align-items: center;
 }
 
-.floating-side-nav {
-  position: fixed;
-  width: 220px;
-  top: 13%;
-  left: 10%;
+.detail-container {
+  padding-top: 5rem;
 }
 
 .floating-nav-title:after {
@@ -2216,14 +2237,14 @@ html {
  */
 body {
   margin: 0;
-  /* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url(https://images.unsplash.com/photo-1520302829139-fa0d91dc51aa?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5c77177a025b021dbbe82321219b04a7&auto=format&fit=crop&w=2100&q=80); */
+  background-color: rgba(182, 182, 182, 0.562);
   background-size: cover;
   background-position: center;
   height: 100vh;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
+
 
 /**
  * Add the correct display in IE 9-.
@@ -2258,6 +2279,10 @@ figure,
 main {
   /* 1 */
   display: block;
+}
+
+main {
+  margin-top: 50px;
 }
 
 /**
@@ -2412,6 +2437,7 @@ audio:not([controls]) {
  */
 img {
   border-style: none;
+  max-width: 400px;
 }
 
 /**
@@ -2878,8 +2904,9 @@ video.responsive-video {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  height: 82vh;
-  margin-top: 70px;
+  height: 100vh;
+  z-index: 10;
+  background-color: rgba(22, 22, 22, 0.664)
 }
 
 .parallax-container .parallax {
@@ -2888,12 +2915,12 @@ video.responsive-video {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: -1;
 }
 
 
 .parallax img {
-  opacity: .5;
+  opacity: .7;
   z-index: -1;
   position: absolute;
   left: 50%;
@@ -2901,7 +2928,6 @@ video.responsive-video {
   width: 100vw;
   min-width: 100vw;
   min-height: 100vh;
-  margin-bottom: -35px;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   -webkit-transform: translateX(-50%);
@@ -2909,7 +2935,7 @@ video.responsive-video {
 }
 
 .parallax-container .parallax img {
-  opacity: 0.40;
+  opacity: 0.50;
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -3477,7 +3503,7 @@ span.badge[data-badge-caption]::after {
 
 nav ul a span.badge {
   display: inline-block;
-  float: none; 
+  float: none;
   margin-left: 4px;
   line-height: 22px;
   height: 22px;
@@ -3524,6 +3550,10 @@ table span.badge {
   border: 2px solid #a5a5a5;
   border-radius: 3px;
   padding: 7px 7px;
+}
+
+.login {
+  width: 40%;
 }
 
 .float-header {
@@ -4509,6 +4539,7 @@ nav ul a {
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
   font-size: 1.1rem;
+  font-weight: 100;
   color: #fff;
   display: block;
   padding: 0 15px;
@@ -4603,7 +4634,7 @@ html {
   font-family:"Lato", sans-serif;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87);
-  
+
 }
 
 @media only screen and (min-width: 0) {
@@ -4653,7 +4684,7 @@ h3 {
   text-transform: uppercase;
   line-height: 110%;
   letter-spacing: .25rem;
-  margin: 1.2rem 0 1.168rem 0;
+  margin: 1.2rem 0 1rem 0;
 }
 
 h4 {
@@ -4854,9 +4885,10 @@ small {
   transition: box-shadow .25s, -webkit-box-shadow .25s;
   padding-top: 24px;
   padding-bottom: 50px;
-  margin: 0.5rem 0 1rem 0;
+  margin: 12rem 0 1rem 0;
   border-radius: 2px;
   background-color: #fff;
+  min-width: 220px;
 }
 
 .card {
@@ -4941,7 +4973,6 @@ small {
 
 .card.horizontal .card-image img {
   border-radius: 2px 0 0 2px;
-  max-width: 50%;
   width: auto;
 }
 
@@ -5008,8 +5039,11 @@ small {
 }
 
 .card .card-content {
-  padding: 5px 60px 15px 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 58px 15px 18px;
   border-radius: 0 0 2px 2px;
+  min-height: 150px;
 }
 
 .card .card-content p {
@@ -5290,13 +5324,14 @@ small {
 
 .btn-large {
   margin-top: -10px;
-  width: 180px;
+  width: 225px;
 }
 
 .btn, .btn-large, .btn-small,
 .btn-flat {
   border: none;
-  border-radius: 25px;
+  border-radius: 3px;
+  font-weight: 100;
   display: inline-block;
   height: 36px;
   line-height: 36px;
@@ -5666,7 +5701,6 @@ button.btn-floating {
 
 .btn-small {
   height: 32.4px;
-  line-height: 32.4px;
   font-size: 13px;
   margin-right: 5px;
 }
