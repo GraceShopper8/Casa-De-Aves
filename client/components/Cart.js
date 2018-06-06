@@ -29,23 +29,26 @@ class Cart extends Component {
                 <p className="bold">${item.price}</p>
                 <br />
                 <p>{item.description}</p>
-                <a href="#!" className="secondary-content">
-                  <i
-                    className="material-icons"
-                    onClick={() => this.handleDelete(index)}>
-                    delete
-                  </i>
+                <a
+                  href="#!"
+                  className="secondary-content"
+                  onClick={() => this.handleDelete(index)}>
+                  <i className="material-icons">delete</i>
                 </a>
               </li>
             )
           })}
-          <li className="collection-item avatar blue-grey lighten-3">
-            <h6>TOTAL PRICE:</h6>
-            <h3>${cartTotal}</h3>
-            <a href="#" className="btn-small secondary-content">
-              Checkout
-            </a>
-          </li>
+          {items.length > 0 ? (
+            <li className="collection-item avatar blue-grey lighten-3">
+              <h6>TOTAL PRICE:</h6>
+              <h3>${cartTotal}</h3>
+              <a href="#" className="btn-small secondary-content">
+                Checkout
+              </a>
+            </li>
+          ) : (
+            <h2 className="center">NOTHING HERE, YOUR CART IS EMPTY!</h2>
+          )}
         </ul>
       </div>
     )
