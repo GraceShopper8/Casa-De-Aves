@@ -1,3 +1,27 @@
+/* CUSTOM CSS  START*/
+.container--top-gutter{
+  padding-top: 10%;
+}
+
+.custom__price{
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 15px 0;
+}
+
+.custom__description{
+  font-weight: 100;
+  font-size: 1.1rem;
+  text-indent: 15px;
+  padding: 15px 0;
+
+}
+
+.custom__text-size{
+  font-size: 1.5rem;
+}
+/* CUSTOM CSS END */
+
 #home-icon {
   font-size: 2.1rem;
 }
@@ -4515,6 +4539,7 @@ nav ul a {
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
   font-size: 1.1rem;
+  font-weight: 100;
   color: #fff;
   display: block;
   padding: 0 15px;
@@ -4948,7 +4973,6 @@ small {
 
 .card.horizontal .card-image img {
   border-radius: 2px 0 0 2px;
-  max-width: 50%;
   width: auto;
 }
 
@@ -5017,7 +5041,6 @@ small {
 .card .card-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 5px 58px 15px 18px;
   border-radius: 0 0 2px 2px;
   min-height: 150px;
@@ -5307,7 +5330,8 @@ small {
 .btn, .btn-large, .btn-small,
 .btn-flat {
   border: none;
-  border-radius: 25px;
+  border-radius: 3px;
+  font-weight: 100;
   display: inline-block;
   height: 36px;
   line-height: 36px;
@@ -5677,7 +5701,6 @@ button.btn-floating {
 
 .btn-small {
   height: 32.4px;
-  line-height: 32.4px;
   font-size: 13px;
   margin-right: 5px;
 }

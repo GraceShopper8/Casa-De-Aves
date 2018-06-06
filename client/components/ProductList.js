@@ -16,7 +16,7 @@ class ProductList extends Component {
 
     return (
       <div className="row container">
-        <div className="col s2">
+        {/* <div className="col s2">
           <div className="center">
             <div className="card-panel teal white-text center">
               <h3 className="floating-nav-title">Product Display</h3>
@@ -53,7 +53,7 @@ class ProductList extends Component {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
         <main className="col s10">
           <h2 className="float-header teal-text text-darken-3 center">
             All Products

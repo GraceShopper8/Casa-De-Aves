@@ -38,7 +38,7 @@ class ProductCard extends Component {
               </div>
               <div className="card-content">
                 <Link to={`/products/${product.id}`}>
-                  <h5 className="black-text">{product.name}</h5>
+                  <h5 className="black-text custom__text-size">{product.name}</h5>
                 </Link>
                 <p>${product.price}</p>
               </div>
