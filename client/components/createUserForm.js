@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { AddUser } from "../store/user";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { AddUser } from '../store/user';
 
 class CreateUser extends Component {
   handleSubmit = (evt) => {
