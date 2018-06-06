@@ -1,4 +1,9 @@
 /* CUSTOM CSS  START*/
+input {
+  font-weight: 100;
+  letter-spacing: 0.08rem;
+}
+
 .container--top-gutter{
   padding-top: 10%;
 }
@@ -21,9 +26,6 @@
   font-size: 1.5rem;
 }
 
-/* CUSTOM CSS END */
-
-/*  */
 .btn_google{
   display: flex;
   width: 200px;
@@ -61,6 +63,12 @@
 {
 	position: absolute;
 }
+/* CUSTOM CSS END */
+
+/*  */
+
+
+
 /*  */
 
 #home-icon {
