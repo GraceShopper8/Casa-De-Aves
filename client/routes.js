@@ -5,8 +5,9 @@ import PropTypes from 'prop-types'
 import { Login, Signup, UserHome } from './components'
 import ProductList from './components/ProductList'
 import ProductDetail from './components/ProductDetail'
+import LandingPage from './components/LandingPage'
 import { me } from './store'
-import Cart from './components/Cart';
+import Cart from './components/Cart'
 
 /**
  * COMPONENT
@@ -22,6 +23,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/products" component={ProductList} />
