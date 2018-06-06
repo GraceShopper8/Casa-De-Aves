@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { deleteFromGuestCart } from '../store/cart'
 
 class Cart extends Component {
-  handleDelete = (event, index) => {
+  handleDelete = index => {
     this.props.deleteFromGuestCart(index)
   }
 
@@ -40,8 +40,8 @@ class Cart extends Component {
           })}
           <li className="collection-item avatar blue-grey lighten-3">
             <span className="title">TOTAL PRICE:</span>
-            <p>${cartTotal.toPrecision(3)}</p>
-            <a href="#" className="secondary-content">
+            <p>${cartTotal}</p>
+            <a href="#" className="btn-small secondary-content">
               Checkout
             </a>
           </li>

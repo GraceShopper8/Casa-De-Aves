@@ -43,7 +43,9 @@ const cartReducer = (state = initialState, action) => {
     case DELETE_FROM_GUEST_CART:
       return {
         ...state,
-        items: state.items.splice(action.index, 1),
+        items: state.items.filter((item, i) => {
+          if (action.index !== i) return item
+        }),
       }
 
     default:
