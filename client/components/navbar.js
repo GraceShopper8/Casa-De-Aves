@@ -49,7 +49,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 </a>
               </li>
               <li>
-                <Link to="/users" className="white-text">
+                <Link to="/cart" className="white-text">
                   <i className="material-icons">shopping_cart</i>
                 </Link>
               </li>
