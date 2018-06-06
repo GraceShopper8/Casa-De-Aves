@@ -17,7 +17,7 @@ router.get(
 )
 
 router.get('/:id',  (req, res, next) => {
-  console.log('hellooooooooooooooooooooooooooooooo')
+
   User.find({
       where: { id: req.params.id},
       include: [{all: true}]
