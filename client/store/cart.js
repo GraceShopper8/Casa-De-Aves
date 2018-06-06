@@ -1,22 +1,34 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const initialState = {
-  items: []
+  items: [],
 }
 
-const ADD_TO_CART = 'ADD_TO_CART';
+const ADD_TO_CART = 'ADD_TO_CART'
+const DELETE_FROM_GUEST_CART = 'DELETE_FROM_GUEST_CART'
 
-const addToCart = (item) => {
+const addToCart = item => {
   return {
     type: ADD_TO_CART,
-    item
+    item,
   }
 }
 
-export const addedToCart = (id) => {
-  return async (dispatch) => {
-    const {data} = await axios.get(`/api/products/${id}`);
-    dispatch(addToCart(data)); 
+const deletedFromGuestCart = index => ({
+  type: DELETE_FROM_GUEST_CART,
+  index,
+})
+
+export const addedToCart = id => {
+  return async dispatch => {
+    const { data } = await axios.get(`/api/products/${id}`)
+    dispatch(addToCart(data))
+  }
+}
+
+export const deleteFromGuestCart = index => {
+  return dispatch => {
+    dispatch(deletedFromGuestCart(index))
   }
 }
 
@@ -25,13 +37,20 @@ const cartReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        items: [...state.items, action.item]
+        items: [...state.items, action.item],
       }
-      break;
-  
+
+    case DELETE_FROM_GUEST_CART:
+      return {
+        ...state,
+        items: state.items.filter((item, i) => {
+          if (action.index !== i) return item
+        }),
+      }
+
     default:
-      return state;
+      return state
   }
 }
 
-export default cartReducer;
+export default cartReducer
