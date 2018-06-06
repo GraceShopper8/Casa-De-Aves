@@ -8,13 +8,24 @@ import { addedToCart } from '../store/cart'
 class ProductCard extends Component {
   constructor() {
     super()
-
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick(itemID) {
     console.log('ITEM ID', itemID)
-    this.props.getCartItems(itemID)
+    this.props.addedToCart(itemID)
+
+    ///////////
+    setTimeout(() => {
+      let storage = window.localStorage;
+      const cartItems = this.props.items;
+      const str = JSON.stringify(cartItems)
+      // console.log('string version', str);
+      // console.log('parsed version', JSON.parse(str));
+      storage.setItem('cart', str);
+    }, 50)
+ 
+    //////////
   }
 
   render() {
@@ -61,7 +72,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getCartItems: id => dispatch(addedToCart(id)),
+    addedToCart: id => dispatch(addedToCart(id)),
   }
 }
 
