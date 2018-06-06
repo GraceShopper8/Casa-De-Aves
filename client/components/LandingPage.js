@@ -25,7 +25,7 @@ class LandingPage extends Component {
                   Our Products
                 </Link>
                 <Link
-                  to="/locations"
+                  to="/signup"
                   className="btn-large waves-effect waves-light teal">
                   Create an Account
                 </Link>
