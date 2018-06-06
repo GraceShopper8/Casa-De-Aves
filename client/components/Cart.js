@@ -14,7 +14,7 @@ class Cart extends Component {
     const items = this.props.items
     console.log(items)
     return (
-      <div className=" container">
+      <div className="container">
         <ul className="collection col s6">
           {items.map((item, index) => {
             cartTotal += Number(item.price)
@@ -25,8 +25,9 @@ class Cart extends Component {
                   alt={item.name}
                   className="circle"
                 />
-                <span className="title">{item.name}</span>
-                <p>${item.price}</p>
+                <span className="title bold">{item.name}</span>
+                <p className="bold">${item.price}</p>
+                <br />
                 <p>{item.description}</p>
                 <a href="#!" className="secondary-content">
                   <i
@@ -39,8 +40,8 @@ class Cart extends Component {
             )
           })}
           <li className="collection-item avatar blue-grey lighten-3">
-            <span className="title">TOTAL PRICE:</span>
-            <p>${cartTotal}</p>
+            <h6>TOTAL PRICE:</h6>
+            <h3>${cartTotal}</h3>
             <a href="#" className="btn-small secondary-content">
               Checkout
             </a>
