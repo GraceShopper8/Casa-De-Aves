@@ -25,7 +25,6 @@ const removeUser = () => ({type: REMOVE_USER})
 
 const addNewUser = (user) => ({type: ADD_NEW_USER, user})
 
-=======
 const addToCart = () => ({type:ADD_TO_CART, item})
 
 /**
