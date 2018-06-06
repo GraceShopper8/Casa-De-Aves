@@ -14,7 +14,7 @@ class LandingPage extends Component {
                   Casa de Aves
                 </h1>
                 <h3 className="header col s12 light blue-grey-text text-lighten-5">
-                  Mid-Century Modern Bird Houses. They're fly AF.
+                  Mid-Century Modern Bird Houses. Oh so fly.
                 </h3>
               </div>
               <br />

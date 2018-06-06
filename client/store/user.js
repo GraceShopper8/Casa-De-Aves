@@ -25,7 +25,7 @@ const removeUser = () => ({type: REMOVE_USER})
 
 const addNewUser = (user) => ({type: ADD_NEW_USER, user})
 
-const addToCart = () => ({type:ADD_TO_CART, item})
+const addToCart = () => ({type: ADD_TO_CART, item})
 
 /**
  * THUNK CREATORS
@@ -33,12 +33,17 @@ const addToCart = () => ({type:ADD_TO_CART, item})
 
 
  export const AddUser = (user) =>
-  (dispatch =>
-    axios.post('/api/users', user)
-      .then((newUser) => dispatch(addNewUser(newUser.data)))
-      .catch(err => console.error(err)))
+  dispatch =>
+        axios.post(`/auth/signup`, user)
+      .then(res => {
+        console.log(res)
+        dispatch(addNewUser(res.data))
+        history.push('/products')
+      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+        dispatch(addNewUser({error: authError}))
+      })
+      .catch(err => console.error(err))
 
- 
 
 export const me = () =>
   dispatch =>
