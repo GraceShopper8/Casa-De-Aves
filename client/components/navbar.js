@@ -8,7 +8,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className="navbar-fixed">
     <nav id="nav-bar" className="teal" role="navigation">
       <div className="nav-wrapper container">
-        <ul className="left hide-on-med-and-down">
+        <ul className="left hide-on-small-and-down">
           <li>
             <Link to="/" className="white-text">
               <i id="home-icon" className="material-icons">
@@ -22,16 +22,16 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             </Link>
           </li>
         </ul>
-        <ul className="right hide-on-med-and-down">
+        <ul className="right hide-on-small-and-down">
           {!isLoggedIn ? (
             <React.Fragment>
               <li>
-                <Link to="/users/signup" className="white-text">
+                <Link to="/signup" className="white-text">
                   Sign Up
                 </Link>
               </li>
               <li>
-                <Link to="/users/login" className="white-text">
+                <Link to="/login" className="white-text">
                   Log In
                 </Link>
               </li>
