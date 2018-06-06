@@ -10,11 +10,11 @@ class LandingPage extends Component {
           <div className="section no-pad-bot">
             <div className="container">
               <div className="row">
-                <h1 className="header white-text landing-title">
-                  Casa de Aves.
+                <h1 className="header col s12 white-text landing-title">
+                  Casa de Aves
                 </h1>
                 <h3 className="header col s12 light blue-grey-text text-lighten-5">
-                  Mid-Century Modern Bird Houses.
+                  Mid-Century Modern Bird Houses. They're fly AF.
                 </h3>
               </div>
               <br />
@@ -34,6 +34,9 @@ class LandingPage extends Component {
               <br />
             </div>
           </div>
+        </div>
+        <div className="landing-page parallax ">
+          <img src="/img/backyard.jpeg" alt="Background Image" />
         </div>
       </React.Fragment>
     )

@@ -15,11 +15,11 @@ class ProductList extends Component {
     const productsList = this.props.allProducts
 
     return (
-      <div className="row">
-        <div className="col s12 m4 l2">
-          <div className="floating-side-nav center">
+      <div className="row container">
+        <div className="col s2">
+          <div className="center">
             <div className="card-panel teal white-text center">
-              <h3 className="floating-nav-title">Filter Results</h3>
+              <h3 className="floating-nav-title">Product Display</h3>
               <ul>
                 <br />
                 <li className="side-nav-li">
@@ -50,18 +50,11 @@ class ProductList extends Component {
                     PLACEHOLDER 3
                   </Link>
                 </li>
-                <li className="side-nav-li">
-                  <Link
-                    to="/"
-                    className="btn-small waves-effect waves-light teal lighten-3 white-text z-depth-0">
-                    PLACEHOLDER 4
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
         </div>
-        <main className="col s12 m8 l10">
+        <main className="col s10">
           <h2 className="float-header teal-text text-darken-3 center">
             All Products
           </h2>
