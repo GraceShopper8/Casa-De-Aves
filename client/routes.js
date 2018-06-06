@@ -7,7 +7,13 @@ import ProductList from './components/ProductList'
 import ProductDetail from './components/ProductDetail'
 import LandingPage from './components/LandingPage'
 import { me } from './store'
-import Cart from './components/Cart'
+
+
+import CreateUser from './components/createUserForm'
+
+import Cart from './components/Cart';
+
+
 
 /**
  * COMPONENT
@@ -25,9 +31,11 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/signup" component={CreateUser} />
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/products/:id" component={ProductDetail} />
+
+        {/* <Route exact path="/users/signup" component={CreateUser} /> */}
         <Route exact path="/cart" component={Cart} />
 
         {isLoggedIn && (
