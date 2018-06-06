@@ -8,26 +8,22 @@ const Product = db.define('product', {
     allowNull: false,
     validate: { notEmpty: true },
   },
-
   imgUrl: {
     type: Sequelize.STRING,
     defaultValue: 'http://dummyimage.com/300x200.bmp/607d8b/ffffff',
   },
-
   description: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-    defaultValue: 'No description yet!',
-    validate: { notEmpty: true },
+   type: Sequelize.TEXT,
+   allowNull: false,
+   defaultValue: 'No description yet!',
+   validate: { notEmpty: true },
   },
-
   category: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: { notEmpty: true },
     defaultValue: 'Generic Plant',
   },
-
   price: {
     type: Sequelize.DECIMAL(10, 2),
     allowNull: false,
@@ -36,14 +32,12 @@ const Product = db.define('product', {
       min: 0,
     },
   },
-
   inventory: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: { min: 0 },
     defaultValue: 0,
   },
-
   totalRatingSum: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
@@ -60,6 +54,7 @@ const Product = db.define('product', {
   },
 })
 
+
 Product.prototype.submitRating = function(rating) {
   this.totalRatingSum += rating
   this.totalRatingCount += 1
@@ -67,7 +62,7 @@ Product.prototype.submitRating = function(rating) {
 }
 
 Product.prototype.calcAvgRating = function() {
-  return this.totalRatingCount / this.totalRatingCount
+  return this.totalRatingSum / this.totalRatingCount
 }
 
 module.exports = Product
