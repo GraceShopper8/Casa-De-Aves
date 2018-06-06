@@ -7,7 +7,6 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const ADD_NEW_USER = 'ADD_NEW_USER'
-
 const ADD_TO_CART = 'ADD_TO_CART';
 /**
  * INITIAL STATE
@@ -20,23 +19,24 @@ const defaultUser = {}
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const addNewUser = (user) => ({type: ADD_NEW_USER, user})
+const addToCart = (item) => ({type: ADD_TO_CART, item })
 
-const addToCart = () => ({type:ADD_TO_CART, item})
 /**
  * THUNK CREATORS
  */
 
- export const AddUser = (user) =>
-  (dispatch =>
-    axios.post('/api/users', user)
-      .then((newUser) => dispatch(addNewUser(newUser.data)))
-      .catch(err => console.error(err)))
-      
-export const addedToUsersCart =  () => {
-  return async (dispatch) => {
 
-  }
-}
+ export const AddUser = (user) =>
+  dispatch =>
+        axios.post(`/auth/signup`, user)
+      .then(res => {
+        console.log(res)
+        dispatch(addNewUser(res.data))
+        history.push('/products')
+      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+        dispatch(addNewUser({error: authError}))
+      })
+      .catch(err => console.error(err))
 
 
 export const me = () =>

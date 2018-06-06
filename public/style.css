@@ -1,4 +1,9 @@
 /* CUSTOM CSS  START*/
+input {
+  font-weight: 100;
+  letter-spacing: 0.08rem;
+}
+
 .container--top-gutter{
   padding-top: 10%;
 }
@@ -20,7 +25,51 @@
 .custom__text-size{
   font-size: 1.5rem;
 }
+
+.btn_google{
+  display: flex;
+  width: 200px;
+  height: 35px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);  
+  border-radius: 3px;
+  justify-content: center;
+  align-content: center;
+  margin: 15px 0 5px 0;
+}
+
+.btn_google > img{
+  margin-right: 15px;
+}
+.btn_google > p{
+  margin: auto 0;
+}
+
+.container__sign-in-form
+{
+	margin-top: 80px;
+	width: 400px !important;
+}
+
+
+.form-container
+{
+	padding: 40px;
+	padding-top: 10px;
+}
+
+.confirmation-tabs-btn
+{
+	position: absolute;
+}
 /* CUSTOM CSS END */
+
+/*  */
+
+
+
+/*  */
 
 #home-icon {
   font-size: 2.1rem;
@@ -3186,7 +3235,7 @@ td, th {
 }
 
 .collection {
-  margin: 0.5rem 0 1rem 0;
+  margin: 2.5rem 0 1rem 0;
   border: 1px solid #e0e0e0;
   border-radius: 2px;
   overflow: hidden;

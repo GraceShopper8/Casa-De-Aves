@@ -26,7 +26,6 @@ export const getAllProducts = () => {
   return async dispatch => {
     // ASSUMING API ROUTE IS SET
     const { data } = await axios.get('/api/products')
-    console.log('ALL PRODUCTS - from product thunk creator\n', data)
     const action = gotAllProducts(data)
     dispatch(action)
   }
@@ -36,7 +35,6 @@ export const getSingleProducts = id => {
   return async dispatch => {
     // ASSUMING API ROUTE IS SET
     const { data } = await axios.get(`/api/products/${id}`)
-    console.log('SINGLE PRODUCTS - from product thunk creator\n', data)
     const action = gotSingleProducts(data)
     dispatch(action)
   }

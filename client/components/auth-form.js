@@ -9,23 +9,38 @@ import {auth} from '../store'
 const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email"><small>Email</small></label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password"><small>Password</small></label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+  return(
+    <div className="container container__sign-in-form white z-depth-2">
+      <div id="login" className="col s12">
+        <form className="col s12" onSubmit={handleSubmit} name={name}>
+          <div className="form-container">
+            <h4 className="teal-text">Hello</h4>
+            <div className="row">
+              <div className="input-field col s12">
+                <input id="email" type="email" name="email" placeholder="Email"/>
+              </div>
+            </div>
+            <div className="row">
+              <div className="input-field col s12">
+                <input id="password" type="password" name="password" placeholder="Password"/>
+              </div>
+            </div>
+            <br/>
+            <center>
+              <button className="btn btn-small waves-effect waves-light teal" type="submit" name="action">Sign In</button>
+              <br/>
+              <a href="/auth/google">
+                <div className="btn_google">
+                  <img src="/img/btn_google.svg"/>
+                  <p>Sign in with Google</p>
+                </div>
+              </a>
+              <br/>
+              <a href="">Forgotten password?</a>
+            </center>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
