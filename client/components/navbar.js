@@ -26,7 +26,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           {!isLoggedIn ? (
             <React.Fragment>
               <li>
-                <Link to="/users/signup" className="white-text">
+                <Link to="/signup" className="white-text">
                   Sign Up
                 </Link>
               </li>
