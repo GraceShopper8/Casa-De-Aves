@@ -1,83 +1,82 @@
-import axios from "axios";
+import axios from 'axios'
 
 const initialState = {
-  items: []
-};
+  items: [],
+}
 
-const ADD_TO_CART = "ADD_TO_CART";
-const DELETE_FROM_GUEST_CART = "DELETE_FROM_GUEST_CART";
-const ADD_FROM_LOCAL = "ADD_FROM_LOCAL";
+const ADD_TO_CART = 'ADD_TO_CART'
+const DELETE_FROM_GUEST_CART = 'DELETE_FROM_GUEST_CART'
+const ADD_FROM_LOCAL = 'ADD_FROM_LOCAL'
 
-const addToCart = (item) => {
+const addToCart = item => {
   return {
     type: ADD_TO_CART,
-    item
-  };
-};
+    item,
+  }
+}
 
-const deletedFromGuestCart = (index) => ({
+const deletedFromGuestCart = index => ({
   type: DELETE_FROM_GUEST_CART,
-  index
-});
+  index,
+})
 
-const addFromLocalStorage = (data) => {
+const addFromLocalStorage = data => {
   return {
     type: ADD_FROM_LOCAL,
-    data
-  };
-};
+    data,
+  }
+}
 
-export const addToLocalStorageData = (data) => {
-  return (dispatch) => {
-    dispatch(addFromLocalStorage(data));
-  };
-};
+export const addToLocalStorageData = data => {
+  return dispatch => {
+    dispatch(addFromLocalStorage(data))
+  }
+}
 
-export const addedToCart = (id) => {
-  return async (dispatch) => {
-    const { data } = await axios.get(`/api/products/${id}`);
-    dispatch(addToCart(data));
-  };
-};
+export const addedToCart = id => {
+  return async dispatch => {
+    const { data } = await axios.get(`/api/products/${id}`)
+    dispatch(addToCart(data))
+  }
+}
 
-export const deleteFromGuestCart = (index) => {
-  let storage = window.localStorage;
-  let items = JSON.parse(storage.getItem('cart'));
+export const deleteFromGuestCart = index => {
+  let storage = window.localStorage
+  let items = JSON.parse(storage.getItem('cart'))
   let newItems = items.filter((item, i) => {
-    if (index !== i) return item;
-  });
-  storage.setItem('cart', JSON.stringify(newItems));
+    if (index !== i) return item
+  })
+  storage.setItem('cart', JSON.stringify(newItems))
 
-  console.log(storage);
-  console.log(newItems);
-  return (dispatch) => {
-    dispatch(deletedFromGuestCart(index));
-  };
-};
+  return dispatch => {
+    dispatch(deletedFromGuestCart(index))
+  }
+}
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       return {
         ...state,
-        items: [...state.items, action.item]
-      };
+        items: [...state.items, action.item],
+      }
 
     case DELETE_FROM_GUEST_CART:
       return {
         ...state,
         items: state.items.filter((item, i) => {
-          if (action.index !== i) return item;
-        })
-      };
+          if (action.index !== i) return item
+        }),
+      }
+
     case ADD_FROM_LOCAL:
       return {
         ...state,
-        items: action.data
-      };
+        items: action.data,
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default cartReducer;
+export default cartReducer

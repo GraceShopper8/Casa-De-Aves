@@ -1,31 +1,32 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getSingleProducts } from '../store/product';
-import { addedToCart } from '../store/cart';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getSingleProducts } from '../store/product'
+import { addedToCart } from '../store/cart'
+import { Link } from 'react-router-dom'
 
 class ProductDetail extends Component {
   constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
+    super()
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
-    this.props.getSingleProducts(this.props.match.params.id);
+    this.props.getSingleProducts(this.props.match.params.id)
   }
 
   handleClick(itemID) {
-    console.log('ITEM ID', itemID);
-    this.props.getCartItems(itemID);
+    console.log('ITEM ID', itemID)
+    this.props.getCartItems(itemID)
   }
 
   render() {
-    const product = this.props.singleProduct;
-    const isAdmin = this.props.user.admin;
+    const product = this.props.singleProduct
+    const isAdmin = this.props.user.admin
     return (
-      <div className="container container--top-gutter">
-        <div className="col s12 m7">
+      <div className="row container container--top-gutter">
+        <div className="col s1" />
+        <div className="col s10">
           <div className="card horizontal medium">
             <div className="card-image">
               <img src={`/img/${product.imgUrl}`} />
@@ -61,21 +62,21 @@ class ProductDetail extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
-<Link to="/cart" className="white-text">
-  <i className="material-icons">shopping_cart</i>
-</Link>;
 
 const mapState = state => ({
   singleProduct: state.product.singleProduct,
-  user: state.user
-});
+  user: state.user,
+})
 
 const mapDispatch = dispatch => ({
   getSingleProducts: id => dispatch(getSingleProducts(id)),
-  getCartItems: id => dispatch(addedToCart(id))
-});
+  getCartItems: id => dispatch(addedToCart(id)),
+})
 
-export default connect(mapState, mapDispatch)(ProductDetail);
+export default connect(
+  mapState,
+  mapDispatch
+)(ProductDetail)
