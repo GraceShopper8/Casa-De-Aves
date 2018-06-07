@@ -24,8 +24,8 @@ const User = db.define('user', {
   },
 
   cart: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-    defaultValue: [],
+    type: Sequelize.TEXT,
+    defaultValue: '',
   },
 
   password: {
@@ -33,6 +33,11 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('password')
     },
+  },
+
+  admin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
 
   salt: {

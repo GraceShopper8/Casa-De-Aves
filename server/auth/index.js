@@ -32,6 +32,32 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
+router.put('/:id', (req, res, next) => {
+  User.update(req.body, {
+    where: { id: req.params.id }
+  })
+    .then(async() => {
+      const user = await User.findById(req.params.id)
+      req.login(user, err => (err ? next(err) : res.json(user)))
+    })
+    .catch(err => {
+      if (err.name === 'SequelizeUniqueConstraintError') {
+        res.status(401).send('User already exists')
+      } else {
+        next(err)
+      }
+    })
+})
+
+router.delete('/:id', (req, res) => {
+  User.destroy({where: {id: req.params.id}})
+  .then(() => {
+  req.logout()
+  req.session.destroy()
+  res.redirect('/')
+  })
+})
+
 router.post('/logout', (req, res) => {
   req.logout()
   req.session.destroy()
