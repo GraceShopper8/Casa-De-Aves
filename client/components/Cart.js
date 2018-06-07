@@ -6,11 +6,11 @@ import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 import { updateUserCart } from '../store/user'
 
 class Cart extends Component {
-  componentDidMount = async () => {
+  componentDidMount = () => {
     const cartLocal = window.localStorage.getItem('cart')
     if (cartLocal && this.props.items.length === 0) {
       let items = JSON.parse(cartLocal)
-      await this.props.addToLocalStorageData(items)
+      this.props.addToLocalStorageData(items)
     }
     if (this.props.isLoggedIn) {
       const updatedUser = {
