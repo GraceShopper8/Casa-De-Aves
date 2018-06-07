@@ -70,7 +70,7 @@ export const auth = (email, password, method) =>
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
-export const deleteUser = (user) => 
+export const deleteUser = (user) =>
   dispatch =>
     axios.delete(`/auth/${user}`)
       .then(_ => {
@@ -78,7 +78,7 @@ export const deleteUser = (user) =>
         history.push('/login')
       })
       .catch(err => console.log(err))
-  
+
 
 export const logout = () =>
   dispatch =>
@@ -92,12 +92,13 @@ export const logout = () =>
 /**
  * REDUCER
  */
-export default function (state = defaultUser, action) {
+
+export default function (state = {}, action) {
   switch (action.type) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return defaultUser
+      return state
     case ADD_NEW_USER:
       return action.user
     case UPDATE_USER:
