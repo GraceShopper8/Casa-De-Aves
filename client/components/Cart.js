@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 
+
+
 class Cart extends Component {
   handleDelete = index => {
     this.props.deleteFromGuestCart(index)
