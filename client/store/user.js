@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import userHome from '../components';
 
 /**
  * ACTION TYPES
@@ -8,6 +9,7 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const ADD_NEW_USER = 'ADD_NEW_USER'
 const ADD_TO_CART = 'ADD_TO_CART';
+const UPDATE_USER = 'UPDATE_USER';
 /**
  * INITIAL STATE
  */
@@ -20,6 +22,7 @@ const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const addNewUser = (user) => ({type: ADD_NEW_USER, user})
 const addToCart = (item) => ({type: ADD_TO_CART, item })
+const updatedUser = (user) => ({type: UPDATE_USER, user})
 
 /**
  * THUNK CREATORS
@@ -30,14 +33,24 @@ const addToCart = (item) => ({type: ADD_TO_CART, item })
   dispatch =>
         axios.post(`/auth/signup`, user)
       .then(res => {
-        console.log(res)
         dispatch(addNewUser(res.data))
         history.push('/products')
-      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+      }, authError => {
         dispatch(addNewUser({error: authError}))
       })
       .catch(err => console.error(err))
 
+ export const updateUser = (user) => (
+  dispatch =>
+        axios.put(`/auth/${user.id}`, user)
+      .then(res => {
+        dispatch(updatedUser(res.data))
+        history.push('/products')
+      }, authError => {
+        dispatch(updatedUser({error: authError}))
+      })
+      .catch(err => console.error(err))
+ )
 
 export const me = () =>
   dispatch =>
@@ -56,6 +69,16 @@ export const auth = (email, password, method) =>
         dispatch(getUser({error: authError}))
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+
+export const deleteUser = (user) => 
+  dispatch =>
+    axios.delete(`/auth/${user}`)
+      .then(_ => {
+        dispatch(removeUser())
+        history.push('/login')
+      })
+      .catch(err => console.log(err))
+  
 
 export const logout = () =>
   dispatch =>
@@ -76,6 +99,8 @@ export default function (state = defaultUser, action) {
     case REMOVE_USER:
       return defaultUser
     case ADD_NEW_USER:
+      return action.user
+    case UPDATE_USER:
       return action.user
     default:
       return state

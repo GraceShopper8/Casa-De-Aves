@@ -8,6 +8,7 @@ import ProductDetail from './components/ProductDetail'
 import LandingPage from './components/LandingPage'
 import { me } from './store'
 import CreateUser from './components/createUserForm'
+import EditUser from './components/editUserForm'
 import Cart from './components/Cart'
 
 /**
@@ -27,6 +28,7 @@ class Routes extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={CreateUser} />
+        <Route exact path="/edit" component={EditUser} />
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/products/:id" component={ProductDetail} />
         {/* <Route exact path="/users/signup" component={CreateUser} /> */}

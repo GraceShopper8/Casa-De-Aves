@@ -2,24 +2,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { deleteFromGuestCart } from '../store/cart'
+import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 
 class Cart extends Component {
   handleDelete = index => {
     this.props.deleteFromGuestCart(index)
   }
 
+  componentDidMount() {
+    const cartLocal = window.localStorage.getItem('cart');
+    if (cartLocal && this.props.items.length === 0){
+      let items = JSON.parse(cartLocal);
+      this.props.addToLocalStorageData(items)
+    }
+  }
+
   render() {
     let cartTotal = 0
-    const items = this.props.items
-    console.log(items)
+    let items = this.props.items;
     return (
       <div className="container">
         <ul className="collection col s6">
           {items.map((item, index) => {
             cartTotal += Number(item.price)
             return (
-              <li className="collection-item avatar" key={index}>
+              <li className="collection-item avatar" key={item.id}>
                 <img
                   src={`img/${item.imgUrl}`}
                   alt={item.name}
@@ -64,6 +71,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => ({
   deleteFromGuestCart: index => dispatch(deleteFromGuestCart(index)),
+  addToLocalStorageData: data => dispatch(addToLocalStorageData(data)),
 })
 
 export default connect(
