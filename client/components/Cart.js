@@ -11,7 +11,7 @@ class Cart extends Component {
 
   componentDidMount() {
     const cartLocal = window.localStorage.getItem('cart');
-    if (cartLocal && this.props.items.length === 0){
+    if(cartLocal && this.props.items.length === 0){
       let items = JSON.parse(cartLocal);
       this.props.addToLocalStorageData(items)
     }
