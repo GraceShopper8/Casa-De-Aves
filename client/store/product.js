@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 const FETCH_ALL_PRODUCTS = 'FETCH_ALL_PRODUCTS'
 const FETCH_SINGLE_PRODUCT = 'FETCH_SINGLE_PRODUCT'
@@ -49,9 +50,10 @@ export const getSingleProducts = id => {
 
 export const updateProduct = product => {
   return async dispatch => {
-    const resp = await axios.put(`/api/products/${product.id}`)
+    const resp = await axios.put(`/api/products/${product.id}`, product)
     const editedProduct = resp.data
     dispatch(updatedProduct(editedProduct))
+    history.push('/products')
   }
 }
 

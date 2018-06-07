@@ -12,12 +12,12 @@ class AdminEditForm extends Component {
 
  onHandleSubmit = event => {
     event.preventDefault();
-    const id = this.props.id
+    const id = this.props.singleProduct.id
     const name = event.target.name.value;
     const price = event.target.price.value;
     const description = event.target.description.value;
-
     const editObj = { id, name, description, price };
+    console.log('editObj', editObj)
     this.props.sendToProductPutThunk(editObj)
 
 
