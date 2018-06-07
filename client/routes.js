@@ -7,7 +7,7 @@ import ProductList from './components/ProductList'
 import ProductDetail from './components/ProductDetail'
 import LandingPage from './components/LandingPage'
 import { me } from './store'
-
+import Checkout from './components/Checkout'
 
 import CreateUser from './components/createUserForm'
 
@@ -37,6 +37,7 @@ class Routes extends Component {
 
         {/* <Route exact path="/users/signup" component={CreateUser} /> */}
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/cart/checkout" component={Checkout} />
 
         {isLoggedIn && (
           <Switch>
