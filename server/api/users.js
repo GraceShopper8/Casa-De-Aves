@@ -16,42 +16,35 @@ router.get(
   })
 )
 
-router.get('/:id',  (req, res, next) => {
-
-  User.find({
-      where: { id: req.params.id},
-      include: [{all: true}]
-  })
-  .then( camp => { res.json(camp)})
-  .catch(next)
-  })
+router.get('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id)
+    user ? res.json(user) : res.status(404).end()
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.post(
   '/',
-  asyncHandler(async(req, res) => {
+  asyncHandler(async (req, res) => {
     const newUser = await User.create(req.body)
     res.json(newUser)
   })
 )
 
-router.put(
-  '/:id',
-  asyncHandler(async (req, res) => {
-    const updatedUser = await  User.update(req.body,{
-      where: {
-        id: req.params.id
-      },
-      returning: true
-    })
-    res.json(updatedUser)
-  })
-)
-
-router.delete(
-  '/:id',
-  (req, res, next) => {
-    User.destroy({ where: { id: req.params.id } })
-    .then(() => res.json(req.params.id))
-        .catch(next)
+router.put('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id)
+    const updated = await user.update(req.body)
+    user ? res.json(updated) : res.status(404).json('Student not found.')
+  } catch (error) {
+    next(error)
   }
-)
+})
+
+router.delete('/:id', (req, res, next) => {
+  User.destroy({ where: { id: req.params.id } })
+    .then(() => res.json(req.params.id))
+    .catch(next)
+})

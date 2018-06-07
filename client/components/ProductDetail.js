@@ -1,27 +1,26 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { getSingleProducts } from "../store/product";
-import { addedToCart } from "../store/cart";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getSingleProducts } from '../store/product'
+import { addedToCart } from '../store/cart'
 
 class ProductDetail extends Component {
   constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
+    super()
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
-    this.props.getSingleProducts(this.props.match.params.id);
+    this.props.getSingleProducts(this.props.match.params.id)
   }
 
   handleClick(itemID) {
-    console.log("ITEM ID", itemID);
-    this.props.getCartItems(itemID);
+    this.props.getCartItems(itemID)
   }
 
   render() {
-    const product = this.props.singleProduct;
-    console.log("HERE IS PRODUCT:", product);
+    const product = this.props.singleProduct
+    console.log('HERE IS PRODUCT:', product)
     return (
       <div className="container container--top-gutter">
         <div className="col s12 m7">
@@ -37,28 +36,31 @@ class ProductDetail extends Component {
               </div>
               <div className="card-action">
                 <a className="waves-effect waves-light btn-flat btn-small">
-                  <i className="material-icons left">add_shopping_cart</i>Add to Cart
+                  <i className="material-icons left">add_shopping_cart</i>Add to
+                  Cart
                 </a>
-                <a className="waves-effect waves-light btn-flat btn-small">Checkout</a>
+                <a className="waves-effect waves-light btn-flat btn-small">
+                  Checkout
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-const mapState = (state) => ({
-  singleProduct: state.product.singleProduct
-});
+const mapState = state => ({
+  singleProduct: state.product.singleProduct,
+})
 
-const mapDispatch = (dispatch) => ({
-  getSingleProducts: (id) => dispatch(getSingleProducts(id)),
-  getCartItems: (id) => dispatch(addedToCart(id))
-});
+const mapDispatch = dispatch => ({
+  getSingleProducts: id => dispatch(getSingleProducts(id)),
+  getCartItems: id => dispatch(addedToCart(id)),
+})
 
 export default connect(
   mapState,
   mapDispatch
-)(ProductDetail);
+)(ProductDetail)
