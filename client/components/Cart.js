@@ -5,6 +5,8 @@ import { me } from '../store'
 import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 import { updateUserCart } from '../store/user'
 
+
+
 class Cart extends Component {
   componentDidMount = () => {
     const cartLocal = window.localStorage.getItem('cart')
