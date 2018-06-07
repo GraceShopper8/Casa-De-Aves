@@ -20,15 +20,13 @@ class Cart extends Component {
   render() {
     let cartTotal = 0
     let items = this.props.items;
-    
-    console.log(items)
     return (
       <div className="container">
         <ul className="collection col s6">
           {items.map((item, index) => {
             cartTotal += Number(item.price)
             return (
-              <li className="collection-item avatar" key={index}>
+              <li className="collection-item avatar" key={item.id}>
                 <img
                   src={`img/${item.imgUrl}`}
                   alt={item.name}
