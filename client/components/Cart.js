@@ -47,7 +47,7 @@ class Cart extends Component {
           {items.map((item, index) => {
             cartTotal += Number(item.price)
             return (
-              <li className="collection-item avatar" key={index}>
+              <li className="collection-item avatar" key={item.id}>
                 <img
                   src={`img/${item.imgUrl}`}
                   alt={item.name}

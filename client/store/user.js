@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import userHome from '../components'
 
 /**
  * ACTION TYPES
@@ -8,7 +9,7 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const ADD_NEW_USER = 'ADD_NEW_USER'
 const UPDATED_USER_CART = 'UPDATED_USER_CART'
-
+const UPDATE_USER = 'UPDATE_USER'
 /**
  * INITIAL STATE
  */
@@ -21,6 +22,7 @@ const getUser = user => ({ type: GET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
 const addNewUser = user => ({ type: ADD_NEW_USER, user })
 const updatedUserCart = user => ({ type: UPDATED_USER_CART, user })
+const updatedUser = user => ({ type: UPDATE_USER, user })
 
 /**
  * THUNK CREATORS
@@ -42,13 +44,25 @@ export const AddUser = user => dispatch =>
     .post(`/auth/signup`, user)
     .then(
       res => {
-        console.log(res)
         dispatch(addNewUser(res.data))
         history.push('/products')
       },
       authError => {
-        // rare example: a good use case for parallel (non-catch) error handler
         dispatch(addNewUser({ error: authError }))
+      }
+    )
+    .catch(err => console.error(err))
+
+export const updateUser = user => dispatch =>
+  axios
+    .put(`/auth/${user.id}`, user)
+    .then(
+      res => {
+        dispatch(updatedUser(res.data))
+        history.push('/products')
+      },
+      authError => {
+        dispatch(updatedUser({ error: authError }))
       }
     )
     .catch(err => console.error(err))
@@ -74,6 +88,15 @@ export const auth = (email, password, method) => dispatch =>
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
+export const deleteUser = user => dispatch =>
+  axios
+    .delete(`/auth/${user}`)
+    .then(_ => {
+      dispatch(removeUser())
+      history.push('/login')
+    })
+    .catch(err => console.log(err))
+
 export const logout = () => dispatch =>
   axios
     .post('/auth/logout')
@@ -86,15 +109,18 @@ export const logout = () => dispatch =>
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+
+export default function(state = {}, action) {
   switch (action.type) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return defaultUser
+      return state
     case ADD_NEW_USER:
       return action.user
     case UPDATED_USER_CART:
+      return action.user
+    case UPDATE_USER:
       return action.user
     default:
       return state
