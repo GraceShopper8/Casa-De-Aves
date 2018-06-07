@@ -13,12 +13,16 @@ const UPDATE_USER = 'UPDATE_USER';
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {
+
+}
 
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
+
+
+const getUser = (user) => ({type: GET_USER, user })
 const removeUser = () => ({type: REMOVE_USER})
 const addNewUser = (user) => ({type: ADD_NEW_USER, user})
 const addToCart = (item) => ({type: ADD_TO_CART, item })
