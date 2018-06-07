@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const FETCH_ALL_PRODUCTS = 'FETCH_ALL_PRODUCTS'
 const FETCH_SINGLE_PRODUCT = 'FETCH_SINGLE_PRODUCT'
+const UPDATED_PRODUCT = 'UPDATED_PRODUCT'
 
 const initState = {
   allProducts: [],
@@ -19,6 +20,12 @@ const gotSingleProducts = product => {
   return {
     type: FETCH_SINGLE_PRODUCT,
     product,
+  }
+}
+const updatedProduct = product => {
+  return {
+    type: UPDATED_PRODUCT,
+    product
   }
 }
 
@@ -40,6 +47,14 @@ export const getSingleProducts = id => {
   }
 }
 
+export const updateProduct = product => {
+  return async dispatch => {
+    const resp = await axios.put(`/api/products/${product.id}`)
+    const editedProduct = resp.data
+    dispatch(updatedProduct(editedProduct))
+  }
+}
+
 const productReducer = (state = initState, action) => {
   switch (action.type) {
     case FETCH_ALL_PRODUCTS:
@@ -52,6 +67,13 @@ const productReducer = (state = initState, action) => {
         ...state,
         singleProduct: action.product,
       }
+      case UPDATED_PRODUCT: {
+      const newProducts = state.allProducts.filter(prod => prod.id !== action.prod.id)
+      return {
+        ...state,
+        allProducts: [...newProducts, action.product]
+      }
+    }
     default:
       return state
   }

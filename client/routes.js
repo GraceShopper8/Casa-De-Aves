@@ -6,6 +6,7 @@ import { Login, Signup, UserHome } from './components'
 import ProductList from './components/ProductList'
 import ProductDetail from './components/ProductDetail'
 import LandingPage from './components/LandingPage'
+import AdminEditForm from './components/AdminEditForm'
 import { me } from './store'
 
 
@@ -37,6 +38,7 @@ class Routes extends Component {
 
         {/* <Route exact path="/users/signup" component={CreateUser} /> */}
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/products/:id/edit" component={AdminEditForm} />
 
         {isLoggedIn && (
           <Switch>
