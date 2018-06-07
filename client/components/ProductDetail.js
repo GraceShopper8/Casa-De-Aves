@@ -22,7 +22,7 @@ class ProductDetail extends Component {
 
   render() {
     const product = this.props.singleProduct;
-    const isAdmin = true //this.props.user.admin
+    const isAdmin = this.props.user.admin
     return (
       <div className="container container--top-gutter">
         <div className="col s12 m7">
