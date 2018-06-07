@@ -70,7 +70,7 @@ const productReducer = (state = initState, action) => {
         singleProduct: action.product,
       }
       case UPDATED_PRODUCT: {
-      const newProducts = state.allProducts.filter(prod => prod.id !== action.prod.id)
+      const newProducts = state.allProducts.filter(prod => prod.id !== action.product.id)
       return {
         ...state,
         allProducts: [...newProducts, action.product]
