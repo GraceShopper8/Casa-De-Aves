@@ -4,6 +4,11 @@ input {
   letter-spacing: 0.08rem;
 }
 
+#product_form {
+  margin: 0px;
+  height: 196px;
+  width: 627px;
+}
 .container--top-gutter{
   padding-top: 10%;
 }
@@ -32,7 +37,7 @@ input {
   height: 35px;
   flex-direction: row;
   flex-wrap: nowrap;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);  
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
   border-radius: 3px;
   justify-content: center;
   align-content: center;

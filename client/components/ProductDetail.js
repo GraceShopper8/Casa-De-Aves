@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSingleProducts } from '../store/product'
 import { addedToCart } from '../store/cart'
+import { Link } from 'react-router-dom'
 
 class ProductDetail extends Component {
   constructor() {
@@ -15,12 +16,13 @@ class ProductDetail extends Component {
   }
 
   handleClick(itemID) {
+    console.log('ITEM ID', itemID)
     this.props.getCartItems(itemID)
   }
 
   render() {
     const product = this.props.singleProduct
-    console.log('HERE IS PRODUCT:', product)
+    const isAdmin = this.props.user.admin
     return (
       <div className="row container container--top-gutter">
         <div className="col s1" />
@@ -36,6 +38,18 @@ class ProductDetail extends Component {
                 <p className="custom__description">{product.description}</p>
               </div>
               <div className="card-action">
+                {isAdmin ? (
+                  <Link to={`/products/${product.id}/edit`}>
+                    <button
+                      className="btn waves-effect waves-light"
+                      type="submit"
+                      name="action">
+                      Edit<i className="material-icons right">send</i>
+                    </button>
+                  </Link>
+                ) : (
+                  ''
+                )}
                 <a className="waves-effect waves-light btn-flat btn-small">
                   <i className="material-icons left">add_shopping_cart</i>Add to
                   Cart
@@ -54,6 +68,7 @@ class ProductDetail extends Component {
 
 const mapState = state => ({
   singleProduct: state.product.singleProduct,
+  user: state.user,
 })
 
 const mapDispatch = dispatch => ({
