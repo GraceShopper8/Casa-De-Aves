@@ -1,4 +1,3 @@
-
 const Sequelize = require('sequelize')
 const db = require('../db')
 
@@ -8,6 +7,11 @@ const Order = db.define('order', {
     defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
     allowNull: false,
+  },
+
+  cartContents: {
+    type: Sequelize.TEXT,
+    defaultValue: '',
   },
 
   shippingAddress: {

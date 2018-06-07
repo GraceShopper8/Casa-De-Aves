@@ -22,8 +22,9 @@ class ProductDetail extends Component {
     const product = this.props.singleProduct
     console.log('HERE IS PRODUCT:', product)
     return (
-      <div className="container container--top-gutter">
-        <div className="col s12 m7">
+      <div className="row container container--top-gutter">
+        <div className="col s1" />
+        <div className="col s10">
           <div className="card horizontal medium">
             <div className="card-image">
               <img src={`/img/${product.imgUrl}`} />
