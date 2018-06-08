@@ -20,6 +20,7 @@ class ProductDetail extends Component {
   }
 
   render() {
+
     const product = this.props.singleProduct
     const isAdmin = this.props.user.admin
     return (
@@ -37,6 +38,10 @@ class ProductDetail extends Component {
                 <p className="custom__description">{product.description}</p>
               </div>
               <div className="card-action">
+                <a className="waves-effect waves-light btn-small">
+                  <i className="material-icons left">add_shopping_cart</i>Add to Cart
+                </a>
+                <a href="/cart/checkout" className="waves-effect waves-light btn-small">Checkout</a>
                 {isAdmin ? (
                   <Link to={`/products/${product.id}/edit`}>
                     <button

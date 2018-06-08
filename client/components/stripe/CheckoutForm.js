@@ -3,21 +3,27 @@ import { injectStripe } from "react-stripe-elements";
 import CardSection from "./CardSection";
 import { connect } from 'react-redux';
 import axios from 'axios';
+import history from '../../history';
 
 class CheckoutForm extends React.Component {
+
   handleSubmit = (ev) => {
     ev.preventDefault();
 
     this.props.stripe.createToken({ name: "Jenny Rosen" })
       .then(({ token }) => {
-        console.log("Received Stripe token:", token);
-        return axios.post('/api/checkout', token);
-      }).then((data) => {
-        console.log('data from axios payment', data);
+        return axios.post('/api/checkout', {token: token.id});
+      }).then((response) => {
+        if(response.status === 200){
+          history.push('/receipt')
+          // ! TODO: Create new page that will have thank you receipt and proper information 
+          // ! ADD button to go back to Home or Product page
+        }
       });
   };
 
   render() {
+
     console.log('payment method props', this.props.state);
     return (
       <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
@@ -32,26 +38,25 @@ class CheckoutForm extends React.Component {
                 <div className="input-field col s6">
                   <input id="last_name" type="text" name="lastName" placeholder="Last Name" />
                 </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="homeAddress" type="text" name="homeAddress" placeholder="Address" />
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input id="homeAddress" type="text" name="homeAddress" placeholder="Address" />
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <CardSection />
+                <div className="row">
+                  <div className="input-field col s12">
+                    <CardSection />
+                  </div>
                 </div>
+                <center>
+                  <button className="btn waves-effect waves-light teal" type="submit" name="action">
+                    Confirm order
+                  </button>
+                </center>
               </div>
-              <center>
-                <button className="btn waves-effect waves-light teal" type="submit" name="action">
-                  Confirm order
-                </button>
-              </center>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
     );
   }
 }
