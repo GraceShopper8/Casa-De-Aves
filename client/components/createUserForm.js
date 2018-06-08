@@ -18,7 +18,7 @@ class CreateUser extends Component {
   };
   render() {
     return (
-      <div className="container container__sign-in-form white z-depth-2">
+      <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
         <div id="register" className="col s12">
           <form className="col s12" onSubmit={this.handleSubmit}>
             <div className="form-container">

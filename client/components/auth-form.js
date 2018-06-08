@@ -10,7 +10,7 @@ const AuthForm = props => {
   const { name, displayName, handleSubmit, error } = props
 
   return (
-    <div className="container container__sign-in-form white z-depth-2">
+    <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
       <div id="login" className="col s12">
         <form className="col s12" onSubmit={handleSubmit} name={name}>
           <div className="form-container">
