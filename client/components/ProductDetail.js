@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSingleProducts } from '../store/product'
+import  UserReviewForm  from './UserReviewForm'
 import { addedToCart } from '../store/cart'
 import { Link } from 'react-router-dom'
 
@@ -28,7 +29,6 @@ class ProductDetail extends Component {
     }
 
 
-    console.log("productReviews", product)
     const isAdmin = this.props.user.admin
     return (
       <div className="row container container--top-gutter">
@@ -67,42 +67,13 @@ class ProductDetail extends Component {
               </div>
             </div>
           </div>
-
-          <div className="row">
-            <div className="input-field col s12">
-           <input placeholder="Write Review: " className="materialize-textarea " />
-
-            </div>
-         </div>
-
-          { prodReviews.map((review) => {
-            return (
-
-
-                <div className="row">
-                  <div className="input-field col s12">
-                 <input key={review.id} id="textarea1" defaultValue={review.reviewDetail} className="materialize-textarea"></input>
-
-                 </div>
-               </div>
-
-
-            )
-
-          })
-        }
+          <UserReviewForm  prodReviews={prodReviews} />
 
         </div>
       </div>
     )
   }
 }
-// <div class="row">
-//     <div class="input-field col s12">
-//       <input value="Alvin" id="first_name2" type="text" class="validate">
-//       <label class="active" for="first_name2">First Name</label>
-//     </div>
-//   </div>
 
 
 const mapState = state => ({
