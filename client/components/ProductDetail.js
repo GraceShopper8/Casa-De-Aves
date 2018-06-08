@@ -15,13 +15,11 @@ class ProductDetail extends Component {
   }
 
   handleClick(itemID) {
-    console.log("ITEM ID", itemID);
     this.props.getCartItems(itemID);
   }
 
   render() {
     const product = this.props.singleProduct;
-    console.log("HERE IS PRODUCT:", product);
     return (
       <div className="container container--top-gutter">
         <div className="col s12 m7">

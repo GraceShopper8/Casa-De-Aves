@@ -47,9 +47,6 @@ export const deleteFromGuestCart = (index) => {
     if (index !== i) return item;
   });
   storage.setItem('cart', JSON.stringify(newItems));
-
-  console.log(storage);
-  console.log(newItems);
   return (dispatch) => {
     dispatch(deletedFromGuestCart(index));
   };

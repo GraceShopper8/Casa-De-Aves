@@ -35,6 +35,7 @@ export const getSingleProducts = id => {
   return async dispatch => {
     // ASSUMING API ROUTE IS SET
     const { data } = await axios.get(`/api/products/${id}`)
+    console.log(data.reviews[0].userId)
     const action = gotSingleProducts(data)
     dispatch(action)
   }
