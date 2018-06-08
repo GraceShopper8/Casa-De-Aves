@@ -4,11 +4,12 @@ import CardSection from './CardSection'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import history from '../../history'
+import { addNewOrder } from '../../store/order'
 
 class CheckoutForm extends React.Component {
   handleSubmit = ev => {
     ev.preventDefault()
-    console.log('DID MY TOTAL MAKE IT?', this.props.totalPrice)
+    console.log('DID MY TOTAL MAKE IT?', this.props)
     this.props.stripe
       .createToken({ name: 'Jenny Rosen' })
       .then(({ token }) => {
@@ -18,7 +19,11 @@ class CheckoutForm extends React.Component {
         if (response.status === 200) {
           history.push('/receipt')
           // ! TODO: Create new page that will have thank you receipt and proper information
-          // TODO: Add to order model here
+          // TODO: add order post request here
+          // const cartContents = this.props.state.cart.items
+          // const shippingAddress = ev.target.homeAddress.value
+          // const totalPrice = this.props.totalPrice
+          // this.props.addNewOrder({ cartContents, shippingAddress, totalPrice })
           // ! ADD button to go back to Home or Product page
         }
       })
@@ -56,6 +61,7 @@ class CheckoutForm extends React.Component {
                       type="text"
                       name="homeAddress"
                       placeholder="Address"
+                      required
                     />
                   </div>
                 </div>
@@ -87,4 +93,13 @@ const mapState = state => {
   }
 }
 
-export default injectStripe(connect(mapState)(CheckoutForm))
+const mapDispatch = dispatch => ({
+  addNewOrder: order => dispatch(addNewOrder(order)),
+})
+
+export default injectStripe(
+  connect(
+    mapState,
+    mapDispatch
+  )(CheckoutForm)
+)
