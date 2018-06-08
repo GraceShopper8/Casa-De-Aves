@@ -9,6 +9,12 @@ input {
   height: 196px;
   width: 627px;
 }
+
+::-webkit-input-placeholder { /* Chrome */
+  color: #535353 !important;
+
+}
+
 .container--top-gutter{
   padding-top: 10%;
 }

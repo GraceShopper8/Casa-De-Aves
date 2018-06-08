@@ -68,6 +68,13 @@ class ProductDetail extends Component {
             </div>
           </div>
 
+          <div className="row">
+            <div className="input-field col s12">
+           <input placeholder="Write Review: " className="materialize-textarea " />
+
+            </div>
+         </div>
+
           { prodReviews.map((review) => {
             return (
 
