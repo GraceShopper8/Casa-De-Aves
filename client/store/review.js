@@ -16,7 +16,7 @@ const gotAllProducts = review => {
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_REVIEW:
+    case CREATED_REVIEW:
       return {
         ...state,
         allReviews: action.products,
