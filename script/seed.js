@@ -40,8 +40,8 @@ const seedScript = async () => {
     })
 
     reviews.forEach((review) => {
-       review.setUser(1);
-       review.setProduct(3)
+       review.setUser(users[Math.ceil(Math.random() * users.length-1)].id);
+       review.setProduct(products[Math.ceil(Math.random() * products.length-1)].id);
     })
     
     await Promise.all(orders);
