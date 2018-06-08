@@ -1,11 +1,11 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import { me } from '../store'
 import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 import { updateUserCart } from '../store/user'
-
-
 
 class Cart extends Component {
   componentDidMount = () => {
@@ -15,14 +15,14 @@ class Cart extends Component {
       this.props.addToLocalStorageData(items)
     }
     if (this.props.isLoggedIn) {
-      const existingDBCart = JSON.parse(this.props.user.cart)
-      const localStorageCart = this.props.items
-      console.log(typeof existingDBCart)
-      const combinedCart = existingDBCart.concat(localStorageCart)
-      console.log('THIS IS COMBINED CART: ', combinedCart)
+      // const existingDBCart = JSON.parse(this.props.user.cart)
+      // const localStorageCart = this.props.items
+      // console.log(typeof existingDBCart)
+      // const combinedCart = localStorageCart
+      // console.log('THIS IS COMBINED CART: ', combinedCart)
       const updatedUser = {
         ...this.props.user,
-        cart: JSON.stringify(combinedCart),
+        cart: JSON.stringify(this.props.items),
       }
       this.props.updateUserCart(updatedUser)
     }
@@ -49,7 +49,7 @@ class Cart extends Component {
           {items.map((item, index) => {
             cartTotal += Number(item.price)
             return (
-              <li className="collection-item avatar" key={item.id}>
+              <li className="collection-item avatar" key={index}>
                 <img
                   src={`img/${item.imgUrl}`}
                   alt={item.name}
@@ -72,9 +72,9 @@ class Cart extends Component {
             <li className="collection-item avatar blue-grey lighten-3">
               <h6>TOTAL PRICE:</h6>
               <h3>${cartTotal}</h3>
-              <a href="#" className="btn-small secondary-content">
+              <Link to="/cart/checkout" className="btn-small secondary-content">
                 Checkout
-              </a>
+              </Link>
             </li>
           ) : (
             <h2 className="center">NOTHING HERE, YOUR CART IS EMPTY!</h2>

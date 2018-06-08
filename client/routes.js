@@ -9,7 +9,7 @@ import LandingPage from './components/LandingPage'
 import AdminEditForm from './components/AdminEditForm'
 import { me } from './store'
 import Checkout from './components/Checkout'
-
+import Receipt from './components/stripe/Receipt';
 import CreateUser from './components/createUserForm'
 import EditUser from './components/editUserForm'
 import Cart from './components/Cart'
@@ -36,6 +36,7 @@ class Routes extends Component {
         <Route exact path="/products/:id" component={ProductDetail} />
         {/* <Route exact path="/users/signup" component={CreateUser} /> */}
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/receipt" component={Receipt} />
         <Route exact path="/cart/checkout" component={Checkout} />
         <Route exact path="/products/:id/edit" component={AdminEditForm} />
 
