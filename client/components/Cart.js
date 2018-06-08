@@ -13,14 +13,14 @@ class Cart extends Component {
       this.props.addToLocalStorageData(items)
     }
     if (this.props.isLoggedIn) {
-      const existingDBCart = JSON.parse(this.props.user.cart)
-      const localStorageCart = this.props.items
-      console.log(typeof existingDBCart)
-      const combinedCart = existingDBCart.concat(localStorageCart)
-      console.log('THIS IS COMBINED CART: ', combinedCart)
+      // const existingDBCart = JSON.parse(this.props.user.cart)
+      // const localStorageCart = this.props.items
+      // console.log(typeof existingDBCart)
+      // const combinedCart = localStorageCart
+      // console.log('THIS IS COMBINED CART: ', combinedCart)
       const updatedUser = {
         ...this.props.user,
-        cart: JSON.stringify(combinedCart),
+        cart: JSON.stringify(this.props.items),
       }
       this.props.updateUserCart(updatedUser)
     }
