@@ -12,8 +12,9 @@ class UserReviewForm extends Component {
     event.preventDefault();
     const reviewDetail = event.target.reviewDetail.value;
     const rating = event.target.rating.value;
+   const productId = this.props.prodId
 
-    const reviewObj = { reviewDetail, rating};
+    const reviewObj = { reviewDetail, rating, productId};
     this.props.sendToReviewPostThunk(reviewObj);
   };
 
@@ -22,7 +23,7 @@ class UserReviewForm extends Component {
   };
 
   render() {
-
+   console.log(this.props.prodReviews)
 
     return (
 <div className="row">
@@ -54,14 +55,29 @@ class UserReviewForm extends Component {
         </div>
     </div>
   </form>
+  {
+    this.props.prodReviews.map((review) => {
+     return( <div className="row">
+              <div className="input-field col s12">
+             <input key={review.id} id="textarea1" defaultValue={review.reviewDetail} className="input-field col s12"></input>
+
+
+             </div>
+           </div>
+     )
+
+    })
+  }
 </div>
+
+
     )
   }
 }
 
-const mapState = state => {
-
-}
+const mapState = state => ({
+ reviews: state.review.allReviews
+})
 
 const mapDispatch = dispatch => ({
 sendToReviewPostThunk: newReview => dispatch(addReview(newReview))
@@ -71,23 +87,3 @@ export default connect(
   mapState,
   mapDispatch
 )(UserReviewForm)
-
-
-
-
-
-
-// { this.props.map((review) => {
-//   return (
-//
-//
-//       <div className="row">
-//         <div className="input-field col s12">
-//        <input key={review.id} id="textarea1" defaultValue={review.reviewDetail} className="input-field col s12"></input>
-//
-//
-//        </div>
-//      </div>
-//
-//
-//   ) //return

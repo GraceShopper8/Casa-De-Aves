@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 
-const CREATED_REVIEW = 'CREATE_REVIEW'
+const CREATED_REVIEW = 'CREATED_REVIEW'
+
 const initialState = {
   allReviews: []
 }
@@ -9,14 +10,14 @@ const initialState = {
 const createdReview = review => {
   return {
     type: CREATED_REVIEW,
-    review,
+    review
   }
 }
 
 export const addReview = (review) => {
   return async dispatch => {
   try {
-    const response = await axios.post(`api/review`, review);
+    const response = await axios.post(`/api/review`, review);
     const newReview = response.data;
     dispatch(createdReview(newReview))
   } catch (error) { console.error(error) }
@@ -29,7 +30,7 @@ const reviewReducer = (state = initialState, action) => {
     case CREATED_REVIEW:
       return {
         ...state,
-        allReviews: [...state.allReviews, action.review }
+        allReviews: [...state.allReviews, action.review]
       }
      default:
       return state

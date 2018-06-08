@@ -67,7 +67,7 @@ class ProductDetail extends Component {
               </div>
             </div>
           </div>
-          <UserReviewForm  prodReviews={prodReviews} />
+          <UserReviewForm  prodId={product.id} prodReviews={prodReviews} />
 
         </div>
       </div>
