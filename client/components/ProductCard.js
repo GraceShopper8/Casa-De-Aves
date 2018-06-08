@@ -2,8 +2,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-
+import { me } from '../store'
 import { addedToCart } from '../store/cart'
+import { addToUserCart } from '../store/user'
 
 class ProductCard extends Component {
   constructor() {
@@ -14,8 +15,8 @@ class ProductCard extends Component {
   handleClick(itemID) {
     this.props.addedToCart(itemID)
     setTimeout(() => {
-      let storage = window.localStorage;
-      const cartItems = this.props.items;
+      let storage = window.localStorage
+      const cartItems = this.props.items
       const str = JSON.stringify(cartItems)
       storage.setItem('cart', str);
     }, 50)
@@ -42,7 +43,9 @@ class ProductCard extends Component {
               </div>
               <div className="card-content">
                 <Link to={`/products/${product.id}`}>
-                  <h5 className="black-text custom__text-size">{product.name}</h5>
+                  <h5 className="black-text custom__text-size">
+                    {product.name}
+                  </h5>
                 </Link>
                 <p>${product.price}</p>
               </div>
@@ -60,11 +63,14 @@ class ProductCard extends Component {
 const mapState = state => {
   return {
     items: state.cart.items,
+    user: state.user,
+    isLoggedIn: !!state.user.id,
   }
 }
 
 const mapDispatch = dispatch => {
   return {
+    loadInitialData: () => dispatch(me()),
     addedToCart: id => dispatch(addedToCart(id)),
   }
 }

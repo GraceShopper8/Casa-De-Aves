@@ -1,7 +1,9 @@
 import axios from 'axios'
+import history from '../history'
 
 const FETCH_ALL_PRODUCTS = 'FETCH_ALL_PRODUCTS'
 const FETCH_SINGLE_PRODUCT = 'FETCH_SINGLE_PRODUCT'
+const UPDATED_PRODUCT = 'UPDATED_PRODUCT'
 
 const initState = {
   allProducts: [],
@@ -21,6 +23,12 @@ const gotSingleProducts = product => {
     product,
   }
 }
+const updatedProduct = product => {
+  return {
+    type: UPDATED_PRODUCT,
+    product
+  }
+}
 
 export const getAllProducts = () => {
   return async dispatch => {
@@ -35,9 +43,17 @@ export const getSingleProducts = id => {
   return async dispatch => {
     // ASSUMING API ROUTE IS SET
     const { data } = await axios.get(`/api/products/${id}`)
-    console.log(data.reviews[0].userId)
     const action = gotSingleProducts(data)
     dispatch(action)
+  }
+}
+
+export const updateProduct = product => {
+  return async dispatch => {
+    const resp = await axios.put(`/api/products/${product.id}`, product)
+    const editedProduct = resp.data
+    dispatch(updatedProduct(editedProduct))
+    history.push('/products')
   }
 }
 
@@ -53,6 +69,13 @@ const productReducer = (state = initState, action) => {
         ...state,
         singleProduct: action.product,
       }
+      case UPDATED_PRODUCT: {
+      const newProducts = state.allProducts.filter(prod => prod.id !== action.product.id)
+      return {
+        ...state,
+        allProducts: [...newProducts, action.product]
+      }
+    }
     default:
       return state
   }
