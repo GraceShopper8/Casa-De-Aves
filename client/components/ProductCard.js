@@ -12,7 +12,6 @@ class ProductCard extends Component {
   }
 
   handleClick(itemID) {
-    console.log('ITEM ID', itemID)
     this.props.addedToCart(itemID)
 
     ///////////
@@ -20,8 +19,6 @@ class ProductCard extends Component {
       let storage = window.localStorage;
       const cartItems = this.props.items;
       const str = JSON.stringify(cartItems)
-      // console.log('string version', str);
-      // console.log('parsed version', JSON.parse(str));
       storage.setItem('cart', str);
     }, 50)
  

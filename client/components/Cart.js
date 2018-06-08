@@ -53,7 +53,7 @@ class Cart extends Component {
             <li className="collection-item avatar blue-grey lighten-3">
               <h6>TOTAL PRICE:</h6>
               <h3>${cartTotal}</h3>
-              <a href="#" className="btn-small secondary-content">
+              <a href="/cart/checkout" className="btn-small secondary-content">
                 Checkout
               </a>
             </li>

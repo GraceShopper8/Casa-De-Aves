@@ -21,7 +21,6 @@ class ProductDetail extends Component {
 
   render() {
     const product = this.props.singleProduct;
-    console.log("HERE IS PRODUCT:", product);
     return (
       <div className="container container--top-gutter">
         <div className="col s12 m7">
@@ -36,10 +35,10 @@ class ProductDetail extends Component {
                 <p className="custom__description">{product.description}</p>
               </div>
               <div className="card-action">
-                <a className="waves-effect waves-light btn-flat btn-small">
+                <a className="waves-effect waves-light btn-small">
                   <i className="material-icons left">add_shopping_cart</i>Add to Cart
                 </a>
-                <a className="waves-effect waves-light btn-flat btn-small">Checkout</a>
+                <a href="/cart/checkout" className="waves-effect waves-light btn-small">Checkout</a>
               </div>
             </div>
           </div>
