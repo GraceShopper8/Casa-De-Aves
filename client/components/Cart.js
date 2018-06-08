@@ -1,6 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import { me } from '../store'
 import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 import { updateUserCart } from '../store/user'
@@ -70,9 +72,9 @@ class Cart extends Component {
             <li className="collection-item avatar blue-grey lighten-3">
               <h6>TOTAL PRICE:</h6>
               <h3>${cartTotal}</h3>
-              <a href="/cart/checkout" className="btn-small secondary-content">
+              <Link to="/cart/checkout" className="btn-small secondary-content">
                 Checkout
-              </a>
+              </Link>
             </li>
           ) : (
             <h2 className="center">NOTHING HERE, YOUR CART IS EMPTY!</h2>

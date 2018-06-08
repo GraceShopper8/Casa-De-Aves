@@ -16,10 +16,10 @@ router.get(
 router.get(
   '/:id',
   asyncHandler(async (req, res) => {
-    const product = await Product.find({
-      where: { id: req.params.id},
-      include: [{all: true}]
-  })
+    const product = await Product.findOne({
+      where: { id: req.params.id },
+      include: [{ all: true }],
+    })
     res.json(product)
   })
 )
@@ -39,23 +39,21 @@ router.put(
   asyncHandler(async (req, res) => {
     const updatedProduct = await Product.update(req.body, {
       where: { id: req.params.id },
-        returning: true
-    });
-     res.json(updatedProduct[1][0].dataValues)
+      returning: true,
+    })
+    res.json(updatedProduct[1][0].dataValues)
   })
 )
 
-router.delete(
-  '/:id', async (req, res) => {
-    const deletedProduct = await Product.findById(req.params.id)
-    if (!deletedProduct){
-      return res.status(404).send(`Error Product id: ${req.parmas.id} not found`)
-     }
-     await Product.destroy({
-       where: {
-         id: req.params.id
-       }
-     })
-     res.send(deletedProduct)
+router.delete('/:id', async (req, res) => {
+  const deletedProduct = await Product.findById(req.params.id)
+  if (!deletedProduct) {
+    return res.status(404).send(`Error Product id: ${req.parmas.id} not found`)
   }
-)
+  await Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+  res.send(deletedProduct)
+})

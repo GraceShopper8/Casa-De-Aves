@@ -26,7 +26,7 @@ const gotSingleProducts = product => {
 const updatedProduct = product => {
   return {
     type: UPDATED_PRODUCT,
-    product
+    product,
   }
 }
 
@@ -69,11 +69,13 @@ const productReducer = (state = initState, action) => {
         ...state,
         singleProduct: action.product,
       }
-      case UPDATED_PRODUCT: {
-      const newProducts = state.allProducts.filter(prod => prod.id !== action.product.id)
+    case UPDATED_PRODUCT: {
+      const newProducts = state.allProducts.filter(
+        prod => prod.id !== action.product.id
+      )
       return {
         ...state,
-        allProducts: [...newProducts, action.product]
+        allProducts: [...newProducts, action.product],
       }
     }
     default:
