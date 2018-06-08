@@ -22,6 +22,13 @@ class ProductDetail extends Component {
 
   render() {
     const product = this.props.singleProduct
+    const prodReviews = product.reviews
+    if (!prodReviews) {
+     return <h1>""</h1>;
+    }
+
+
+    console.log("productReviews", product)
     const isAdmin = this.props.user.admin
     return (
       <div className="row container container--top-gutter">
@@ -60,11 +67,36 @@ class ProductDetail extends Component {
               </div>
             </div>
           </div>
+
+          { prodReviews.map((review) => {
+            return (
+
+
+                <div className="row">
+                  <div className="input-field col s12">
+                 <input key={review.id} id="textarea1" defaultValue={review.reviewDetail} className="materialize-textarea"></input>
+
+                 </div>
+               </div>
+
+
+            )
+
+          })
+        }
+
         </div>
       </div>
     )
   }
 }
+// <div class="row">
+//     <div class="input-field col s12">
+//       <input value="Alvin" id="first_name2" type="text" class="validate">
+//       <label class="active" for="first_name2">First Name</label>
+//     </div>
+//   </div>
+
 
 const mapState = state => ({
   singleProduct: state.product.singleProduct,
