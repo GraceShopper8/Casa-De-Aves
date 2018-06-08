@@ -15,6 +15,7 @@ class ProductList extends Component {
 
     return (
       <div className="row container">
+        <div className="col s1" />
         <main className="col s10">
           <h2 className="float-header teal-text text-darken-3 center">
             All Products

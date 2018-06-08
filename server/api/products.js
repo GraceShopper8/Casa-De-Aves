@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const asyncHandler = require('express-async-handler')
 
-const { Product, Review } = require('../db/models')
+const { Product, Review, User } = require('../db/models')
 
 module.exports = router
 
@@ -16,7 +16,10 @@ router.get(
 router.get(
   '/:id',
   asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id)
+    const product = await Product.find({
+      where: { id: req.params.id},
+      include: [{all: true}]
+  })
     res.json(product)
   })
 )

@@ -6,14 +6,13 @@ import { Login, Signup, UserHome } from './components'
 import ProductList from './components/ProductList'
 import ProductDetail from './components/ProductDetail'
 import LandingPage from './components/LandingPage'
+import AdminEditForm from './components/AdminEditForm'
 import { me } from './store'
 import Checkout from './components/Checkout'
 import Receipt from './components/stripe/Receipt';
 import CreateUser from './components/createUserForm'
-
-import Cart from './components/Cart';
-
-
+import EditUser from './components/editUserForm'
+import Cart from './components/Cart'
 
 /**
  * COMPONENT
@@ -32,13 +31,14 @@ class Routes extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={CreateUser} />
+        <Route exact path="/edit" component={EditUser} />
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/products/:id" component={ProductDetail} />
-
         {/* <Route exact path="/users/signup" component={CreateUser} /> */}
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/receipt" component={Receipt} />
         <Route exact path="/cart/checkout" component={Checkout} />
+        <Route exact path="/products/:id/edit" component={AdminEditForm} />
 
         {isLoggedIn && (
           <Switch>
