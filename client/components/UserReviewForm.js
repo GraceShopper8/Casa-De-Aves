@@ -1,6 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { addReview } from '../store/review'
 
 
 
@@ -63,7 +64,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-sendToReviewPostThunk: newReview => dispatch()
+sendToReviewPostThunk: newReview => dispatch(addReview(newReview))
 })
 
 export default connect(
