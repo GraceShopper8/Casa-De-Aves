@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const initialState = {
   items: [],
+  total: 0,
 }
 
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -59,6 +60,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         items: [...state.items, action.item],
+        total: state.items.reduce((total, item) => total + item.price, 0),
       }
 
     case DELETE_FROM_GUEST_CART:
@@ -74,6 +76,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         items: action.data,
       }
+
     default:
       return state
   }

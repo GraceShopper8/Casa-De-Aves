@@ -17,6 +17,7 @@ const Order = db.define('order', {
   shippingAddress: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: 'Follow up with customer.',
   },
 
   totalPrice: {
