@@ -8,9 +8,6 @@ const db = require('../db');
 Order.belongsTo(User)
 User.hasMany(Order)
 
-Product.belongsToMany(Order, { through: 'orderProduct' })
-Order.belongsToMany(Product, { through: 'orderProduct' })
-
 Review.belongsTo(User)
 User.hasMany(Review)
 

@@ -35,11 +35,16 @@ const seedScript = async () => {
         shippingAddress: user.homeAddress,
         totalPrice: Math.floor(Math.random() * 1000),
         shippingPrice: Math.floor(Math.random() * 10 + 15),
-        userId: Math.floor(Math.random() * users.length)
+        userId: Math.ceil(Math.random() * users.length)
       });
     })
+
+    reviews.forEach((review) => {
+       review.setUser(1);
+       review.setProduct(3)
+    })
     
-    const userOrders = await Promise.all(orders);
+    await Promise.all(orders);
 
     console.log('Database successfully seeded.')
   } catch (error) {
