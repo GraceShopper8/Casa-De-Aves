@@ -6,14 +6,6 @@ const reviewData = require('./seed-files/reviewData')
 const productData = require('./seed-files/productData')
 const userData = require('./seed-files/userData')
 
-// async function seed() {
-//   await db.sync({ force: true })
-//   console.log('db synced!')
-
-//   console.log(`seeded ${users.length} users`)
-//   console.log(`seeded successfully`)
-// }
-
 const randomNum = (min, max) => Math.random() * (max - min) + min
 
 const seedScript = async () => {

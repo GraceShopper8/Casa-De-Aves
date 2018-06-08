@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { deleteUser, logout } from '../store'
-import { deleteFromGuestCart } from '../store/cart'
+import { deleteFromGuestCart, addToLocalStorageData  } from '../store/cart'
 
 class Navbar extends Component{
 // = ({ handleClick, isLoggedIn, handleDelete, userId }) => (
@@ -11,6 +11,13 @@ class Navbar extends Component{
    super()
    this.state = {isOpen: false, isOpened: false}
  }
+ componentDidMount() {
+  const cartLocal = window.localStorage.getItem('cart');
+  if(cartLocal && this.props.items.length === 0){
+    let items = JSON.parse(cartLocal);
+    this.props.addToLocalStorageData(items)
+  }
+}
   clicker = () => {
     this.setState((state) => ({isOpened: !state.isOpened}))
   }
@@ -20,7 +27,6 @@ class Navbar extends Component{
   render(){
     var cartTotal = 0;
     const { handleClick, isLoggedIn, handleDeleteItem, userId, items, handleDeleteAccount } = this.props
-    console.log('ITEMS IN CART: ', items)
    return (<div className="navbar-fixed">
     <nav id="nav-bar" className="teal" role="navigation">
       <div className="nav-wrapper container">
@@ -54,7 +60,23 @@ class Navbar extends Component{
               <li>
               <i className="material-icons" onClick ={this.cartClicker}>shopping_cart</i>
                 {this.state.isOpen && <ul id="cart-options">
-                <Link to="/cart" className="white-text">
+                {
+                  items.map((item, index) => {
+                    cartTotal += Number(item.price)
+               return (
+              <ul key={index}>
+              <li  >
+                <a className="title bold">{item.name}</a>
+                <a className="bold">${item.price} </a>
+                <a href="#!" className="secondary-content" onClick = { () => handleDeleteItem(index)}>
+                  <i className="material-icons">delete</i>
+                </a>
+              </li>
+              </ul>
+            )
+          })}
+                <a>Total: {cartTotal} </a>
+                <Link to="/cart" className="white-text" onClick={this.cartClicker}>
                   Show More
                 </Link>
                                       </ul>}
@@ -132,7 +154,8 @@ const mapDispatch = dispatch => {
     },
     handleDeleteItem(index){
       dispatch(deleteFromGuestCart(index))
-    }
+    },
+    addToLocalStorageData: data => dispatch(addToLocalStorageData(data)),
   }
 }
 

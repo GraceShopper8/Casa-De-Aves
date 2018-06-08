@@ -16,7 +16,6 @@ class ProductDetail extends Component {
   }
 
   handleClick(itemID) {
-    console.log('ITEM ID', itemID)
     this.props.getCartItems(itemID)
   }
 
