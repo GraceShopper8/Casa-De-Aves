@@ -5,8 +5,6 @@ import { me } from '../store'
 import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 import { updateUserCart } from '../store/user'
 
-
-
 class Cart extends Component {
   componentDidMount = () => {
     const cartLocal = window.localStorage.getItem('cart')
@@ -49,7 +47,7 @@ class Cart extends Component {
           {items.map((item, index) => {
             cartTotal += Number(item.price)
             return (
-              <li className="collection-item avatar" key={item.id}>
+              <li className="collection-item avatar" key={index}>
                 <img
                   src={`img/${item.imgUrl}`}
                   alt={item.name}
@@ -72,7 +70,7 @@ class Cart extends Component {
             <li className="collection-item avatar blue-grey lighten-3">
               <h6>TOTAL PRICE:</h6>
               <h3>${cartTotal}</h3>
-              <a href="#" className="btn-small secondary-content">
+              <a href="/cart/checkout" className="btn-small secondary-content">
                 Checkout
               </a>
             </li>

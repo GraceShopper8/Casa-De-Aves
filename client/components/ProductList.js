@@ -20,7 +20,7 @@ class ProductList extends Component {
           <h2 className="float-header teal-text text-darken-3 center">
             All Products
           </h2>
-          <ul className="products-box">
+          <ul className="products-box animated fadeIn">
             {productsList.map(product => (
               <ProductCard product={product} key={product.id} />
             ))}
