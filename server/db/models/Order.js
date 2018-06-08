@@ -2,12 +2,6 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Order = db.define('order', {
-  orderId: {
-    type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4,
-    primaryKey: true,
-    allowNull: false,
-  },
 
   cartContents: {
     type: Sequelize.TEXT,
