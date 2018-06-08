@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Product, Review } = require('../server/db/models')
+const { User, Product, Review, Order } = require('../server/db/models')
 const reviewData = require('./seed-files/reviewData')
 const productData = require('./seed-files/productData')
 const userData = require('./seed-files/userData')
@@ -25,7 +25,27 @@ const seedScript = async () => {
       individualHooks: true,
     })
 
-    await Promise.all([seedProducts, seedReview, seedUser])
+    const [products, reviews, users] = await Promise.all([seedProducts, seedReview, seedUser]);
+
+    const productNames = products.map((product) => JSON.stringify(product));
+
+    const orders = users.map((user) => {
+      return Order.create({
+        cartContents: productNames[Math.floor(Math.random() * productNames.length)],
+        shippingAddress: user.homeAddress,
+        totalPrice: Math.floor(Math.random() * 1000),
+        shippingPrice: Math.floor(Math.random() * 10 + 15),
+        userId: Math.ceil(Math.random() * users.length)
+      });
+    })
+
+    reviews.forEach((review) => {
+       review.setUser(users[Math.ceil(Math.random() * users.length-1)].id);
+       review.setProduct(products[Math.ceil(Math.random() * products.length-1)].id);
+    })
+    
+    await Promise.all(orders);
+
     console.log('Database successfully seeded.')
   } catch (error) {
     console.error(error)
