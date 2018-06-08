@@ -20,7 +20,7 @@ class CheckoutForm extends React.Component {
   render() {
     console.log('payment method props', this.props.state);
     return (
-      <div className="container container__sign-in-form white z-depth-2">
+      <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
         <div id="payment-form" className="col s12">
           <form className="col s12" onSubmit={this.handleSubmit}>
             <div className="form-container">
