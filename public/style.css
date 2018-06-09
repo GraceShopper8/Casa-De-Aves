@@ -14,6 +14,9 @@ input {
   color: #535353 !important;
 
 }
+.medium.material-icons.left {
+  color: #535353
+}
 
 .container--top-gutter{
   padding-top: 10%;

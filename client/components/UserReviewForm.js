@@ -7,6 +7,9 @@ import { addReview, getAllReviews } from '../store/review'
 
 class UserReviewForm extends Component {
 
+
+
+
   componentDidMount(){
     this.props.getAllProductReviews()
   }
@@ -18,6 +21,8 @@ class UserReviewForm extends Component {
 
     const reviewObj = { reviewDetail, rating, productId};
     this.props.sendToReviewPostThunk(reviewObj);
+    document.getElementById('review').value='';
+    document.getElementById('rating').value='';
   };
 
   handleChange = event => {
