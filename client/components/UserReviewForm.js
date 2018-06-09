@@ -31,7 +31,7 @@ class UserReviewForm extends Component {
    }
    console.log('this is state.reviews', this.props.reviews)
   const prodReviews = this.props.reviews.filter((review) => review.productId === this.props.prodId)
-
+  const revProdReview = prodReviews.reverse()
     return (
 <div className="row">
   <form className="col s12" onSubmit={this.onHandleSubmit}>
@@ -63,7 +63,7 @@ class UserReviewForm extends Component {
     </div>
   </form>
     {
-     prodReviews.map((review) => {
+     revProdReview.map((review) => {
        var sentiment;
        const rating = review.rating;
        switch (rating){
