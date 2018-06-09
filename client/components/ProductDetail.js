@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSingleProducts } from '../store/product'
+import  UserReviewForm  from './UserReviewForm'
 import { addedToCart } from '../store/cart'
 import { Link } from 'react-router-dom'
 
@@ -21,6 +22,12 @@ class ProductDetail extends Component {
 
   render() {
     const product = this.props.singleProduct
+    const prodReviews = product.reviews
+    if (!prodReviews) {
+     return <h1>""</h1>;
+    }
+
+
     const isAdmin = this.props.user.admin
     return (
       <div className="row container container--top-gutter animated fadeIn">
@@ -61,11 +68,14 @@ class ProductDetail extends Component {
               </div>
             </div>
           </div>
+          <UserReviewForm  prodId={product.id}  />
+
         </div>
       </div>
     )
   }
 }
+
 
 const mapState = state => ({
   singleProduct: state.product.singleProduct,
