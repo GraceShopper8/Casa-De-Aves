@@ -9,6 +9,17 @@ input {
   height: 196px;
   width: 627px;
 }
+
+::-webkit-input-placeholder { /* Chrome */
+  color: #535353 !important;
+  font-family: "lato", sans-serif !important;
+  opacity: .5;
+
+}
+.medium.material-icons.left {
+  color: #535353
+}
+
 .container--top-gutter{
   padding-top: 10%;
 }
