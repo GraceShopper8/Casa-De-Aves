@@ -7,7 +7,13 @@ import { addReview, getAllReviews } from '../store/review'
 
 class UserReviewForm extends Component {
 
-
+ constructor(){
+   super()
+   this.state = {
+     reviewDetail: "",
+     rating: -1
+   }
+ }
 
 
   componentDidMount(){
@@ -34,9 +40,11 @@ class UserReviewForm extends Component {
      console.log('Loading...');
      return <h1>Loading...</h1>;
    }
-   console.log('this is state.reviews', this.props.reviews)
+
   const prodReviews = this.props.reviews.filter((review) => review.productId === this.props.prodId)
   const revProdReview = prodReviews.reverse()
+  const ratingValidation = this.state.rating >= 0 && this.state.rating <= 5
+  const disabled = this.state.reviewDetail && ratingValidation
     return (
 <div className="row">
   <form className="col s12" onSubmit={this.onHandleSubmit}>
@@ -50,7 +58,8 @@ class UserReviewForm extends Component {
             onChange={this.handleChange} />
         </div>
         <div className="input-field col s2">
-          <input placeholder="Rating: "
+
+          <input placeholder="Rating: 0 - 5"
            id="rating"
            type="text"
            className="validate"
@@ -61,6 +70,7 @@ class UserReviewForm extends Component {
          <button
            className="btn waves-effect waves-light"
            type="submit"
+           disabled={!disabled}
            name="action">
            Submit
          </button>
