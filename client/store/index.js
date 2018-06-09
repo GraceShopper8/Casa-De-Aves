@@ -15,7 +15,7 @@ const reducer = combineReducers({
   user,
   product,
   cart,
-  checkout
+  checkout,
   review,
   order
 })
