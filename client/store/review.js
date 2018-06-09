@@ -17,7 +17,7 @@ const createdReview = review => {
 export const addReview = (review) => {
   return async dispatch => {
   try {
-    const response = await axios.post(`/api/review`, review);
+    const response = await axios.post(`/api/reviews`, review);
     const newReview = response.data;
     dispatch(createdReview(newReview))
   } catch (error) { console.error(error) }

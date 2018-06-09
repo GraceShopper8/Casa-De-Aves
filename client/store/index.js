@@ -15,8 +15,9 @@ const reducer = combineReducers({
   product,
   cart,
   review,
-
   order
+
+
 
 })
 const middleware = composeWithDevTools(
