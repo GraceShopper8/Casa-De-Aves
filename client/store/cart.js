@@ -58,7 +58,7 @@ const cartReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        items: [...state.items, action.item],
+        items: [...state.items, {...action.item, quantity: 0}],
       }
 
     case DELETE_FROM_GUEST_CART:

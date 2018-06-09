@@ -39,8 +39,7 @@ class Cart extends Component {
 
   render() {
     let cartTotal = 0
-    let items = this.props.items
-
+    let items = [this.props.items]
     return (
       <div className="container">
         <ul className="collection col s6">

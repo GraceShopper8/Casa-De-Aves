@@ -13,7 +13,7 @@ class Navbar extends Component{
  }
  componentDidMount() {
   const cartLocal = window.localStorage.getItem('cart');
-  if(cartLocal && this.props.items.length === 0){
+    if (cartLocal && this.props.items.length === 0){
     let items = JSON.parse(cartLocal);
     this.props.addToLocalStorageData(items)
   }
@@ -116,10 +116,10 @@ class Navbar extends Component{
                     <Link to="/edit" className="white-text">
                     Edit Account
                     </Link>
-                    <a href="#" onClick = { () => handleDeleteAccount(userId)} className="white-text">
+                    <a href="#" onClick = {( () => { handleDeleteAccount(userId); this.clicker()})} className="white-text">
                     Delete Account
                     </a>
-                    <a href="#" onClick={handleClick} className="white-text">
+                    <a href="#" onClick={ () => {handleClick(); this.clicker()}} className="white-text">
                     Log Out
                     </a>
                                           </ul>}
