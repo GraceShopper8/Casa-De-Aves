@@ -62,23 +62,39 @@ class UserReviewForm extends Component {
         </div>
     </div>
   </form>
-  {
+    {
      prodReviews.map((review) => {
-     return( <div className="row">
-              <div className="input-field col s12">
-             <input key={review.id} id="textarea1" defaultValue={review.reviewDetail} className="input-field col s12"></input>
-
-
-             </div>
-           </div>
-     )
-
-    })
-  }
+       var sentiment;
+       const rating = review.rating;
+       switch (rating){
+        case 0:
+          sentiment = 'sentiment_very_dissatisfied';
+          break;
+        case 1:
+           sentiment = 'sentiment_dissatisfied';
+           break;
+        case 4:
+           sentiment = 'sentiment_satisfied';
+           break;
+        case 5:
+           sentiment = 'sentiment_very_satisfied';
+           break;
+        default:
+           sentiment = 'sentiment_neutral';
+        }
+     return (
+        <div key={review.id} className="row">
+          <div key={review.id} className="input-field col s12">
+             <i className="medium material-icons left">{sentiment}</i>
+             <input key={review.id} id="textarea1"
+              defaultValue={review.reviewDetail} className="input-field col s12" />
+          </div>
+        </div>
+              )
+          })
+    }
 </div>
-
-
-    )
+   )
   }
 }
 
