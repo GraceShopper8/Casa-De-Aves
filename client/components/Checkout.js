@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StripeProvider, Elements } from 'react-stripe-elements'
 import { connect } from 'react-redux'
 
-import InjectedCheckoutForm from './stripe/CheckoutForm'
+import CheckoutForm from './stripe/CheckoutForm'
 
 class Checkout extends Component {
   constructor() {
@@ -17,22 +17,20 @@ class Checkout extends Component {
       })
     } else {
       document.querySelector('#stripe-js').addEventListener('load', () => {
-        // Create Stripe instance once Stripe.js loads
-        this.setState({ stripe: window.Stripe('pk_test_12345') })
+        this.setState({ stripe: window.Stripe('pk_test_T1EYDxHoDxrRIs4ntFf597Br') })
       })
     }
   }
 
   render() {
     const totalPrice = this.props.items.reduce((total, item) => {
-      total += Number(item.price)
-      return total
-    }, 0)
-    console.log('TOTAL PRICE: ', totalPrice)
+      total += Number(item.price);
+      return total;
+    }, 0);
     return (
       <StripeProvider stripe={this.state.stripe}>
         <Elements>
-          <InjectedCheckoutForm totalPrice={totalPrice} />
+          <CheckoutForm totalPrice={totalPrice}/>
         </Elements>
       </StripeProvider>
     )

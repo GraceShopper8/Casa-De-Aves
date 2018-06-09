@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-const Receipt = () => {
-  return (
-    <h1>Receipt</h1>
-  )
+class Receipt extends Component {
+  render() {
+    console.log(this.props);
+    const resp = this.props.response;
+    return (
+      <div className="valign-wrapper">
+        <h5>{JSON.stringify(resp, undefined, 2)}</h5>
+      </div>
+    );
+  }
 }
 
-export default Receipt;
+const mapState = (state) => {
+  return {
+    response: state.checkout.response
+  };
+};
+
+export default connect(mapState)(Receipt);
