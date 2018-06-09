@@ -13,10 +13,25 @@ router.get(
   })
 )
 
+// Grabs all orders for a single user
 router.get(
-  '/:id',
+  '/:userid',
   asyncHandler(async (req, res) => {
-    const order = await Order.findById(req.params.id)
+    const order = await Order.findAll({ where: { userId: req.params.userid } })
+    order ? res.json(order) : res.status(404).end()
+  })
+)
+
+// Grabs single order for a user
+router.get(
+  '/:userid/:orderId',
+  asyncHandler(async (req, res) => {
+    const order = await Order.findOne({
+      where: {
+        userId: req.params.userid,
+        id: req.params.orderId,
+      },
+    })
     order ? res.json(order) : res.status(404).end()
   })
 )
