@@ -12,6 +12,8 @@ input {
 
 ::-webkit-input-placeholder { /* Chrome */
   color: #535353 !important;
+  font-family: "lato", sans-serif !important;
+  opacity: .5;
 
 }
 .medium.material-icons.left {

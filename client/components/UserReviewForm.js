@@ -10,8 +10,8 @@ class UserReviewForm extends Component {
  constructor(){
    super()
    this.state = {
-     reviewDetail: "",
-     rating: -1
+     reviewDetail: ""
+
    }
  }
 
@@ -43,8 +43,8 @@ class UserReviewForm extends Component {
 
   const prodReviews = this.props.reviews.filter((review) => review.productId === this.props.prodId)
   const revProdReview = prodReviews.reverse()
-  const ratingValidation = this.state.rating >= 0 && this.state.rating <= 5
-  const disabled = this.state.reviewDetail && ratingValidation
+
+  const disabled = this.state.reviewDetail &&  this.state.rating >= 0 && this.state.rating <= 5 && this.state.rating !== ""
     return (
 <div className="row">
   <form className="col s12" onSubmit={this.onHandleSubmit}>
