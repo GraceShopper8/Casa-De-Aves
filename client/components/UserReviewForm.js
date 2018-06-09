@@ -1,18 +1,20 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addReview } from '../store/review'
+import { addReview, getAllReviews } from '../store/review'
 
 
 
 class UserReviewForm extends Component {
 
-
+  componentDidMount(){
+    this.props.getAllProductReviews()
+  }
   onHandleSubmit = event => {
     event.preventDefault();
     const reviewDetail = event.target.reviewDetail.value;
     const rating = event.target.rating.value;
-   const productId = this.props.prodId
+    const productId = this.props.prodId
 
     const reviewObj = { reviewDetail, rating, productId};
     this.props.sendToReviewPostThunk(reviewObj);
@@ -23,7 +25,12 @@ class UserReviewForm extends Component {
   };
 
   render() {
-   console.log(this.props.prodReviews)
+   if (!this.props.reviews) {
+     console.log('Loading...');
+     return <h1>Loading...</h1>;
+   }
+   console.log('this is state.reviews', this.props.reviews)
+  const prodReviews = this.props.reviews.filter((review) => review.productId === this.props.prodId)
 
     return (
 <div className="row">
@@ -56,7 +63,7 @@ class UserReviewForm extends Component {
     </div>
   </form>
   {
-    this.props.prodReviews.map((review) => {
+     prodReviews.map((review) => {
      return( <div className="row">
               <div className="input-field col s12">
              <input key={review.id} id="textarea1" defaultValue={review.reviewDetail} className="input-field col s12"></input>
@@ -80,7 +87,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-sendToReviewPostThunk: newReview => dispatch(addReview(newReview))
+sendToReviewPostThunk: newReview => dispatch(addReview(newReview)),
+getAllProductReviews: () => dispatch(getAllReviews())
 })
 
 export default connect(
