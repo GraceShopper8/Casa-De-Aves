@@ -9,10 +9,12 @@ import LandingPage from './components/LandingPage'
 import AdminEditForm from './components/AdminEditForm'
 import { me } from './store'
 import Checkout from './components/Checkout'
-import Receipt from './components/stripe/Receipt';
+import Receipt from './components/stripe/Receipt'
 import CreateUser from './components/createUserForm'
 import EditUser from './components/editUserForm'
 import Cart from './components/Cart'
+import UserOrders from './components/UserOrders'
+import OrderDetail from './components/OrderDetail'
 
 /**
  * COMPONENT
@@ -43,7 +45,8 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route exact path="/home" component={UserHome} />
+            <Route exact path="/orders/:userid" component={UserOrders} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

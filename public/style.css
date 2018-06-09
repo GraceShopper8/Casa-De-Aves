@@ -130,6 +130,10 @@ input {
   margin-bottom: 5px;
 }
 
+.cart-display {
+  display: flex;
+  justify-content: space-between;
+}
 
 .products-box {
   display: flex;

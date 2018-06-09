@@ -141,6 +141,11 @@ class Navbar extends Component {
                     </i>
                     {this.state.isOpened && (
                       <ul id="cart-options">
+                        <Link
+                          to={`/orders/${this.props.userId}`}
+                          className="white-text">
+                          My Orders
+                        </Link>
                         <Link to="/edit" className="white-text">
                           Edit Account
                         </Link>
