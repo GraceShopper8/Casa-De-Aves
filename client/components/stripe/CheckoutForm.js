@@ -10,8 +10,29 @@ import { updatedResponse } from "../../store/checkout";
 import { postedOrder } from "../../store/receipt";
 
 class CheckoutForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      submitButtonDisabled: true
+    };
+  }
+
+  handleCardInput = (val) => {
+    if (val) {
+      this.setState({
+        submitButtonDisabled: false
+      });
+    }
+  };
+
   handleSubmit = (ev) => {
     ev.preventDefault();
+    const button = document.querySelector(".progress");
+    const paymentButton = document.getElementById("payment_btn");
+
+    button.classList.remove("custom_hidden");
+    paymentButton.classList.add("disabled");
+
     const { firstName, lastName, homeAddress, email } = this.props.form;
 
     this.props.stripe
@@ -38,7 +59,6 @@ class CheckoutForm extends React.Component {
       })
       .then((response) => {
         const { data } = response;
-        console.log("DATA HAHA", data);
         this.props.postedOrder(data);
         history.push("/receipt");
       });
@@ -47,6 +67,7 @@ class CheckoutForm extends React.Component {
   render() {
     const items = this.props.items;
     const totalPrice = this.props.totalPrice;
+
     return (
       <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
         <div id="payment-form" className="col s12">
@@ -80,19 +101,23 @@ class CheckoutForm extends React.Component {
 
               <div className="row">
                 <div className="input-field col s12">
-                  <CardSection />
+                  <CardSection handleCardInput={this.handleCardInput} />
                 </div>
               </div>
               <center>
                 <button
+                  id="payment_btn"
                   className="btn waves-effect waves-light teal"
                   type="submit"
                   name="action"
-                  disabled={totalPrice === 0}
+                  disabled={this.state.submitButtonDisabled || totalPrice === 0}
                 >
                   Submit order
                 </button>
               </center>
+            </div>
+            <div className="progress custom_hidden">
+              <div className="indeterminate" />
             </div>
           </form>
         </div>

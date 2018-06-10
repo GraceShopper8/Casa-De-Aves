@@ -5,15 +5,35 @@ import history from "../../history";
 class Receipt extends Component {
   render() {
     const { checkout, postedOrders } = this.props;
-    const { cartContents, shippingAddress, id } = postedOrders[0];
-    const { response } = checkout;
-    const { amount, email } = response.data;
-    const orderedItems = JSON.parse(cartContents);
 
     if (postedOrders.length === 0) {
-      history.push("/products");
-      return "";
-    } else
+      return (
+        <div className="container container__receipt white z-depth-2 animated fadeIn">
+          <div className="col s12">
+            <form>
+              <div className="form-container">
+                <center>
+                <h4 className="teal-text">You haven't ordered anything</h4>
+
+                  <a
+                    href="/products"
+                    className="waves-effect waves-light btn-small"
+                    type="submit"
+                  >
+                    shop products
+                  </a>
+                </center>
+              </div>
+            </form>
+          </div>
+        </div>
+      );
+    } else {
+      const { cartContents, shippingAddress, id } = postedOrders[0];
+      const { response } = checkout;
+      const { amount, email } = response.data;
+      const orderedItems = JSON.parse(cartContents);
+
       return (
         <div className="container container__receipt white z-depth-2 animated fadeIn">
           <div className="col s12">
@@ -45,14 +65,14 @@ class Receipt extends Component {
                 <center>
                   <a
                     href="/products"
-                    className="btn btn-flat waves-effect waves-light teal"
+                    className="btn-flat waves-effect waves-light teal"
                     type="submit"
                   >
                     shop more
                   </a>
                   <a
                     href="/home"
-                    className="btn btn-flat waves-effect waves-light teal"
+                    className="btn-flat waves-effect waves-light teal"
                     type="submit"
                   >
                     Home
@@ -63,6 +83,7 @@ class Receipt extends Component {
           </div>
         </div>
       );
+    }
   }
 }
 
