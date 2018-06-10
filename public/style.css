@@ -93,6 +93,11 @@ input {
   margin: auto 0;
 }
 
+.container__receipt{
+	margin-top: 152px;
+	width: 600px !important;
+}
+
 .container__sign-in-form
 {
 	margin-top: 80px;

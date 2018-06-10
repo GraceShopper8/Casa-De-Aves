@@ -7,7 +7,7 @@ import axios from "axios";
 import history from "../../history";
 import { addNewOrder } from "../../store/order";
 import { updatedResponse } from "../../store/checkout";
-
+import { postedOrder } from "../../store/receipt";
 
 class CheckoutForm extends React.Component {
   handleSubmit = (ev) => {
@@ -26,11 +26,21 @@ class CheckoutForm extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.props.updatedResponse(response);
-          history.push("/receipt");
-          // ! TODO: Create new page that will have thank you receipt and proper information
-          // ! TODO: add order post request here
-          // ! ADD button to go back to Home or Product page
+          const { items, totalPrice, user } = this.props;
+          const orderBody = {
+            cartContents: JSON.stringify(items),
+            shippingAddress: homeAddress,
+            totalPrice: totalPrice,
+            userId: user.id || null
+          };
+          return axios.post("/api/orders", orderBody);
         }
+      })
+      .then((response) => {
+        const { data } = response;
+        console.log("DATA HAHA", data);
+        this.props.postedOrder(data);
+        history.push("/receipt");
       });
   };
 
@@ -94,13 +104,15 @@ class CheckoutForm extends React.Component {
 const mapState = (state) => {
   return {
     items: state.cart.items,
-    form: state.checkout
+    form: state.checkout,
+    user: state.user
   };
 };
 
 const mapDispatch = (dispatch) => ({
   addNewOrder: (order) => dispatch(addNewOrder(order)),
-  updatedResponse: (response) => dispatch(updatedResponse(response))
+  updatedResponse: (response) => dispatch(updatedResponse(response)),
+  postedOrder: (data) => dispatch(postedOrder(data))
 });
 
 export default injectStripe(
