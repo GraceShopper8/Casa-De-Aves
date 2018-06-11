@@ -3,11 +3,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import ProductCard from './ProductCard'
-import { getAllProducts } from '../store/product'
+import { getAllProducts, filterProducts } from '../store/product'
 
 class ProductList extends Component {
   async componentDidMount() {
     await this.props.getAllProducts()
+  }
+
+  handleClick = (event) => {
+    console.log("this is in click")
+    event.preventDefault()
+    const category = event.target.name
+    this.props.getAllFilteredProducts(category)
+
   }
 
   render() {
@@ -15,11 +23,20 @@ class ProductList extends Component {
 
     return (
       <div className="row container">
+
+
         <div className="col s1" />
         <main className="col s10">
           <h2 className="float-header teal-text text-darken-3 center">
             All Products
           </h2>
+          <div>StarterHome
+            <input name="StarterHome"  type="text" onClick={this.handleClick} />
+
+          </div>
+
+
+
           <ul className="products-box animated fadeIn">
             {productsList.map(product => (
               <ProductCard product={product} key={product.id} />
@@ -37,6 +54,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(getAllProducts()),
+  getAllFilteredProducts: (category) => dispatch(filterProducts(category)),
 })
 
 export default connect(

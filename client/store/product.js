@@ -4,6 +4,7 @@ import history from '../history'
 const FETCH_ALL_PRODUCTS = 'FETCH_ALL_PRODUCTS'
 const FETCH_SINGLE_PRODUCT = 'FETCH_SINGLE_PRODUCT'
 const UPDATED_PRODUCT = 'UPDATED_PRODUCT'
+const FILTER_PRODUCTS = 'FILTER_PRODUCTS'
 
 const initState = {
   allProducts: [],
@@ -27,6 +28,13 @@ const updatedProduct = product => {
   return {
     type: UPDATED_PRODUCT,
     product,
+  }
+}
+
+export const filterProducts = category => {
+  return {
+    type: FILTER_PRODUCTS,
+    category,
   }
 }
 
@@ -76,6 +84,15 @@ const productReducer = (state = initState, action) => {
       return {
         ...state,
         allProducts: [...newProducts, action.product],
+      }
+    }
+    case FILTER_PRODUCTS: {
+      const newProducts = state.allProducts.filter(
+        prod => prod.category === action.category
+      )
+      return {
+        ...state,
+        allProducts: newProducts
       }
     }
     default:

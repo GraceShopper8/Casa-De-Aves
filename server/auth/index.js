@@ -34,7 +34,8 @@ router.post('/signup', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   User.update(req.body, {
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    individualHooks: true,
   })
     .then(async() => {
       const user = await User.findById(req.params.id)
