@@ -1,13 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getSingleProducts, updateProduct } from '../store/product';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getSingleProducts, updateProduct } from "../store/product";
 
 class AdminEditForm extends Component {
   constructor() {
     super();
     this.state = {
-      name: ''
+      name: ""
     };
   }
   componentDidMount() {
@@ -22,7 +22,7 @@ class AdminEditForm extends Component {
     });
   }
 
-  onHandleSubmit = event => {
+  onHandleSubmit = (event) => {
     event.preventDefault();
     const id = this.props.singleProduct.id;
     const name = event.target.name.value;
@@ -32,29 +32,27 @@ class AdminEditForm extends Component {
     this.props.sendToProductPutThunk(editObj);
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     if (!this.props.singleProduct.name) {
-      console.log('Loading...');
+      console.log("Loading...");
       return <h1>Loading...</h1>;
     }
     if (!this.state.name) {
-      console.log('Loading...');
+      console.log("Loading...");
       return <h1>Loading...</h1>;
     }
     const product = this.props.singleProduct;
-
+ 
     return (
-      <form
-        className="container container--top-gutter"
-        onSubmit={this.onHandleSubmit}>
+      <form className="container container--top-gutter" onSubmit={this.onHandleSubmit}>
         <div className="col s12 m7">
           <div className="card horizontal medium">
             <div className="card-image">
-              <img src={`/img/${product.imgUrl}`} />
+              <img src={`/img/${product.imgUrl}`} className="custom__image-size"/>
             </div>
             <div className="card-stacked">
               <div className="card-content">
@@ -72,20 +70,20 @@ class AdminEditForm extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <textarea
-                  id="product_form"
-                  name="description"
-                  value={this.state.description}
-                  onChange={this.handleChange}
-                />
+                <div className="input-field col s12">
+                  <textarea
+                    id="product_form"
+                    name="description"
+                    className="materialize-textarea"
+                    data-length="120"
+                    value={this.state.description}
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
               <div className="card-action">
-                <button
-                  className="btn waves-effect waves-light"
-                  type="submit"
-                  name="action">
-                  Edit
-                  <i className="material-icons right">send</i>
+                <button className="btn waves-effect waves-light" type="submit" name="action">
+                  Save changes
                 </button>
               </div>
             </div>
@@ -96,13 +94,16 @@ class AdminEditForm extends Component {
   }
 }
 
-const mapState = state => ({
+const mapState = (state) => ({
   singleProduct: state.product.singleProduct
 });
 
-const mapDispatch = dispatch => ({
-  getSingleProducts: id => dispatch(getSingleProducts(id)),
-  sendToProductPutThunk: editObj => dispatch(updateProduct(editObj))
+const mapDispatch = (dispatch) => ({
+  getSingleProducts: (id) => dispatch(getSingleProducts(id)),
+  sendToProductPutThunk: (editObj) => dispatch(updateProduct(editObj))
 });
 
-export default connect(mapState, mapDispatch)(AdminEditForm);
+export default connect(
+  mapState,
+  mapDispatch
+)(AdminEditForm);
