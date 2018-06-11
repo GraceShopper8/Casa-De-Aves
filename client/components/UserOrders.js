@@ -1,65 +1,71 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { me } from '../store'
-import { getUsersOrders } from '../store/order'
+import { me } from "../store";
+import { getUsersOrders } from "../store/order";
 
 class Orders extends Component {
   componentDidMount = () => {
-    this.props.loadInitialData()
-    this.props.getUsersOrders(this.props.userId)
-  }
+    this.props.loadInitialData();
+    this.props.getUsersOrders(this.props.userId);
+
+    const elems = document.querySelectorAll(".collapsible");
+    console.log("elems", elems);
+    const instances = M.Collapsible.init(elems);
+  };
 
   render() {
-    const orders = this.props.userOrders
+    const orders = this.props.userOrders;
     return (
-      <div className="container">
-        <ul className="collection col s6">
+      <div className="container custom_cart-container container--top-gutter">
+        <ul className="collapsible grey lighten-4">
           {orders.length > 0 ? (
-            <li className="center collection-item avatar blue-grey lighten-3">
-              <h2>THANKS FOR SHOPPING WITH US!</h2>
+            <li className="center">
+              <h2 className="teal-text ">THANKS FOR SHOPPING WITH US!</h2>
             </li>
           ) : (
-            <h2 className="center">SORRY, DIDN'T FIND ANY PAST ORDERS</h2>
+            <h2 className="center teal-text">SORRY, DIDN'T FIND ANY PAST ORDERS</h2>
           )}
+
           {orders.map((order, index) => {
+            const cartItems = JSON.parse(order.cartContents);
             return (
-              <li className="collection-item " key={index}>
-                <div className="cart-display">
-                  <h5 className="">
-                    Ordered on: {order.createdAt.slice(0, 10)}
-                  </h5>
-                  <h5>Order Details [IN PROCESS]</h5>
+              <li key={index}>
+                <div className="collapsible-header row">
+                  <p className="col s6 left-align">Order total: ${order.totalPrice}</p>
+                  <p className="col s6 right-align">
+                    {cartItems.length} {cartItems.length === 1 ? "Item" : "Items"}
+                  </p>
                 </div>
-                <div className="cart-display">
-                  <p className="bold">Order total: ${order.totalPrice}</p>
-                  <p>{orders.length} Item(s)</p>
+                <div className="collapsible-body">
+                  <p className="bold">Ordered on: {order.createdAt.slice(0, 10)}</p>
+                  {cartItems.map((item, i) => <p key={i}>{item.name}</p>)}
                 </div>
               </li>
-            )
+            );
           })}
         </ul>
       </div>
-    )
+    );
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
     userOrders: state.order.usersOrders,
     userId: state.user.id,
-    isLoggedIn: !!state.user.id,
-  }
-}
+    isLoggedIn: !!state.user.id
+  };
+};
 
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch) => ({
   loadInitialData: () => dispatch(me()),
-  getUsersOrders: userId => dispatch(getUsersOrders(userId)),
-})
+  getUsersOrders: (userId) => dispatch(getUsersOrders(userId))
+});
 
 export default connect(
   mapState,
   mapDispatch
-)(Orders)
+)(Orders);
