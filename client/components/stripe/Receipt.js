@@ -13,7 +13,7 @@ class Receipt extends Component {
               <div className="form-container">
                 <center>
                   <h4 className="teal-text">You have not ordered anything</h4>
-                  <a href="/products" className="waves-effect waves-light btn-small" type="submit">
+                  <a href="/products" className="waves-effect waves-light btn">
                     shop products
                   </a>
                 </center>
