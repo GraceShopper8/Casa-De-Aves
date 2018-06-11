@@ -41,6 +41,30 @@ input {
   font-size: 1.5rem;
 }
 
+.custom_cart-sidebar{
+  position: relative;
+}
+
+.custom_anchor{
+  position: relative;
+}
+
+.custom_delete-btn{
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  transform: rotateY(-90deg);
+  transition: all 0.2s ease-in-out;
+}
+
+.custom_anchor:hover .custom_delete-btn{
+  transform: rotateY(0deg);
+}
+
+.custom_delete-btn:hover{
+  color: #f44336 !important;
+}
+
 /* .custom__image-size{
   height: 100px !important;
 } */
@@ -4723,7 +4747,7 @@ nav .input-field label.active i {
 .navbar-fixed {
   position: relative;
   height: 56px;
-  z-index: 997;
+  z-index: 999;
 }
 
 .navbar-fixed nav {
@@ -7862,7 +7886,7 @@ input[type=range]::-ms-thumb {
 .sidenav li > a {
   color: rgba(0, 0, 0, 0.87);
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   height: 48px;
   line-height: 48px;
