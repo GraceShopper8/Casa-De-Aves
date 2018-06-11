@@ -24,14 +24,28 @@ class EditUser extends Component {
   }
   handleSubmit = (evt) => {
     evt.preventDefault();
-    const NU = {
-      id: this.props.user.id,
-      firstName: evt.target.firstName.value,
-      lastName: evt.target.lastName.value,
-      homeAddress: evt.target.homeAddress.value,
-      email: evt.target.email.value,
-      password: evt.target.password.value
-    };
+  const password = evt.target.password.value
+  let NU;
+     if (password){
+         NU = {
+          id: this.props.user.id,
+          firstName: evt.target.firstName.value,
+          lastName: evt.target.lastName.value,
+          homeAddress: evt.target.homeAddress.value,
+          email: evt.target.email.value,
+          password: evt.target.password.value
+        };
+     } else {
+        NU = {
+         id: this.props.user.id,
+         firstName: evt.target.firstName.value,
+         lastName: evt.target.lastName.value,
+         homeAddress: evt.target.homeAddress.value,
+         email: evt.target.email.value
+        };
+     }
+    console.log("this is password", evt.target.password.value)
+    console.log("this is lastName", evt.target.lastName.value)
     this.props.updateUser(NU);
   };
 
@@ -44,6 +58,9 @@ class EditUser extends Component {
       console.log("Loading...");
       return <h1>Loading...</h1>;
     }
+    const disabled =
+     this.state.email
+
 
     console.log("Userinfo", this.props.user)
     return (
@@ -106,7 +123,11 @@ class EditUser extends Component {
                 </div>
               </div>
               <center>
-                <button className="btn waves-effect waves-light teal" type="submit" name="action">
+                <button
+                 className="btn waves-effect waves-light teal"
+                  type="submit"
+                  disabled={!disabled}
+                  name="action">
                   Submit
                 </button>
               </center>
