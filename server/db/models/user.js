@@ -69,9 +69,12 @@ User.encryptPassword = function(plainText, salt) {
 }
 
 const setSaltAndPassword = user => {
+  console.log('hook running?')
   if (user.changed('password')) {
+    console.log('updating user and setting salt/pwd', user.salt(), user.password())
     user.salt = User.generateSalt()
     user.password = User.encryptPassword(user.password(), user.salt())
+    console.log('updated user and setting salt/pwd', user.salt(), user.password())
   }
 }
 
