@@ -11,7 +11,6 @@ class ProductList extends Component {
   }
 
   handleClick = (event) => {
-    console.log("this is in click")
     event.preventDefault()
     const category = event.target.name
     this.props.getAllFilteredProducts(category)
@@ -28,15 +27,11 @@ class ProductList extends Component {
           <h2 className="float-header teal-text text-darken-3 center">
             All Products
           </h2>
-           
-
-
-
-          <ul className="products-box animated fadeIn">
+           <ul className="products-box animated fadeIn">
             {productsList.map(product => (
               <ProductCard product={product} key={product.id} />
             ))}
-          </ul>
+           </ul>
         </main>
       </div>
     )
@@ -56,9 +51,3 @@ export default connect(
   mapState,
   mapDispatch
 )(ProductList)
-
-
-// //<div>StarterHome
-//   <input name="StarterHome"  type="text" onClick={this.handleClick} />
-//
-// </div>
