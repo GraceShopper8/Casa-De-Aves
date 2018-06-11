@@ -3,11 +3,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import ProductCard from './ProductCard'
-import { getAllProducts } from '../store/product'
+import { getAllProducts, filterProducts } from '../store/product'
 
 class ProductList extends Component {
   async componentDidMount() {
     await this.props.getAllProducts()
+  }
+
+  handleClick = (event) => {
+    event.preventDefault()
+    const category = event.target.name
+    this.props.getAllFilteredProducts(category)
+
   }
 
   render() {
@@ -20,11 +27,11 @@ class ProductList extends Component {
           <h2 className="float-header teal-text text-darken-3 center">
             All Products
           </h2>
-          <ul className="products-box animated fadeIn">
+           <ul className="products-box animated fadeIn">
             {productsList.map(product => (
               <ProductCard product={product} key={product.id} />
             ))}
-          </ul>
+           </ul>
         </main>
       </div>
     )
@@ -37,6 +44,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(getAllProducts()),
+  getAllFilteredProducts: (category) => dispatch(filterProducts(category)),
 })
 
 export default connect(
