@@ -44,7 +44,7 @@ class Cart extends Component {
     let items = this.props.items
 
     return (
-      <div className="container">
+      <div className="container custom_cart-container">
         <ul className="collection col s6">
           {items.map((item, index) => {
             cartTotal += Number(item.price)
@@ -72,7 +72,7 @@ class Cart extends Component {
             <li className="collection-item avatar blue-grey lighten-3">
               <h6>TOTAL PRICE:</h6>
               <h3>${cartTotal}</h3>
-              <Link to="/cart/checkout" className="btn-small secondary-content">
+              <Link to="/cart/checkout" className="btn secondary-content">
                 Checkout
               </Link>
             </li>

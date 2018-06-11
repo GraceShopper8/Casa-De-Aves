@@ -24,6 +24,10 @@ input {
   padding-top: 5%;
 }
 
+.custom_cart-container{
+  max-width: 700px !important;
+}
+
 .custom__price{
   font-weight: bold;
   font-size: 1.2rem;
@@ -4589,7 +4593,7 @@ nav .nav-wrapper {
 
 @media only screen and (min-width: 993px) {
   nav a.sidenav-trigger {
-    display: none;
+    display: block;
   }
 
 }

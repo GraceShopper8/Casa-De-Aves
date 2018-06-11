@@ -148,12 +148,20 @@ class Navbar extends Component {
             );
           })}
           <li>
-            {" "}
-            <a>Total: {cartTotal} </a>
+            <a className="custom__price">Total ${cartTotal} </a>
+          </li>
+          <li>
+            <div className="divider" />
           </li>
           <li>
             <a className="waves-effect" href="/cart">
-              Show More
+              <span className="teal-text">Show More</span>
+            </a>
+          </li>
+          
+          <li>
+            <a className="waves-effect" href="/cart/checkout">
+              <span className="teal-text">Checkout</span>
             </a>
           </li>
         </ul>
