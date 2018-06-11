@@ -2,34 +2,42 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addReview, getAllReviews } from "../store/review";
+import Rating from "react-rating";
 
 class UserReviewForm extends Component {
   constructor() {
     super();
     this.state = {
-      reviewDetail: ""
+      reviewDetail: "",
+      rating: 0
     };
   }
 
   componentDidMount() {
     this.props.getAllProductReviews();
-    console.log(this.props.reviews);
   }
 
   onHandleSubmit = (event) => {
     event.preventDefault();
-    const reviewDetail = event.target.reviewDetail.value;
-    const rating = event.target.rating.value;
+
+    const reviewDetail = this.state.reviewDetail;
+    const rating = this.state.rating;
     const productId = this.props.prodId;
 
     const reviewObj = { reviewDetail, rating, productId };
     this.props.sendToReviewPostThunk(reviewObj);
-    document.getElementById("review").value = "";
-    document.getElementById("rating").value = "";
+    this.setState({
+      reviewDetail: '',
+      rating: 0
+    })
   };
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleRatingChange = (rating) => {
+    this.setState({ rating });
   };
 
   render() {
@@ -50,9 +58,9 @@ class UserReviewForm extends Component {
       this.state.rating !== "";
     return (
       <div className="row">
-        <form className="col s12" onSubmit={this.onHandleSubmit}>
+        <form className="col s12 m12 l12" onSubmit={this.onHandleSubmit}>
           <div className="row">
-            <div className="input-field col s10">
+            <div className="input-field col s12 m12 l9">
               <input
                 placeholder="Review: "
                 id="review"
@@ -62,19 +70,20 @@ class UserReviewForm extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="input-field col s2">
-              <input
-                placeholder="Rating: 0 - 5"
-                id="rating"
-                type="text"
-                className="validate"
-                name="rating"
-                onChange={this.handleChange}
+            <div className="input-field col s12 m12 l3 ">
+              <Rating
+                start={0}
+                stop={5}
+                step={1}
+                initialRating={this.state.rating}
+                onChange={this.handleRatingChange}
+                emptySymbol={<i className="small material-icons teal-text">star_border</i>}
+                fullSymbol={<i className="small material-icons teal-text">star</i>}
               />
             </div>
-            <div className="input-field col s1">
+            <div className="input-field col s12 m12 l12">
               <button
-                className="btn waves-effect waves-light"
+                className="btn waves-effect waves-light center"
                 type="submit"
                 disabled={!disabled}
                 name="action"
@@ -109,7 +118,7 @@ class UserReviewForm extends Component {
                 <div className="card-content">
                   <div className="row">
                     <span className="teal-text lighten-1 center-align">
-                      {review.user.firstName || "Anonymous"}
+                      {review.user ? review.user.firstName : "Anonymous"}
                     </span>
                     <span className="teal-text lighten-1">
                       <i className="small material-icons left">{sentiment}</i>
