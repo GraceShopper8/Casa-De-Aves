@@ -1,10 +1,10 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { getSingleProducts } from "../store/product";
-import UserReviewForm from "./UserReviewForm";
-import { addedToCart } from "../store/cart";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getSingleProducts } from '../store/product';
+import UserReviewForm from './UserReviewForm';
+import { addedToCart } from '../store/cart';
+import { Link } from 'react-router-dom';
 
 class ProductDetail extends Component {
   constructor() {
@@ -45,7 +45,7 @@ class ProductDetail extends Component {
                       <i className="material-icons">edit</i>
                     </a>
                   ) : (
-                    ""
+                    ''
                   )}
                 </h5>
                 <p className="custom__price">${product.price}</p>
@@ -68,14 +68,14 @@ class ProductDetail extends Component {
   }
 }
 
-const mapState = (state) => ({
+const mapState = state => ({
   singleProduct: state.product.singleProduct,
   user: state.user
 });
 
-const mapDispatch = (dispatch) => ({
-  getSingleProducts: (id) => dispatch(getSingleProducts(id)),
-  getCartItems: (id) => dispatch(addedToCart(id))
+const mapDispatch = dispatch => ({
+  getSingleProducts: id => dispatch(getSingleProducts(id)),
+  getCartItems: id => dispatch(addedToCart(id))
 });
 
 export default connect(

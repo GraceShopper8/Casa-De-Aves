@@ -1,13 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { getSingleProducts, updateProduct } from "../store/product";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getSingleProducts, updateProduct } from '../store/product';
 
 class AdminEditForm extends Component {
   constructor() {
     super();
     this.state = {
-      name: ""
+      name: ''
     };
   }
   componentDidMount() {
@@ -23,7 +23,7 @@ class AdminEditForm extends Component {
     });
   }
 
-  onHandleSubmit = (event) => {
+  onHandleSubmit = event => {
     event.preventDefault();
     const id = this.props.singleProduct.id;
     const name = event.target.name.value;
@@ -34,17 +34,15 @@ class AdminEditForm extends Component {
     this.props.sendToProductPutThunk(editObj);
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     if (!this.props.singleProduct.name) {
-      console.log("Loading...");
       return <h1>Loading...</h1>;
     }
     if (!this.state.name) {
-      console.log("Loading...");
       return <h1>Loading...</h1>;
     }
     const product = this.props.singleProduct;
@@ -54,31 +52,16 @@ class AdminEditForm extends Component {
         <div className="col s12 m7">
           <div className="card horizontal medium">
             <div className="card-image">
-              <img src={`/img/${product.imgUrl}`} className="custom__image-size"/>
+              <img src={`/img/${product.imgUrl}`} className="custom__image-size" />
             </div>
             <div className="card-stacked">
               <div className="card-content">
-                <input
-                  name="name"
-                  type="text"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
+                <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
                 <div>
-                  <input
-                    name="price"
-                    type="text"
-                    value={this.state.price}
-                    onChange={this.handleChange}
-                  />
+                  <input name="price" type="text" value={this.state.price} onChange={this.handleChange} />
                 </div>
                 <div>
-                  <input
-                    name="inventory"
-                    type="text"
-                    value={this.state.inventory}
-                    onChange={this.handleChange}
-                  />
+                  <input name="inventory" type="text" value={this.state.inventory} onChange={this.handleChange} />
                 </div>
                 <div className="input-field col s12">
                   <textarea
@@ -104,13 +87,13 @@ class AdminEditForm extends Component {
   }
 }
 
-const mapState = (state) => ({
+const mapState = state => ({
   singleProduct: state.product.singleProduct
 });
 
-const mapDispatch = (dispatch) => ({
-  getSingleProducts: (id) => dispatch(getSingleProducts(id)),
-  sendToProductPutThunk: (editObj) => dispatch(updateProduct(editObj))
+const mapDispatch = dispatch => ({
+  getSingleProducts: id => dispatch(getSingleProducts(id)),
+  sendToProductPutThunk: editObj => dispatch(updateProduct(editObj))
 });
 
 export default connect(

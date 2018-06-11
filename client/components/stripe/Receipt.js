@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Receipt extends Component {
   render() {
@@ -73,7 +73,7 @@ class Receipt extends Component {
   }
 }
 
-const mapState = (state) => {
+const mapState = state => {
   return {
     checkout: state.checkout,
     postedOrders: state.receipt.postedOrders

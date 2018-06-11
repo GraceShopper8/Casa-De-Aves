@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { AddUser } from '../store/user';
 
 class CreateUser extends Component {
-  handleSubmit = (evt) => {
+  handleSubmit = evt => {
     evt.preventDefault();
     const NU = {
       firstName: evt.target.firstName.value,
@@ -25,50 +25,25 @@ class CreateUser extends Component {
               <h4 className="teal-text">Welcome</h4>
               <div className="row">
                 <div className="input-field col s6">
-                  <input
-                    id="first_name"
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                  />
+                  <input id="first_name" type="text" name="firstName" placeholder="First Name" />
                 </div>
                 <div className="input-field col s6">
-                  <input
-                    id="last_name"
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                  />
+                  <input id="last_name" type="text" name="lastName" placeholder="Last Name" />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input
-                    id="homeAddress"
-                    type="text"
-                    name="homeAddress"
-                    placeholder="Address"
-                  />
+                  <input id="homeAddress" type="text" name="homeAddress" placeholder="Address" />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                  />
+                  <input id="email" type="email" name="email" placeholder="Email" />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input
-                    id="password"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                  />
+                  <input id="password" type="password" name="password" placeholder="Password" />
                 </div>
               </div>
               <center>
@@ -84,12 +59,12 @@ class CreateUser extends Component {
   }
 }
 
-const stateToProps = (state) => ({
+const stateToProps = state => ({
   user: state.user
 });
 
-const MapToProps = (dispatch) => ({
-  newUser: (user) => dispatch(AddUser(user))
+const MapToProps = dispatch => ({
+  newUser: user => dispatch(AddUser(user))
 });
 
 export default connect(

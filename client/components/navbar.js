@@ -1,32 +1,32 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { deleteUser, logout } from "../store";
-import { deleteFromGuestCart, addToLocalStorageData } from "../store/cart";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { deleteUser, logout } from '../store';
+import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart';
 
 class Navbar extends Component {
   componentDidMount() {
-    const cartLocal = window.localStorage.getItem("cart");
+    const cartLocal = window.localStorage.getItem('cart');
     if (cartLocal && this.props.items.length === 0) {
       let items = JSON.parse(cartLocal);
       this.props.addToLocalStorageData(items);
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      const sideNav = document.querySelectorAll(".sidenav");
-      const sideNavInstance = M.Sidenav.init(sideNav, { edge: "right" });
+    document.addEventListener('DOMContentLoaded', function() {
+      const sideNav = document.querySelectorAll('.sidenav');
+      const sideNavInstance = M.Sidenav.init(sideNav, { edge: 'right' });
       // instances[0].open()
     });
 
     setTimeout(() => {
-      const dropDown = document.querySelectorAll(".dropdown-trigger");
+      const dropDown = document.querySelectorAll('.dropdown-trigger');
       const dropDownInstance = M.Dropdown.init(dropDown);
     }, 100);
   }
 
   handleDropDown = () => {
-    const dropDown = document.querySelectorAll(".dropdown-trigger");
+    const dropDown = document.querySelectorAll('.dropdown-trigger');
     const dropDownInstance = M.Dropdown.init(dropDown);
   };
 
@@ -123,7 +123,7 @@ class Navbar extends Component {
               </div>
             </li>
           ) : (
-            ""
+            ''
           )}
           <li>
             <a href="#!">
@@ -158,7 +158,7 @@ class Navbar extends Component {
               <span className="teal-text">Show More</span>
             </a>
           </li>
-          
+
           <li>
             <a className="waves-effect" href="/cart/checkout">
               <span className="teal-text">Checkout</span>
@@ -173,7 +173,7 @@ class Navbar extends Component {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     loggedInUser: state.user,
@@ -181,7 +181,7 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout());
@@ -192,7 +192,7 @@ const mapDispatch = (dispatch) => {
     handleDeleteItem(index) {
       dispatch(deleteFromGuestCart(index));
     },
-    addToLocalStorageData: (data) => dispatch(addToLocalStorageData(data))
+    addToLocalStorageData: data => dispatch(addToLocalStorageData(data))
   };
 };
 

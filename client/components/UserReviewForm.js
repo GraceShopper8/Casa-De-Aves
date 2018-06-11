@@ -1,14 +1,14 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addReview, getAllReviews } from "../store/review";
-import Rating from "react-rating";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addReview, getAllReviews } from '../store/review';
+import Rating from 'react-rating';
 
 class UserReviewForm extends Component {
   constructor() {
     super();
     this.state = {
-      reviewDetail: "",
+      reviewDetail: '',
       rating: 0
     };
   }
@@ -17,7 +17,7 @@ class UserReviewForm extends Component {
     this.props.getAllProductReviews();
   }
 
-  onHandleSubmit = (event) => {
+  onHandleSubmit = event => {
     event.preventDefault();
 
     const reviewDetail = this.state.reviewDetail;
@@ -29,33 +29,27 @@ class UserReviewForm extends Component {
     this.setState({
       reviewDetail: '',
       rating: 0
-    })
+    });
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleRatingChange = (rating) => {
+  handleRatingChange = rating => {
     this.setState({ rating });
   };
 
   render() {
     if (!this.props.reviews) {
-      console.log("Loading...");
       return <h1>Loading...</h1>;
     }
 
-    const prodReviews = this.props.reviews.filter(
-      (review) => review.productId === this.props.prodId
-    );
+    const prodReviews = this.props.reviews.filter(review => review.productId === this.props.prodId);
     const revProdReview = prodReviews.reverse();
 
     const disabled =
-      this.state.reviewDetail &&
-      this.state.rating >= 0 &&
-      this.state.rating <= 5 &&
-      this.state.rating !== "";
+      this.state.reviewDetail && this.state.rating >= 0 && this.state.rating <= 5 && this.state.rating !== '';
     return (
       <div className="row">
         <form className="col s12 m12 l12" onSubmit={this.onHandleSubmit}>
@@ -82,35 +76,30 @@ class UserReviewForm extends Component {
               />
             </div>
             <div className="input-field col s12 m12 l12">
-              <button
-                className="btn waves-effect waves-light center"
-                type="submit"
-                disabled={!disabled}
-                name="action"
-              >
+              <button className="btn waves-effect waves-light center" type="submit" disabled={!disabled} name="action">
                 Submit
               </button>
             </div>
           </div>
         </form>
-        {revProdReview.map((review) => {
+        {revProdReview.map(review => {
           var sentiment;
           const rating = review.rating;
           switch (rating) {
             case 0:
-              sentiment = "sentiment_very_dissatisfied";
+              sentiment = 'sentiment_very_dissatisfied';
               break;
             case 1:
-              sentiment = "sentiment_dissatisfied";
+              sentiment = 'sentiment_dissatisfied';
               break;
             case 4:
-              sentiment = "sentiment_satisfied";
+              sentiment = 'sentiment_satisfied';
               break;
             case 5:
-              sentiment = "sentiment_very_satisfied";
+              sentiment = 'sentiment_very_satisfied';
               break;
             default:
-              sentiment = "sentiment_neutral";
+              sentiment = 'sentiment_neutral';
           }
           return (
             <div key={review.id} className="col s12 m6 l6">
@@ -118,7 +107,7 @@ class UserReviewForm extends Component {
                 <div className="card-content">
                   <div className="row">
                     <span className="teal-text lighten-1 center-align">
-                      {review.user ? review.user.firstName : "Anonymous"}
+                      {review.user ? review.user.firstName : 'Anonymous'}
                     </span>
                     <span className="teal-text lighten-1">
                       <i className="small material-icons left">{sentiment}</i>
@@ -135,12 +124,12 @@ class UserReviewForm extends Component {
   }
 }
 
-const mapState = (state) => ({
+const mapState = state => ({
   reviews: state.review.allReviews
 });
 
-const mapDispatch = (dispatch) => ({
-  sendToReviewPostThunk: (newReview) => dispatch(addReview(newReview)),
+const mapDispatch = dispatch => ({
+  sendToReviewPostThunk: newReview => dispatch(addReview(newReview)),
   getAllProductReviews: () => dispatch(getAllReviews())
 });
 
