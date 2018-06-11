@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import history from "../../history";
 
 class Receipt extends Component {
   render() {
@@ -13,13 +12,8 @@ class Receipt extends Component {
             <form>
               <div className="form-container">
                 <center>
-                <h4 className="teal-text">You have not ordered anything</h4>
-
-                  <a
-                    href="/products"
-                    className="waves-effect waves-light btn-small"
-                    type="submit"
-                  >
+                  <h4 className="teal-text">You have not ordered anything</h4>
+                  <a href="/products" className="waves-effect waves-light btn">
                     shop products
                   </a>
                 </center>
@@ -58,23 +52,15 @@ class Receipt extends Component {
                       </tbody>
                     </table>
                     <span>Shipping to:</span>
-                    <span>{`${checkout.firstName} ${checkout.lastName}`}</span>
-                    <span>{`${shippingAddress}`}</span>
+                    <p>{`${checkout.firstName} ${checkout.lastName}`}</p>
+                    <p>{`${shippingAddress}`}</p>
                   </div>
                 </div>
                 <center>
-                  <a
-                    href="/products"
-                    className="btn-flat waves-effect waves-light teal"
-                    type="submit"
-                  >
+                  <a href="/products" className="waves-effect waves-light btn" type="submit">
                     shop more
                   </a>
-                  <a
-                    href="/home"
-                    className="btn-flat waves-effect waves-light teal"
-                    type="submit"
-                  >
+                  <a href="/home" className="waves-effect waves-light btn" type="submit">
                     Home
                   </a>
                 </center>
@@ -88,7 +74,6 @@ class Receipt extends Component {
 }
 
 const mapState = (state) => {
-  console.log(state);
   return {
     checkout: state.checkout,
     postedOrders: state.receipt.postedOrders
