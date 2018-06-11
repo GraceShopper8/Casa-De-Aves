@@ -23,17 +23,12 @@ class ProductList extends Component {
 
     return (
       <div className="row container">
-
-
         <div className="col s1" />
         <main className="col s10">
           <h2 className="float-header teal-text text-darken-3 center">
             All Products
           </h2>
-          <div>StarterHome
-            <input name="StarterHome"  type="text" onClick={this.handleClick} />
-
-          </div>
+           
 
 
 
@@ -61,3 +56,9 @@ export default connect(
   mapState,
   mapDispatch
 )(ProductList)
+
+
+// //<div>StarterHome
+//   <input name="StarterHome"  type="text" onClick={this.handleClick} />
+//
+// </div>
