@@ -27,6 +27,21 @@ class ProductList extends Component {
           <h2 className="float-header teal-text text-darken-3 center">
             All Products
           </h2>
+          <a className='dropdown-trigger btn large' href='#' data-target='dropdown1'>Filter
+          <i className="material-icons right">arrow_drop_down</i></a>
+
+
+          <ul id='dropdown1' className='dropdown-content'>
+            <li><a>Starter Home</a></li>
+            <li className="divider" tabIndex="-1"></li>
+            <li><a>Family Home</a></li>
+            <li className="divider" tabIndex="-1"></li>
+            <li><a>Midlife Crisis Home</a></li>
+            <li className="divider" tabIndex="-1"></li>
+            <li><a>All</a></li>
+
+          </ul>
+
            <ul className="products-box animated fadeIn">
             {productsList.map(product => (
               <ProductCard product={product} key={product.id} />

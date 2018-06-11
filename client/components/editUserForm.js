@@ -13,13 +13,14 @@ class EditUser extends Component {
     };
   }
 
-  componentDidMount() {
+     componentWillReceiveProps(nextProps) {
       this.setState({
-        firstName: this.props.user.firstName,
-        lastName: this.props.user.lastName,
-        homeAddress: this.props.user.homeAddress,
-        email: this.props.user.email
+        firstName: nextProps.user.firstName,
+        lastName: nextProps.user.lastName,
+        homeAddress: nextProps.user.homeAddress,
+        email: nextProps.user.email
       });
+
 
   }
   handleSubmit = (evt) => {
@@ -54,15 +55,17 @@ class EditUser extends Component {
   };
 
   render() {
-    if (!this.props.user.firstName) {
+    if (!this.props.user) {
       console.log("Loading...");
       return <h1>Loading...</h1>;
     }
+    console.log("this.props.user", this.props.user)
+    console.log("this.state", this.state)
     const disabled =
      this.state.email
 
-
-    console.log("Userinfo", this.props.user)
+    console.log("this.props.user", this.props.user)
+    console.log("this.state", this.state)
     return (
       <div className="container container__sign-in-form white z-depth-2">
         <div id="register" className="col s12">
