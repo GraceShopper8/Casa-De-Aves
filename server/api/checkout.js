@@ -1,23 +1,23 @@
-const router = require("express").Router();
-const axios = require("axios");
-const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const router = require('express').Router();
+const axios = require('axios');
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
-router.post("/", (req, res, next) => {
+router.post('/', (req, res, next) => {
   const { token, amount, email } = req.body;
 
   const charge = stripe.charges.create({
     amount: amount * 100,
-    currency: "usd",
-    description: "Example charge",
+    currency: 'usd',
+    description: 'Example charge',
     source: token,
-    receipt_email: email,
+    receipt_email: email
   });
 
   charge
-    .then((response) => {
+    .then(response => {
       res.json(response);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err.message);
       next(err);
     });

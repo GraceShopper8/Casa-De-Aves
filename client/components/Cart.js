@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
-import { me } from '../store';
-import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart';
-import { updateUserCart } from '../store/user';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { me } from '../store'
+import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
+import { updateUserCart } from '../store/user'
 
 class Cart extends Component {
   componentDidMount = () => {
@@ -34,9 +34,9 @@ class Cart extends Component {
   };
 
   render() {
-    let cartTotal = 0;
-    let items = this.props.items;
-
+    let cartTotal = 0
+    let items = this.props.items
+    if(items.length === 0) return (<h3>LOADING....</h3>)
     return (
       <div className="container custom_cart-container">
         <ul className="collection col s6">

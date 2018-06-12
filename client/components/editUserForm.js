@@ -19,7 +19,7 @@ class EditUser extends Component {
     this.setState({ firstName, lastName, email, homeAddress })
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       firstName: nextProps.user.firstName,
       lastName: nextProps.user.lastName,
@@ -27,10 +27,10 @@ class EditUser extends Component {
       email: nextProps.user.email
     });
   }
-  
+
   handleSubmit = evt => {
     evt.preventDefault();
-    const password = evt.target.password.value;
+    const password = evt.target.password.value
     let NU;
     if (password) {
       NU = {
@@ -50,7 +50,6 @@ class EditUser extends Component {
         email: evt.target.email.value
       };
     }
-
     this.props.updateUser(NU);
   };
 
@@ -60,13 +59,9 @@ class EditUser extends Component {
 
   render() {
     if (!this.props.user) {
-      console.log('Loading...');
       return <h1>Loading...</h1>;
     }
-    console.log('this.props.user', this.props.user);
-    console.log('this.state', this.state);
-    const disabled = this.state.email;
-
+    const disabled = this.state.email
     return (
       <div className="container container__sign-in-form white z-depth-2">
         <div id="register" className="col s12">
@@ -81,6 +76,7 @@ class EditUser extends Component {
                     name="firstName"
                     value={this.state.firstName}
                     onChange={this.handleChange}
+                    required
                   />
                 </div>
                 <div className="input-field col s6">
@@ -90,6 +86,7 @@ class EditUser extends Component {
                     name="lastName"
                     value={this.state.lastName}
                     onChange={this.handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -106,16 +103,34 @@ class EditUser extends Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input id="email" type="email" name="email" value={this.state.email} onChange={this.handleChange} />
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    required
+                  />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input id="password" type="password" name="password" placeholder="Password" />
+                  <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    minLength="8"
+                  />
                 </div>
               </div>
               <center>
-                <button className="btn waves-effect waves-light teal" type="submit" disabled={!disabled} name="action">
+                <button
+                  className="btn waves-effect waves-light teal"
+                  type="submit"
+                  disabled={!disabled}
+                  name="action">
                   Submit
                 </button>
               </center>

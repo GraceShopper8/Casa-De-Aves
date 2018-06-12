@@ -29,9 +29,7 @@ class ProductList extends Component {
       <div className="row container">
         <div className="col s1" />
         <main className="col s10">
-          <h2 className="float-header teal-text text-darken-3 center">
-            All Products
-          </h2>
+          <h2 className="float-header teal-text text-darken-3 center">All Products</h2>
 
           <a
             className="dropdown-trigger btn large"
@@ -64,9 +62,7 @@ class ProductList extends Component {
           </ul>
 
           <ul className="products-box animated fadeIn">
-            {productsList.map(product => (
-              <ProductCard product={product} key={product.id} />
-            ))}
+            {productsList.map(product => <ProductCard product={product} key={product.id} />)}
           </ul>
         </main>
       </div>

@@ -1,102 +1,102 @@
 module.exports = [
   {
-    firstName: "Cody",
-    lastName: "Wise",
-    homeAddress: "2800 Heath Ave",
-    email: "cody@email.com",
-    password: "123"
+    firstName: 'Cody',
+    lastName: 'Wise',
+    homeAddress: '2800 Heath Ave',
+    email: 'cody@email.com',
+    password: '123'
   },
   {
-    firstName: "Murphy",
-    lastName: "Ramsey",
-    homeAddress: "2355 Ocean Ave",
-    email: "murphy@email.com",
-    password: "123",
+    firstName: 'Murphy',
+    lastName: 'Ramsey',
+    homeAddress: '2355 Ocean Ave',
+    email: 'murphy@email.com',
+    password: '123',
     admin: true
   },
   {
-    firstName: "Horton",
-    lastName: "Wolseley",
-    homeAddress: "13785 Heath Street",
-    email: "hwolseley0@upenn.edu",
-    password: "NwPsC1"
+    firstName: 'Horton',
+    lastName: 'Wolseley',
+    homeAddress: '13785 Heath Street',
+    email: 'hwolseley0@upenn.edu',
+    password: 'NwPsC1'
   },
   {
-    firstName: "Tuesday",
-    lastName: "Skewes",
-    homeAddress: "29370 Loftsgordon Crossing",
-    email: "tskewes1@com.com",
-    password: "cUZsgtvU"
+    firstName: 'Tuesday',
+    lastName: 'Skewes',
+    homeAddress: '29370 Loftsgordon Crossing',
+    email: 'tskewes1@com.com',
+    password: 'cUZsgtvU'
   },
   {
-    firstName: "Yankee",
-    lastName: "Scotfurth",
-    homeAddress: "382 8th Drive",
-    email: "yscotfurth2@xinhuanet.com",
-    password: "9qIZWrFojJ"
+    firstName: 'Yankee',
+    lastName: 'Scotfurth',
+    homeAddress: '382 8th Drive',
+    email: 'yscotfurth2@xinhuanet.com',
+    password: '9qIZWrFojJ'
   },
   {
-    firstName: "Ag",
-    lastName: "Kunze",
-    homeAddress: "179 Manitowish Circle",
-    email: "akunze3@jimdo.com",
-    password: "20yTPRE"
+    firstName: 'Ag',
+    lastName: 'Kunze',
+    homeAddress: '179 Manitowish Circle',
+    email: 'akunze3@jimdo.com',
+    password: '20yTPRE'
   },
   {
-    firstName: "Feliks",
-    lastName: "Gommery",
-    homeAddress: "77 Butterfield Way",
-    email: "fgommery4@accuweather.com",
-    password: "fUalWkQL"
+    firstName: 'Feliks',
+    lastName: 'Gommery',
+    homeAddress: '77 Butterfield Way',
+    email: 'fgommery4@accuweather.com',
+    password: 'fUalWkQL'
   },
   {
-    firstName: "Fernando",
-    lastName: "Barnes",
-    homeAddress: "3413 Arrowood Junction",
-    email: "fbarnes5@bluehost.com",
-    password: "JGbvSo3IT"
+    firstName: 'Fernando',
+    lastName: 'Barnes',
+    homeAddress: '3413 Arrowood Junction',
+    email: 'fbarnes5@bluehost.com',
+    password: 'JGbvSo3IT'
   },
   {
-    firstName: "Brian",
-    lastName: "Costall",
-    homeAddress: "551 Mandrake Trail",
-    email: "bcostall6@sphinn.com",
-    password: "lLYoPe4c"
+    firstName: 'Brian',
+    lastName: 'Costall',
+    homeAddress: '551 Mandrake Trail',
+    email: 'bcostall6@sphinn.com',
+    password: 'lLYoPe4c'
   },
   {
-    firstName: "Englebert",
-    lastName: "De la Yglesias",
-    homeAddress: "9466 Banding Park",
-    email: "edelayglesias7@woothemes.com",
-    password: "9NzPtfb6Qu"
+    firstName: 'Englebert',
+    lastName: 'De la Yglesias',
+    homeAddress: '9466 Banding Park',
+    email: 'edelayglesias7@woothemes.com',
+    password: '9NzPtfb6Qu'
   },
   {
-    firstName: "Maitilde",
-    lastName: "Rickcord",
-    homeAddress: "18 Corben Park",
-    email: "mrickcord8@quantcast.com",
-    password: "VuwuSINCVZT3"
+    firstName: 'Maitilde',
+    lastName: 'Rickcord',
+    homeAddress: '18 Corben Park',
+    email: 'mrickcord8@quantcast.com',
+    password: 'VuwuSINCVZT3'
   },
   {
-    firstName: "Jacki",
-    lastName: "Whyffen",
-    homeAddress: "5 Jay Road",
-    email: "jwhyffen9@istockphoto.com",
-    password: "yUbk6SNe2Eo"
+    firstName: 'Jacki',
+    lastName: 'Whyffen',
+    homeAddress: '5 Jay Road',
+    email: 'jwhyffen9@istockphoto.com',
+    password: 'yUbk6SNe2Eo'
   },
   {
-    firstName: "Mable",
-    lastName: "Beckinsall",
-    homeAddress: "989 Village Green Parkway",
-    email: "mbeckinsalla@hugedomains.com",
-    password: "XTyYDy1RoEo"
+    firstName: 'Mable',
+    lastName: 'Beckinsall',
+    homeAddress: '989 Village Green Parkway',
+    email: 'mbeckinsalla@hugedomains.com',
+    password: 'XTyYDy1RoEo'
   },
   {
-    firstName: "Jose",
-    lastName: "Loding",
-    homeAddress: "059 Elgar Point",
-    email: "jlodingb@answers.com",
-    password: "DiwzRMrGc"
+    firstName: 'Jose',
+    lastName: 'Loding',
+    homeAddress: '059 Elgar Point',
+    email: 'jlodingb@answers.com',
+    password: 'DiwzRMrGc'
   }
 ];
 
