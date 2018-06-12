@@ -30,6 +30,7 @@ class CreateUser extends Component {
                     type="text"
                     name="firstName"
                     placeholder="First Name"
+                    required
                   />
                 </div>
                 <div className="input-field col s6">
@@ -38,6 +39,7 @@ class CreateUser extends Component {
                     type="text"
                     name="lastName"
                     placeholder="Last Name"
+                    required
                   />
                 </div>
               </div>
@@ -58,6 +60,7 @@ class CreateUser extends Component {
                     type="email"
                     name="email"
                     placeholder="Email"
+                    required
                   />
                 </div>
               </div>
@@ -68,6 +71,7 @@ class CreateUser extends Component {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    required minLength="8"
                   />
                 </div>
               </div>

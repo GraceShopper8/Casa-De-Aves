@@ -7,8 +7,8 @@ import { auth } from '../store'
  * COMPONENT
  */
 const AuthForm = props => {
-  const { name, displayName, handleSubmit, error } = props
-
+  const { name, displayName, handleSubmit, error, emaildata, passdata , config} = props
+  // console.log(user.error && user.error.response.data)
   return (
     <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
       <div id="login" className="col s12">
@@ -35,6 +35,7 @@ const AuthForm = props => {
                 />
               </div>
             </div>
+            {error && config && emaildata && passdata && <div className="error-container"> {error.response.data}</div>}
             <br />
             <center>
               <button
@@ -72,6 +73,7 @@ const mapLogin = state => {
     name: 'login',
     displayName: 'Login',
     error: state.user.error,
+    config: state.user.config
   }
 }
 

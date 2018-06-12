@@ -9,44 +9,43 @@ class EditUser extends Component {
   constructor() {
     super();
     this.state = {
-     firstName: ""
+      firstName: '',
+      email: ''
     };
   }
 
-     componentWillReceiveProps(nextProps) {
-      this.setState({
-        firstName: nextProps.user.firstName,
-        lastName: nextProps.user.lastName,
-        homeAddress: nextProps.user.homeAddress,
-        email: nextProps.user.email
-      });
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    this.setState({
+      firstName: nextProps.user.firstName,
+      lastName: nextProps.user.lastName,
+      homeAddress: nextProps.user.homeAddress,
+      email: nextProps.user.email
+    });
 
 
   }
   handleSubmit = (evt) => {
     evt.preventDefault();
-  const password = evt.target.password.value
-  let NU;
-     if (password){
-         NU = {
-          id: this.props.user.id,
-          firstName: evt.target.firstName.value,
-          lastName: evt.target.lastName.value,
-          homeAddress: evt.target.homeAddress.value,
-          email: evt.target.email.value,
-          password: evt.target.password.value
-        };
-     } else {
-        NU = {
-         id: this.props.user.id,
-         firstName: evt.target.firstName.value,
-         lastName: evt.target.lastName.value,
-         homeAddress: evt.target.homeAddress.value,
-         email: evt.target.email.value
-        };
-     }
-    console.log("this is password", evt.target.password.value)
-    console.log("this is lastName", evt.target.lastName.value)
+    const password = evt.target.password.value
+    let NU;
+    if (password) {
+      NU = {
+        id: this.props.user.id,
+        firstName: evt.target.firstName.value,
+        lastName: evt.target.lastName.value,
+        homeAddress: evt.target.homeAddress.value,
+        email: evt.target.email.value,
+        password: evt.target.password.value
+      };
+    } else {
+      NU = {
+        id: this.props.user.id,
+        firstName: evt.target.firstName.value,
+        lastName: evt.target.lastName.value,
+        homeAddress: evt.target.homeAddress.value,
+        email: evt.target.email.value
+      };
+    }
     this.props.updateUser(NU);
   };
 
@@ -56,16 +55,9 @@ class EditUser extends Component {
 
   render() {
     if (!this.props.user) {
-      console.log("Loading...");
       return <h1>Loading...</h1>;
     }
-    console.log("this.props.user", this.props.user)
-    console.log("this.state", this.state)
-    const disabled =
-     this.state.email
-
-    console.log("this.props.user", this.props.user)
-    console.log("this.state", this.state)
+    const disabled = this.state.email
     return (
       <div className="container container__sign-in-form white z-depth-2">
         <div id="register" className="col s12">
@@ -81,6 +73,7 @@ class EditUser extends Component {
                     name="firstName"
                     value={this.state.firstName}
                     onChange={this.handleChange}
+                    required
                   />
                 </div>
                 <div className="input-field col s6">
@@ -90,6 +83,7 @@ class EditUser extends Component {
                     name="lastName"
                     value={this.state.lastName}
                     onChange={this.handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -112,6 +106,7 @@ class EditUser extends Component {
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -122,12 +117,14 @@ class EditUser extends Component {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    required
+                    minLength="8"
                   />
                 </div>
               </div>
               <center>
                 <button
-                 className="btn waves-effect waves-light teal"
+                  className="btn waves-effect waves-light teal"
                   type="submit"
                   disabled={!disabled}
                   name="action">
