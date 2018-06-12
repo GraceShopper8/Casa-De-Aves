@@ -114,7 +114,10 @@ class Navbar extends Component {
             <li>
               <div className="user-view">
                 <a href="#name">
-                  <span className="name">{`${loggedInUser.firstName} ${loggedInUser.lastName}`}</span>
+                  <span className="name">{`${loggedInUser.firstName} ${
+                    loggedInUser.lastName
+                  }`}
+                  </span>
                 </a>
                 <a href="#email">
                   <span className="email">{loggedInUser.email}</span>

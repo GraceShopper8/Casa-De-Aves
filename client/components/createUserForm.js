@@ -25,10 +25,22 @@ class CreateUser extends Component {
               <h4 className="teal-text">Welcome</h4>
               <div className="row">
                 <div className="input-field col s6">
-                  <input id="first_name" type="text" name="firstName" placeholder="First Name" />
+                  <input
+                    id="first_name"
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    required
+                  />
                 </div>
                 <div className="input-field col s6">
-                  <input id="last_name" type="text" name="lastName" placeholder="Last Name" />
+                  <input
+                    id="last_name"
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    required
+                  />
                 </div>
               </div>
               <div className="row">
@@ -38,12 +50,24 @@ class CreateUser extends Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input id="email" type="email" name="email" placeholder="Email" />
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                  />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input id="password" type="password" name="password" placeholder="Password" />
+                  <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required minLength="8"
+                  />
                 </div>
               </div>
               <center>
