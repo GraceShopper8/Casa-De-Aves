@@ -50,8 +50,9 @@ class Navbar extends Component {
                 className="nav-bar-logo"
               />
             </a>
+
             <ul className="left">
-              <li>|</li>
+              <li> |</li>
               <li>
                 <Link to="/products" className="white-text">
                   Products

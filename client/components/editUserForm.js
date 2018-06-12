@@ -58,6 +58,7 @@ class EditUser extends Component {
   };
 
   render() {
+    const {error} = this.props
     if (!this.props.user) {
       return <h1>Loading...</h1>;
     }
@@ -67,7 +68,7 @@ class EditUser extends Component {
         <div id="register" className="col s12">
           <form className="col s12" onSubmit={this.handleSubmit}>
             <div className="form-container">
-              <h4 className="teal-text">Update</h4>
+              <h4 className="teal-text">Edit your info</h4>
               <div className="row">
                 <div className="input-field col s6">
                   <input
@@ -125,13 +126,16 @@ class EditUser extends Component {
                   />
                 </div>
               </div>
+              {error &&
+              (<div className="error-container">{error.response.data}</div>)
+              }
               <center>
                 <button
                   className="btn waves-effect waves-light teal"
                   type="submit"
                   disabled={!disabled}
                   name="action">
-                  Submit
+                  Save
                 </button>
               </center>
             </div>
@@ -143,7 +147,8 @@ class EditUser extends Component {
 }
 
 const stateToProps = state => ({
-  user: state.user
+  user: state.user,
+  error: state.user.error,
 });
 
 const mapDispatch = dispatch => ({

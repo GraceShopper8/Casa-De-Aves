@@ -147,6 +147,10 @@ input {
 	width: 400px !important;
 }
 
+.container__payment{
+  margin-top: 80px;
+  widows: 500px;
+}
 
 .form-container
 {
@@ -4628,7 +4632,6 @@ nav .brand-logo {
   position: relative;
   color: #fff;
   display: inline-block;
-  font-family: "Shadows Into Light";
   font-size: 2rem;
   padding: 0;
   margin-right: 20px;
@@ -5200,7 +5203,7 @@ small {
 .card .card-content {
   display: flex;
   flex-direction: column;
-  padding: 5px 18px 15px 18px;
+  padding: 5px 60px 15px 18px;
   border-radius: 0 0 2px 2px;
   min-height: 150px;
 }

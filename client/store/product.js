@@ -11,20 +11,20 @@ const initState = {
   singleProduct: {},
 }
 
-const gotAllProducts = products => {
+export const gotAllProducts = products => {
   return {
     type: FETCH_ALL_PRODUCTS,
     products,
   }
 }
 
-const gotSingleProducts = product => {
+export const gotSingleProducts = product => {
   return {
     type: FETCH_SINGLE_PRODUCT,
     product,
   }
 }
-const updatedProduct = product => {
+export const updatedProduct = product => {
   return {
     type: UPDATED_PRODUCT,
     product,

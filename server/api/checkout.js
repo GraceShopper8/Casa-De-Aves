@@ -4,7 +4,6 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
 router.post('/', (req, res, next) => {
   const { token, amount, email } = req.body;
-
   const charge = stripe.charges.create({
     amount: amount * 100,
     currency: 'usd',
