@@ -4,6 +4,12 @@ input {
   letter-spacing: 0.08rem;
 }
 
+.nav-bar-logo {
+  height: 37px;
+  padding-top: 10px;
+  margin-left: 15px;
+}
+
 #product_form {
   margin: 0px;
   height: 196px;
