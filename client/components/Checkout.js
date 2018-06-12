@@ -1,24 +1,24 @@
-import React, { Component } from 'react'
-import { StripeProvider, Elements } from 'react-stripe-elements'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { StripeProvider, Elements } from 'react-stripe-elements';
+import { connect } from 'react-redux';
 
-import CheckoutForm from './stripe/CheckoutForm'
+import CheckoutForm from './stripe/CheckoutForm';
 
 class Checkout extends Component {
   constructor() {
-    super()
-    this.state = { stripe: null }
+    super();
+    this.state = { stripe: null };
   }
 
   componentDidMount() {
     if (window.Stripe) {
       this.setState({
-        stripe: window.Stripe('pk_test_T1EYDxHoDxrRIs4ntFf597Br'),
-      })
+        stripe: window.Stripe('pk_test_T1EYDxHoDxrRIs4ntFf597Br')
+      });
     } else {
       document.querySelector('#stripe-js').addEventListener('load', () => {
-        this.setState({ stripe: window.Stripe('pk_test_T1EYDxHoDxrRIs4ntFf597Br') })
-      })
+        this.setState({ stripe: window.Stripe('pk_test_T1EYDxHoDxrRIs4ntFf597Br') });
+      });
     }
   }
 
@@ -30,15 +30,15 @@ class Checkout extends Component {
     return (
       <StripeProvider stripe={this.state.stripe}>
         <Elements>
-          <CheckoutForm totalPrice={totalPrice}/>
+          <CheckoutForm totalPrice={totalPrice} />
         </Elements>
       </StripeProvider>
-    )
+    );
   }
 }
 
 const mapState = state => ({
-  items: state.cart.items,
-})
+  items: state.cart.items
+});
 
-export default connect(mapState)(Checkout)
+export default connect(mapState)(Checkout);
