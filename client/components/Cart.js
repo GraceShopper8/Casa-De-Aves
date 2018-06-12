@@ -1,20 +1,10 @@
-<<<<<<< HEAD
-/* eslint-disable react/prefer-stateless-function */
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { me } from '../store'
 import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 import { updateUserCart } from '../store/user'
-=======
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-
-import { me } from '../store';
-import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart';
-import { updateUserCart } from '../store/user';
->>>>>>> c0eb5f663662d05e0af1ccb3461a43245503e5b7
 
 class Cart extends Component {
   componentDidMount = () => {
@@ -44,15 +34,9 @@ class Cart extends Component {
   };
 
   render() {
-<<<<<<< HEAD
     let cartTotal = 0
     let items = this.props.items
     if(items.length === 0) return (<h3>LOADING....</h3>)
-=======
-    let cartTotal = 0;
-    let items = this.props.items;
-
->>>>>>> c0eb5f663662d05e0af1ccb3461a43245503e5b7
     return (
       <div className="container custom_cart-container">
         <ul className="collection col s6">
