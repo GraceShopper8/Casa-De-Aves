@@ -30,7 +30,7 @@ class Navbar extends Component {
   };
 
   render() {
-    var cartTotal = 0;
+    const cartTotal = 0;
     const { handleClick, isLoggedIn, handleDeleteItem, loggedInUser, items, handleDeleteAccount } = this.props;
 
     return (
@@ -93,7 +93,7 @@ class Navbar extends Component {
           </li>
           <li className="divider" />
           <li>
-            <a href="/edit">Edit Account</a>
+            <a href={`/${loggedInUser.id}/edit`}>Edit Account</a>
           </li>
           <li className="divider" />
           <li>
