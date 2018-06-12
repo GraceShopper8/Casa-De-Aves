@@ -15,18 +15,18 @@ class Navbar extends Component {
 
     document.addEventListener('DOMContentLoaded', function() {
       const sideNav = document.querySelectorAll('.sidenav')
-      const sideNavInstance = M.Sidenav.init(sideNav, { edge: 'right' })
+      M.Sidenav.init(sideNav, { edge: 'right' })
     })
 
     setTimeout(() => {
       const dropDown = document.querySelectorAll('.dropdown-trigger')
-      const dropDownInstance = M.Dropdown.init(dropDown)
+      M.Dropdown.init(dropDown)
     }, 100)
   }
 
   handleDropDown = () => {
     const dropDown = document.querySelectorAll('.dropdown-trigger')
-    const dropDownInstance = M.Dropdown.init(dropDown)
+    M.Dropdown.init(dropDown)
   }
 
   render() {
@@ -44,14 +44,14 @@ class Navbar extends Component {
       <div>
         <nav id="nav-bar" className="teal" role="navigation">
           <div className="nav-wrapper container">
+            <a href="/" className="brand-logo left">
+              <img
+                src="/img/5935-200 white-version.png"
+                className="nav-bar-logo"
+              />
+            </a>
             <ul className="left">
-              <li>
-                <Link to="/" className="white-text">
-                  <i id="home-icon" className="material-icons">
-                    home
-                  </i>
-                </Link>
-              </li>
+              <li>|</li>
               <li>
                 <Link to="/products" className="white-text">
                   Products
@@ -124,9 +124,9 @@ class Navbar extends Component {
             <li>
               <div className="user-view">
                 <a href="#name">
-                  <span className="name">{`${loggedInUser.firstName} ${
-                    loggedInUser.lastName
-                  }`}</span>
+                  <span className="name">
+                    {`${loggedInUser.firstName} ${loggedInUser.lastName}`}
+                  </span>
                 </a>
                 <a href="#email">
                   <span className="email">{loggedInUser.email}</span>
