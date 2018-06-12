@@ -32,7 +32,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     googleConfig,
     (token, refreshToken, profile, done) => {
       const googleId = profile.id
-      const name = profile.displayName
+      const name = profile.displayName.split(' ')
       const email = profile.emails[0].value
 
       User.find({ where: { googleId } })
@@ -40,9 +40,12 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
           foundUser =>
             foundUser
               ? done(null, foundUser)
-              : User.create({ name, email, googleId }).then(createdUser =>
-                  done(null, createdUser)
-                )
+              : User.create({
+                  firstName: name[0],
+                  lastName: name[1],
+                  email: email,
+                  googleId: googleId,
+                }).then(createdUser => done(null, createdUser))
         )
         .catch(done)
     }

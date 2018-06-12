@@ -5,12 +5,10 @@ const db = require('../db')
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
-    defaultValue: 'TEST_FIRSTNAME',
   },
 
   lastName: {
     type: Sequelize.STRING,
-    defaultValue: 'TEST_LASTNAME',
   },
 
   homeAddress: {
@@ -37,7 +35,7 @@ const User = db.define('user', {
 
   admin: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
+    defaultValue: false,
   },
 
   salt: {

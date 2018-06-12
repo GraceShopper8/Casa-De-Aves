@@ -1,18 +1,17 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { me } from "../store";
-import { getUsersOrders } from "../store/order";
+import { me } from '../store';
+import { getUsersOrders } from '../store/order';
 
 class Orders extends Component {
   componentDidMount = () => {
     this.props.loadInitialData();
     this.props.getUsersOrders(this.props.userId);
 
-    const elems = document.querySelectorAll(".collapsible");
-    console.log("elems", elems);
+    const elems = document.querySelectorAll('.collapsible');
     const instances = M.Collapsible.init(elems);
   };
 
@@ -36,7 +35,7 @@ class Orders extends Component {
                 <div className="collapsible-header row">
                   <p className="col s6 left-align">Order total: ${order.totalPrice}</p>
                   <p className="col s6 right-align">
-                    {cartItems.length} {cartItems.length === 1 ? "Item" : "Items"}
+                    {cartItems.length} {cartItems.length === 1 ? 'Item' : 'Items'}
                   </p>
                 </div>
                 <div className="collapsible-body">
@@ -52,7 +51,7 @@ class Orders extends Component {
   }
 }
 
-const mapState = (state) => {
+const mapState = state => {
   return {
     userOrders: state.order.usersOrders,
     userId: state.user.id,
@@ -60,9 +59,9 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => ({
+const mapDispatch = dispatch => ({
   loadInitialData: () => dispatch(me()),
-  getUsersOrders: (userId) => dispatch(getUsersOrders(userId))
+  getUsersOrders: userId => dispatch(getUsersOrders(userId))
 });
 
 export default connect(
