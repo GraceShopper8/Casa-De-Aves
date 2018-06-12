@@ -30,7 +30,7 @@ class AdminEditForm extends Component {
     const price = event.target.price.value;
     const inventory = event.target.inventory.value;
     const description = event.target.description.value;
-    const editObj = { id, name, inventory, description, price };
+    const editObj = { id, name, description, price };
     this.props.sendToProductPutThunk(editObj);
   };
 
