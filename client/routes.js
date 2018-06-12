@@ -14,7 +14,6 @@ import CreateUser from './components/createUserForm'
 import EditUser from './components/editUserForm'
 import Cart from './components/Cart'
 import UserOrders from './components/UserOrders'
-import OrderDetail from './components/OrderDetail'
 
 /**
  * COMPONENT
