@@ -1,7 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { me } from '../store';
 import { getUsersOrders } from '../store/order';
@@ -25,7 +24,10 @@ class Orders extends Component {
               <h2 className="teal-text ">THANKS FOR SHOPPING WITH US!</h2>
             </li>
           ) : (
-            <h2 className="center teal-text">SORRY, DIDN'T FIND ANY PAST ORDERS</h2>
+            <li className="center">
+              <h2 className="center teal-text">SORRY, DIDN'T FIND ANY PAST ORDERS</h2>
+              <br/>
+            </li>
           )}
 
           {orders.map((order, index) => {
