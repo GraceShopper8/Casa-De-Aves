@@ -1,21 +1,22 @@
-'use strict';
+/* eslint-disable react/no-deprecated */
+'use strict'
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { updateUser } from '../store/user';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { updateUser } from '../store/user'
 
 class EditUser extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       firstName: '',
       lastName: '',
       homeAddress: '',
-      email: ''
-    };
+      email: '',
+    }
   }
   componentDidMount() {
-    const { firstName, lastName, email, homeAddress } = this.props.user;
+    const { firstName, lastName, email, homeAddress } = this.props.user
     this.setState({ firstName, lastName, email, homeAddress })
   }
 
@@ -24,14 +25,14 @@ class EditUser extends Component {
       firstName: nextProps.user.firstName,
       lastName: nextProps.user.lastName,
       homeAddress: nextProps.user.homeAddress,
-      email: nextProps.user.email
-    });
+      email: nextProps.user.email,
+    })
   }
-  
+
   handleSubmit = evt => {
-    evt.preventDefault();
-    const password = evt.target.password.value;
-    let NU;
+    evt.preventDefault()
+    const password = evt.target.password.value
+    let NU
     if (password) {
       NU = {
         id: this.props.user.id,
@@ -39,33 +40,33 @@ class EditUser extends Component {
         lastName: evt.target.lastName.value,
         homeAddress: evt.target.homeAddress.value,
         email: evt.target.email.value,
-        password: evt.target.password.value
-      };
+        password: evt.target.password.value,
+      }
     } else {
       NU = {
         id: this.props.user.id,
         firstName: evt.target.firstName.value,
         lastName: evt.target.lastName.value,
         homeAddress: evt.target.homeAddress.value,
-        email: evt.target.email.value
-      };
+        email: evt.target.email.value,
+      }
     }
 
-    this.props.updateUser(NU);
-  };
+    this.props.updateUser(NU)
+  }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+    this.setState({ [event.target.name]: event.target.value })
+  }
 
   render() {
     if (!this.props.user) {
-      console.log('Loading...');
-      return <h1>Loading...</h1>;
+      console.log('Loading...')
+      return <h1>Loading...</h1>
     }
-    console.log('this.props.user', this.props.user);
-    console.log('this.state', this.state);
-    const disabled = this.state.email;
+    console.log('this.props.user', this.props.user)
+    console.log('this.state', this.state)
+    const disabled = this.state.email
 
     return (
       <div className="container container__sign-in-form white z-depth-2">
@@ -106,16 +107,31 @@ class EditUser extends Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input id="email" type="email" name="email" value={this.state.email} onChange={this.handleChange} />
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input id="password" type="password" name="password" placeholder="Password" />
+                  <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
                 </div>
               </div>
               <center>
-                <button className="btn waves-effect waves-light teal" type="submit" disabled={!disabled} name="action">
+                <button
+                  className="btn waves-effect waves-light teal"
+                  type="submit"
+                  disabled={!disabled}
+                  name="action">
                   Submit
                 </button>
               </center>
@@ -123,19 +139,19 @@ class EditUser extends Component {
           </form>
         </div>
       </div>
-    );
+    )
   }
 }
 
 const stateToProps = state => ({
-  user: state.user
-});
+  user: state.user,
+})
 
 const mapDispatch = dispatch => ({
-  updateUser: user => dispatch(updateUser(user))
-});
+  updateUser: user => dispatch(updateUser(user)),
+})
 
 export default connect(
   stateToProps,
   mapDispatch
-)(EditUser);
+)(EditUser)

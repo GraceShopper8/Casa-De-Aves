@@ -29,7 +29,7 @@ class LandingPage extends Component {
             </div>
           </div>
         </div>
-        <div className="landing-page parallax ">
+        <div className="parallax ">
           <img src="/img/backyard.jpeg" alt="Background Image" />
         </div>
       </React.Fragment>

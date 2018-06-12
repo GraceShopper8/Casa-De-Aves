@@ -5,14 +5,17 @@ const db = require('../db')
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
+    defaultValue: '',
   },
 
   lastName: {
     type: Sequelize.STRING,
+    defaultValue: '',
   },
 
   homeAddress: {
     type: Sequelize.STRING,
+    defaultValue: '',
   },
 
   email: {
@@ -67,10 +70,10 @@ User.encryptPassword = function(plainText, salt) {
 }
 
 const setSaltAndPassword = user => {
-   if (user.changed('password')) {
+  if (user.changed('password')) {
     user.salt = User.generateSalt()
     user.password = User.encryptPassword(user.password(), user.salt())
-   }
+  }
 }
 
 User.beforeCreate(setSaltAndPassword)

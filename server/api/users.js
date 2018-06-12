@@ -37,7 +37,7 @@ router.put('/:id', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
     const updated = await user.update(req.body)
-    user ? res.json(updated) : res.status(404).json('Student not found.')
+    user ? res.json(updated) : res.status(404).json('User not found.')
   } catch (error) {
     next(error)
   }

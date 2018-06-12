@@ -44,14 +44,14 @@ class Navbar extends Component {
       <div>
         <nav id="nav-bar" className="teal" role="navigation">
           <div className="nav-wrapper container">
+            <a href="/" className="brand-logo left">
+              <img
+                src="/img/5935-200 white-version.png"
+                className="nav-bar-logo"
+              />
+            </a>
             <ul className="left">
-              <li>
-                <Link to="/" className="white-text">
-                  <i id="home-icon" className="material-icons">
-                    home
-                  </i>
-                </Link>
-              </li>
+              <li>|</li>
               <li>
                 <Link to="/products" className="white-text">
                   Products
