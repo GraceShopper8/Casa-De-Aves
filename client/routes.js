@@ -26,6 +26,8 @@ class Routes extends Component {
   render() {
     const { isLoggedIn } = this.props
 
+
+
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -47,6 +49,7 @@ class Routes extends Component {
             <Route exact path="/:id/edit" component={EditUser} />
             <Route exact path="/orders/:userid" component={UserOrders} />
             <Route exact path="/products/:id/edit" component={AdminEditForm} />
+
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
