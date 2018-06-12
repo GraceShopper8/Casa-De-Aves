@@ -11,7 +11,7 @@ import { me } from './store'
 import Checkout from './components/Checkout'
 import Receipt from './components/stripe/Receipt'
 import CreateUser from './components/createUserForm'
-import EditUser from './components/EditUserForm'
+import EditUser from './components/editUserForm'
 import Cart from './components/Cart'
 import UserOrders from './components/UserOrders'
 

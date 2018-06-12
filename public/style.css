@@ -147,6 +147,10 @@ input {
 	width: 400px !important;
 }
 
+.container__payment{
+  margin-top: 80px;
+  widows: 500px;
+}
 
 .form-container
 {
@@ -4631,7 +4635,7 @@ nav .brand-logo {
   font-family: "Shadows Into Light";
   font-size: 2rem;
   padding: 0;
-  margin-right: 35px;
+  margin-right: 20px;
 }
 
 
