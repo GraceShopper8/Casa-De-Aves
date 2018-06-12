@@ -6,6 +6,7 @@ import UserReviewForm from './UserReviewForm'
 import { addedToCart } from '../store/cart'
 import { Link } from 'react-router-dom'
 
+
 class ProductDetail extends Component {
   constructor() {
     super()
@@ -91,6 +92,7 @@ const mapDispatch = dispatch => ({
   getSingleProducts: id => dispatch(getSingleProducts(id)),
   addedToCart: id => dispatch(addedToCart(id)),
 })
+
 
 export default connect(
   mapState,
