@@ -58,7 +58,7 @@ const cartReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        items: [...state.items, action.item],
+        items: [...state.items,action.item],
         total: state.items.reduce((total, item) => total + item.price, 0),
       }
 

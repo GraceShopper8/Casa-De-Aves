@@ -7,8 +7,7 @@ import { auth } from '../store';
  * COMPONENT
  */
 const AuthForm = props => {
-  const { name, displayName, handleSubmit, error } = props;
-
+  const { name, displayName, handleSubmit, error, emaildata, passdata , config} = props
   return (
     <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
       <div id="login" className="col s12">
@@ -25,6 +24,7 @@ const AuthForm = props => {
                 <input id="password" type="password" name="password" placeholder="Password" />
               </div>
             </div>
+            {error && config && emaildata && passdata && <div className="error-container"> {error.response.data}</div>}
             <br />
             <center>
               <button className="btn btn-small waves-effect waves-light teal" type="submit" name="action">
@@ -47,20 +47,14 @@ const AuthForm = props => {
   );
 };
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error
-  };
-};
+    error: state.user.error,
+    config: state.user.config
+  }
+}
 
 const mapSignup = state => {
   return {
