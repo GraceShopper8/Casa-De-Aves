@@ -25,26 +25,33 @@ const seedScript = async () => {
       individualHooks: true,
     })
 
-    const [products, reviews, users] = await Promise.all([seedProducts, seedReview, seedUser]);
+    const [products, reviews, users] = await Promise.all([
+      seedProducts,
+      seedReview,
+      seedUser,
+    ])
 
-    const productNames = products.map((product) => JSON.stringify(product));
+    const productNames = products.map(product => JSON.stringify(product))
 
-    const orders = users.map((user) => {
+    const orders = users.map(user => {
       return Order.create({
-        cartContents: productNames[Math.floor(Math.random() * productNames.length)],
+        cartContents:
+          productNames[Math.floor(Math.random() * productNames.length)],
         shippingAddress: user.homeAddress,
         totalPrice: Math.floor(Math.random() * 1000),
         shippingPrice: Math.floor(Math.random() * 10 + 15),
-        userId: Math.ceil(Math.random() * users.length)
-      });
+        userId: Math.ceil(Math.random() * users.length),
+      })
     })
 
-    reviews.forEach((review) => {
-       review.setUser(users[Math.ceil(Math.random() * users.length-1)].id);
-       review.setProduct(products[Math.ceil(Math.random() * products.length-1)].id);
+    reviews.forEach(review => {
+      review.setUser(users[Math.ceil(Math.random() * users.length - 1)].id)
+      review.setProduct(
+        products[Math.ceil(Math.random() * products.length - 1)].id
+      )
     })
-    
-    await Promise.all(orders);
+
+    await Promise.all(orders)
 
     console.log('Database successfully seeded.')
   } catch (error) {
