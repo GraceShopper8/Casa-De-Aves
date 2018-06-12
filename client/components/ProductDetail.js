@@ -82,6 +82,7 @@ class ProductDetail extends Component {
 }
 
 const mapState = state => ({
+  items: state.cart.items,
   singleProduct: state.product.singleProduct,
   user: state.user,
 })
