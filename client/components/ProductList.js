@@ -7,52 +7,56 @@ import { getAllProducts, filterProducts } from '../store/product';
 
 class ProductList extends Component {
   async componentDidMount() {
-    await this.props.getAllProducts()
-    const dropDown = document.querySelector(".dropdown-trigger");
+    await this.props.getAllProducts();
+    const dropDown = document.querySelector('.dropdown-trigger');
     M.Dropdown.init(dropDown);
   }
 
-  handleDropDown = async(event) => {
+  handleDropDown = async event => {
+    const category = event.target.name;
 
-    const category = event.target.name
-
-    if (category === 'All'){
-       await this.props.getAllProducts()
+    if (category === 'All') {
+      await this.props.getAllProducts();
     } else {
-      await this.props.getAllProducts()
-      this.props.getAllFilteredProducts(category)
+      await this.props.getAllProducts();
+      this.props.getAllFilteredProducts(category);
     }
-  }
+  };
 
   render() {
     const productsList = this.props.allProducts;
-
 
     return (
       <div className="row container">
         <div className="col s1" />
         <main className="col s10">
-          <h2 className="float-header teal-text text-darken-3 center">
-            All Products
-          </h2>
+          <h2 className="float-header teal-text text-darken-3 center">All Products</h2>
 
-          <a className='dropdown-trigger btn large'   data-target='dropdown1'>Filter
-          <i  className="material-icons right">arrow_drop_down</i></a>
+          <a className="dropdown-trigger btn large" data-target="dropdown1">
+            Filter
+            <i className="material-icons right">arrow_drop_down</i>
+          </a>
 
-          <ul id='dropdown1' onClick={this.handleDropDown} className='dropdown-content'>
-            <li><a name="StarterHome">Starter Home</a></li>
-            <li className="divider" tabIndex="-1"></li>
-            <li><a name="FamilyHome">Family Home</a></li>
-            <li className="divider" tabIndex="-1"></li>
-            <li><a name="MidlifeCrisisHome">MidlifeCrisis Home</a></li>
-            <li className="divider" tabIndex="-1"></li>
-            <li><a name="All">All</a></li>
+          <ul id="dropdown1" onClick={this.handleDropDown} className="dropdown-content">
+            <li>
+              <a name="StarterHome">Starter Home</a>
+            </li>
+            <li className="divider" tabIndex="-1" />
+            <li>
+              <a name="FamilyHome">Family Home</a>
+            </li>
+            <li className="divider" tabIndex="-1" />
+            <li>
+              <a name="MidlifeCrisisHome">MidlifeCrisis Home</a>
+            </li>
+            <li className="divider" tabIndex="-1" />
+            <li>
+              <a name="All">All</a>
+            </li>
           </ul>
 
           <ul className="products-box animated fadeIn">
-            {productsList.map(product => (
-              <ProductCard product={product} key={product.id} />
-            ))}
+            {productsList.map(product => <ProductCard product={product} key={product.id} />)}
           </ul>
         </main>
       </div>
