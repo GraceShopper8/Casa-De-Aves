@@ -11,7 +11,7 @@ import { me } from './store'
 import Checkout from './components/Checkout'
 import Receipt from './components/stripe/Receipt'
 import CreateUser from './components/createUserForm'
-import EditUser from './components/editUserForm'
+import EditUser from './components/EditUserForm'
 import Cart from './components/Cart'
 import UserOrders from './components/UserOrders'
 
@@ -32,7 +32,7 @@ class Routes extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={CreateUser} />
-        <Route exact path="/edit" component={EditUser} />
+        
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/products/:id" component={ProductDetail} />
         {/* <Route exact path="/users/signup" component={CreateUser} /> */}
@@ -45,6 +45,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
+            <Route exact path="/:id/edit" component={EditUser} />
             <Route exact path="/orders/:userid" component={UserOrders} />
           </Switch>
         )}

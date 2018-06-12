@@ -16,7 +16,6 @@ class Navbar extends Component {
     document.addEventListener('DOMContentLoaded', function() {
       const sideNav = document.querySelectorAll('.sidenav')
       const sideNavInstance = M.Sidenav.init(sideNav, { edge: 'right' })
-      // instances[0].open()
     })
 
     setTimeout(() => {
@@ -31,7 +30,7 @@ class Navbar extends Component {
   }
 
   render() {
-    var cartTotal = 0
+    let cartTotal = 0
     const {
       handleClick,
       isLoggedIn,
@@ -97,14 +96,14 @@ class Navbar extends Component {
             )}
           </div>
         </nav>
-        {/* THIS IS MY CODE */}
+        {/* Dropdown menu for My account*/}
         <ul id="dropdownLogin" className="dropdown-content">
           <li>
             <a href={`/orders/${this.props.loggedInUser.id}`}>My Orders</a>
           </li>
           <li className="divider" />
           <li>
-            <a href="/edit">Edit Account</a>
+            <a href={`/${loggedInUser.id}/edit`}>Edit Account</a>
           </li>
           <li className="divider" />
           <li>
@@ -119,7 +118,7 @@ class Navbar extends Component {
             </a>
           </li>
         </ul>
-
+        {/* Slideout menu for My cart*/}
         <ul id="slide-out" className="sidenav">
           {isLoggedIn ? (
             <li>
@@ -139,7 +138,7 @@ class Navbar extends Component {
             ''
           )}
           <li>
-            <a href="#">
+            <a>
               <i className="material-icons">shopping_cart</i>Your Shopping Cart
             </a>
           </li>
@@ -170,13 +169,13 @@ class Navbar extends Component {
           </li>
           <li>
             <a className="waves-effect" href="/cart">
-              <span className="teal-text">Show More</span>
+              <span className="teal-text custom__btn-text">SHOW MORE</span>
             </a>
           </li>
 
           <li>
             <a className="waves-effect" href="/cart/checkout">
-              <span className="teal-text">Checkout</span>
+              <span className="teal-text custom__btn-text">CHECKOUT</span>
             </a>
           </li>
         </ul>

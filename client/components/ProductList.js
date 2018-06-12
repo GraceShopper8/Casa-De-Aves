@@ -1,17 +1,21 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import ProductCard from './ProductCard'
-import { getAllProducts, filterProducts } from '../store/product'
+import ProductCard from './ProductCard';
+import { getAllProducts, filterProducts } from '../store/product';
 
 class ProductList extends Component {
   async componentDidMount() {
     await this.props.getAllProducts()
+    const dropDown = document.querySelector(".dropdown-trigger");
+    M.Dropdown.init(dropDown);
   }
 
   handleDropDown = async(event) => {
+
     const category = event.target.name
+
     if (category === 'All'){
        await this.props.getAllProducts()
     } else {
@@ -21,7 +25,7 @@ class ProductList extends Component {
   }
 
   render() {
-    const productsList = this.props.allProducts
+    const productsList = this.props.allProducts;
 
 
     return (
@@ -31,8 +35,9 @@ class ProductList extends Component {
           <h2 className="float-header teal-text text-darken-3 center">
             All Products
           </h2>
-          <a className='dropdown-trigger btn large' href='#' data-target='dropdown1'>Filter
-          <i className="material-icons right">arrow_drop_down</i></a>
+
+          <a className='dropdown-trigger btn large'   data-target='dropdown1'>Filter
+          <i  className="material-icons right">arrow_drop_down</i></a>
 
           <ul id='dropdown1' onClick={this.handleDropDown} className='dropdown-content'>
             <li><a name="StarterHome">Starter Home</a></li>
@@ -43,6 +48,7 @@ class ProductList extends Component {
             <li className="divider" tabIndex="-1"></li>
             <li><a name="All">All</a></li>
           </ul>
+
           <ul className="products-box animated fadeIn">
             {productsList.map(product => (
               <ProductCard product={product} key={product.id} />
@@ -50,20 +56,20 @@ class ProductList extends Component {
           </ul>
         </main>
       </div>
-    )
+    );
   }
 }
 
 const mapState = state => ({
-  allProducts: state.product.allProducts,
-})
+  allProducts: state.product.allProducts
+});
 
 const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(getAllProducts()),
-  getAllFilteredProducts: (category) => dispatch(filterProducts(category)),
-})
+  getAllFilteredProducts: category => dispatch(filterProducts(category))
+});
 
 export default connect(
   mapState,
   mapDispatch
-)(ProductList)
+)(ProductList);

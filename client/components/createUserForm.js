@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { AddUser } from '../store/user';
 
 class CreateUser extends Component {
-  handleSubmit = (evt) => {
+  handleSubmit = evt => {
     evt.preventDefault();
     const NU = {
       firstName: evt.target.firstName.value,
@@ -25,6 +25,7 @@ class CreateUser extends Component {
               <h4 className="teal-text">Welcome</h4>
               <div className="row">
                 <div className="input-field col s6">
+<<<<<<< HEAD
                   <input
                     id="first_name"
                     type="text"
@@ -41,20 +42,22 @@ class CreateUser extends Component {
                     placeholder="Last Name"
                     required
                   />
+=======
+                  <input id="first_name" type="text" name="firstName" placeholder="First Name" />
+                </div>
+                <div className="input-field col s6">
+                  <input id="last_name" type="text" name="lastName" placeholder="Last Name" />
+>>>>>>> c0eb5f663662d05e0af1ccb3461a43245503e5b7
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input
-                    id="homeAddress"
-                    type="text"
-                    name="homeAddress"
-                    placeholder="Address"
-                  />
+                  <input id="homeAddress" type="text" name="homeAddress" placeholder="Address" />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
+<<<<<<< HEAD
                   <input
                     id="email"
                     type="email"
@@ -62,10 +65,14 @@ class CreateUser extends Component {
                     placeholder="Email"
                     required
                   />
+=======
+                  <input id="email" type="email" name="email" placeholder="Email" />
+>>>>>>> c0eb5f663662d05e0af1ccb3461a43245503e5b7
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
+<<<<<<< HEAD
                   <input
                     id="password"
                     type="password"
@@ -73,6 +80,9 @@ class CreateUser extends Component {
                     placeholder="Password"
                     required minLength="8"
                   />
+=======
+                  <input id="password" type="password" name="password" placeholder="Password" />
+>>>>>>> c0eb5f663662d05e0af1ccb3461a43245503e5b7
                 </div>
               </div>
               <center>
@@ -88,12 +98,12 @@ class CreateUser extends Component {
   }
 }
 
-const stateToProps = (state) => ({
+const stateToProps = state => ({
   user: state.user
 });
 
-const MapToProps = (dispatch) => ({
-  newUser: (user) => dispatch(AddUser(user))
+const MapToProps = dispatch => ({
+  newUser: user => dispatch(AddUser(user))
 });
 
 export default connect(

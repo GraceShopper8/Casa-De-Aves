@@ -5,12 +5,10 @@ const db = require('../db')
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
-    defaultValue: 'TEST_FIRSTNAME',
   },
 
   lastName: {
     type: Sequelize.STRING,
-    defaultValue: 'TEST_LASTNAME',
   },
 
   homeAddress: {
@@ -37,7 +35,7 @@ const User = db.define('user', {
 
   admin: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
+    defaultValue: false,
   },
 
   salt: {
@@ -69,13 +67,10 @@ User.encryptPassword = function(plainText, salt) {
 }
 
 const setSaltAndPassword = user => {
-  console.log('hook running?')
-  if (user.changed('password')) {
-    console.log('updating user and setting salt/pwd', user.salt(), user.password())
+   if (user.changed('password')) {
     user.salt = User.generateSalt()
     user.password = User.encryptPassword(user.password(), user.salt())
-    console.log('updated user and setting salt/pwd', user.salt(), user.password())
-  }
+   }
 }
 
 User.beforeCreate(setSaltAndPassword)

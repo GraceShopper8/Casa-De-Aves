@@ -1,13 +1,13 @@
-import React from "react";
-import { injectStripe } from "react-stripe-elements";
-import CardSection from "./CardSection";
-import AddressSection from "./AddressSection";
-import { connect } from "react-redux";
-import axios from "axios";
-import history from "../../history";
-import { addNewOrder } from "../../store/order";
-import { updatedResponse } from "../../store/checkout";
-import { postedOrder } from "../../store/receipt";
+import React from 'react';
+import { injectStripe } from 'react-stripe-elements';
+import CardSection from './CardSection';
+import AddressSection from './AddressSection';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import history from '../../history';
+import { addNewOrder } from '../../store/order';
+import { updatedResponse } from '../../store/checkout';
+import { postedOrder } from '../../store/receipt';
 
 class CheckoutForm extends React.Component {
   constructor() {
@@ -17,7 +17,7 @@ class CheckoutForm extends React.Component {
     };
   }
 
-  handleCardInput = (val) => {
+  handleCardInput = val => {
     if (val) {
       this.setState({
         submitButtonDisabled: false
@@ -25,26 +25,26 @@ class CheckoutForm extends React.Component {
     }
   };
 
-  handleSubmit = (ev) => {
+  handleSubmit = ev => {
     ev.preventDefault();
-    const button = document.querySelector(".progress");
-    const paymentButton = document.getElementById("payment_btn");
+    const button = document.querySelector('.progress');
+    const paymentButton = document.getElementById('payment_btn');
 
-    button.classList.remove("custom_hidden");
-    paymentButton.classList.add("disabled");
+    button.classList.remove('custom_hidden');
+    paymentButton.classList.add('disabled');
 
     const { firstName, lastName, homeAddress, email } = this.props.form;
 
     this.props.stripe
       .createToken({ name: `${firstName} ${lastName}` })
       .then(({ token }) => {
-        return axios.post("/api/checkout", {
+        return axios.post('/api/checkout', {
           token: token.id,
           amount: this.props.totalPrice,
           email
         });
       })
-      .then((response) => {
+      .then(response => {
         if (response.status === 200) {
           this.props.updatedResponse(response);
           const { items, totalPrice, user } = this.props;
@@ -54,13 +54,13 @@ class CheckoutForm extends React.Component {
             totalPrice: totalPrice,
             userId: user.id || null
           };
-          return axios.post("/api/orders", orderBody);
+          return axios.post('/api/orders', orderBody);
         }
       })
-      .then((response) => {
+      .then(response => {
         const { data } = response;
         this.props.postedOrder(data);
-        history.push("/receipt");
+        history.push('/receipt');
       });
   };
 
@@ -126,7 +126,7 @@ class CheckoutForm extends React.Component {
   }
 }
 
-const mapState = (state) => {
+const mapState = state => {
   return {
     items: state.cart.items,
     form: state.checkout,
@@ -134,10 +134,10 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => ({
-  addNewOrder: (order) => dispatch(addNewOrder(order)),
-  updatedResponse: (response) => dispatch(updatedResponse(response)),
-  postedOrder: (data) => dispatch(postedOrder(data))
+const mapDispatch = dispatch => ({
+  addNewOrder: order => dispatch(addNewOrder(order)),
+  updatedResponse: response => dispatch(updatedResponse(response)),
+  postedOrder: data => dispatch(postedOrder(data))
 });
 
 export default injectStripe(

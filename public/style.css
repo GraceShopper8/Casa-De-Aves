@@ -53,6 +53,11 @@ input {
   position: relative;
 }
 
+.custom__btn-text{
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 .custom_delete-btn{
   cursor: pointer;
   position: absolute;
@@ -66,7 +71,7 @@ input {
 }
 
 .custom_delete-btn:hover{
-  color: #f44336 !important;
+  color: #189888 !important;
 }
 
 /* .custom__image-size{
@@ -7893,8 +7898,6 @@ input[type=range]::-ms-thumb {
   color: rgba(0, 0, 0, 0.87);
   display: block;
   font-size: 12px;
-  font-weight: 500;
-  height: 48px;
   line-height: 48px;
   padding: 0 32px;
 }
