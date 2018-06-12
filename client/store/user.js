@@ -18,7 +18,7 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({ type: GET_USER, user })
+const getUser = user => ({ type: GET_USER, user: {...user, error: user.error && {...user.error, config: {...user.error.config, data: JSON.parse(user.error.config.data)}}}})
 const removeUser = () => ({ type: REMOVE_USER })
 const addNewUser = user => ({ type: ADD_NEW_USER, user })
 const updatedUserCart = user => ({ type: UPDATED_USER_CART, user })
