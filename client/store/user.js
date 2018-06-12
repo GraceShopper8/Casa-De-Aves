@@ -33,7 +33,6 @@ export const updateUserCart = user => async dispatch => {
   try {
     const { data } = await axios.put(`/api/users/${user.id}`, user)
     dispatch(updatedUserCart(data))
-    // console.log('THIS IS THE PASSED USER: ', data)
   } catch (error) {
     console.error(error)
   }
