@@ -58,6 +58,7 @@ class EditUser extends Component {
   };
 
   render() {
+    const {error} = this.props
     if (!this.props.user) {
       return <h1>Loading...</h1>;
     }
@@ -125,6 +126,9 @@ class EditUser extends Component {
                   />
                 </div>
               </div>
+              {error &&
+              (<div className="error-container">{error.response.data}</div>)
+              }
               <center>
                 <button
                   className="btn waves-effect waves-light teal"
@@ -143,7 +147,8 @@ class EditUser extends Component {
 }
 
 const stateToProps = state => ({
-  user: state.user
+  user: state.user,
+  error: state.user.error,
 });
 
 const mapDispatch = dispatch => ({

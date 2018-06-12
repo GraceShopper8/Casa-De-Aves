@@ -17,6 +17,7 @@ class CreateUser extends Component {
     this.props.newUser(NU);
   };
   render() {
+   const {error} = this.props
     return (
       <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
         <div id="register" className="col s12">
@@ -70,6 +71,9 @@ class CreateUser extends Component {
                   />
                 </div>
               </div>
+              {error &&
+              (<div className="error-container">{error.response.data}</div>)
+              }
               <center>
                 <button className="btn waves-effect waves-light teal" type="submit" name="action">
                   Submit
@@ -84,7 +88,8 @@ class CreateUser extends Component {
 }
 
 const stateToProps = state => ({
-  user: state.user
+  user: state.user,
+  error: state.user.error,
 });
 
 const MapToProps = dispatch => ({
