@@ -10,13 +10,6 @@ class ProductList extends Component {
     await this.props.getAllProducts();
   }
 
-<<<<<<< HEAD
-  handleClick = event => {
-    event.preventDefault();
-    const category = event.target.name;
-    this.props.getAllFilteredProducts(category);
-  };
-=======
   handleDropDown = async(event) => {
     const category = event.target.name
     if (category === 'All'){
@@ -26,7 +19,6 @@ class ProductList extends Component {
       this.props.getAllFilteredProducts(category)
     }
   }
->>>>>>> 864d60ddaf6feb6e2c0d189b075b4aaab584af22
 
   render() {
     const productsList = this.props.allProducts;
@@ -36,11 +28,6 @@ class ProductList extends Component {
       <div className="row container">
         <div className="col s1" />
         <main className="col s10">
-<<<<<<< HEAD
-          <h2 className="float-header teal-text text-darken-3 center">All Products</h2>
-          <ul className="products-box animated fadeIn">
-            {productsList.map(product => <ProductCard product={product} key={product.id} />)}
-=======
           <h2 className="float-header teal-text text-darken-3 center">
             All Products
           </h2>
@@ -60,7 +47,6 @@ class ProductList extends Component {
             {productsList.map(product => (
               <ProductCard product={product} key={product.id} />
             ))}
->>>>>>> 864d60ddaf6feb6e2c0d189b075b4aaab584af22
           </ul>
         </main>
       </div>
