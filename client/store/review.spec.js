@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import reviewReducer, { gotAllReviews } from './review'
+import reviewReducer, { gotAllReviews, createdReview } from './review'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -12,34 +12,19 @@ const mockStore = configureMockStore(middlewares)
 
 describe('reviewReducer', () => {
   it('starts with initial state of an empty array', () => {
-    const newReview = reviewReducer(undefined, '@@INIT')
-    expect(newState).to.deep.equal([])
-  })
-})
-
-// gotAllReviews({
-//   reviewDetail: "Expensive but worth it!",
-//   rating: 5
-
-describe('thunk creators', () => {
-  let store
-  let mockAxios
-
-  const initialState = {
-    allReviews: []
-  }
-
-  beforeEach(() => {
-    mockAxios = new MockAdapter(axios)
-    store = mockStore(initialState)
+    const newState = reviewReducer(undefined, '@@INIT')
+    expect(newState).to.deep.equal({ allReviews: [] })
   })
 
-  afterEach(() => {
-    mockAxios.restore()
-    store.clearActions()
+  it('created a new review', () => {
+    const newReview = {
+      reviewDetail: 'Expensive but worth it!',
+      rating: 5
+    }
+    const newState = reviewReducer([], gotAllReviews(newReview))
+    expect(newState.allReviews).to.deep.equal({
+      reviewDetail: 'Expensive but worth it!',
+      rating: 5
+    })
   })
-
-
-
-
 })
