@@ -8,8 +8,15 @@ class EditUser extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: ''
+      firstName: '',
+      lastName: '',
+      homeAddress: '',
+      email: ''
     };
+  }
+  componentDidMount() {
+    const { firstName, lastName, email, homeAddress } = this.props.user;
+    this.setState({ firstName, lastName, email, homeAddress })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,8 +67,6 @@ class EditUser extends Component {
     console.log('this.state', this.state);
     const disabled = this.state.email;
 
-    console.log('this.props.user', this.props.user);
-    console.log('this.state', this.state);
     return (
       <div className="container container__sign-in-form white z-depth-2">
         <div id="register" className="col s12">
@@ -126,11 +131,11 @@ const stateToProps = state => ({
   user: state.user
 });
 
-const MapToProps = dispatch => ({
+const mapDispatch = dispatch => ({
   updateUser: user => dispatch(updateUser(user))
 });
 
 export default connect(
   stateToProps,
-  MapToProps
+  mapDispatch
 )(EditUser);
