@@ -54,7 +54,7 @@ class UserReviewForm extends Component {
       <div className="row">
         <form className="col s12 m12 l12" onSubmit={this.onHandleSubmit}>
           <div className="row">
-            <div className="input-field col s12 m12 l9">
+            <div className="input-field col s12 m12 l9 white">
               <input
                 placeholder="Review: "
                 id="review"

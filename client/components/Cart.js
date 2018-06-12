@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -15,9 +14,6 @@ class Cart extends Component {
       this.props.addToLocalStorageData(items);
     }
     if (this.props.isLoggedIn) {
-      // const existingDBCart = JSON.parse(this.props.user.cart)
-      // const localStorageCart = this.props.items
-      // const combinedCart = localStorageCart
       const updatedUser = {
         ...this.props.user,
         cart: JSON.stringify(this.props.items)
