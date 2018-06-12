@@ -1,6 +1,8 @@
 /* eslint-disable react/prefer-stateless-function ,react/no-deprecated */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { me } from '../store'
 import { getSingleProducts, updateProduct } from '../store/product'
 
 class AdminEditForm extends Component {
@@ -12,6 +14,7 @@ class AdminEditForm extends Component {
   }
   componentDidMount() {
     this.props.getSingleProducts(this.props.match.params.id)
+    this.props.loadInitialData()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,6 +42,7 @@ class AdminEditForm extends Component {
   }
 
   render() {
+    if (!this.props.user.admin) return <Redirect to="/" />
     if (!this.props.singleProduct.name || !this.state.name) {
       return <h1>Loading...</h1>
     }
@@ -109,9 +113,11 @@ class AdminEditForm extends Component {
 
 const mapState = state => ({
   singleProduct: state.product.singleProduct,
+  user: state.user,
 })
 
 const mapDispatch = dispatch => ({
+  loadInitialData: () => dispatch(me()),
   getSingleProducts: id => dispatch(getSingleProducts(id)),
   sendToProductPutThunk: editObj => dispatch(updateProduct(editObj)),
 })
