@@ -6,39 +6,46 @@ import { deleteUser, logout } from '../store'
 import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 
 class Navbar extends Component {
-  // = ({ handleClick, isLoggedIn, handleDelete, userId }) => (
-  constructor() {
-    super()
-    this.state = { isOpen: false, isOpened: false }
-  }
   componentDidMount() {
     const cartLocal = window.localStorage.getItem('cart')
     if (cartLocal && this.props.items.length === 0) {
       let items = JSON.parse(cartLocal)
       this.props.addToLocalStorageData(items)
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const sideNav = document.querySelectorAll('.sidenav')
+      const sideNavInstance = M.Sidenav.init(sideNav, { edge: 'right' })
+      // instances[0].open()
+    })
+
+    setTimeout(() => {
+      const dropDown = document.querySelectorAll('.dropdown-trigger')
+      const dropDownInstance = M.Dropdown.init(dropDown)
+    }, 100)
   }
-  clicker = () => {
-    this.setState(state => ({ isOpened: !state.isOpened }))
+
+  handleDropDown = () => {
+    const dropDown = document.querySelectorAll('.dropdown-trigger')
+    const dropDownInstance = M.Dropdown.init(dropDown)
   }
-  cartClicker = () => {
-    this.setState(state => ({ isOpen: !state.isOpen }))
-  }
+
   render() {
     var cartTotal = 0
     const {
       handleClick,
       isLoggedIn,
       handleDeleteItem,
-      userId,
+      loggedInUser,
       items,
       handleDeleteAccount,
     } = this.props
+
     return (
-      <div className="navbar-fixed">
+      <div>
         <nav id="nav-bar" className="teal" role="navigation">
           <div className="nav-wrapper container">
-            <ul className="left hide-on-small-and-down">
+            <ul className="left">
               <li>
                 <Link to="/" className="white-text">
                   <i id="home-icon" className="material-icons">
@@ -52,118 +59,126 @@ class Navbar extends Component {
                 </Link>
               </li>
             </ul>
-            <ul className="right hide-on-small-and-down">
-              {!isLoggedIn ? (
-                <React.Fragment>
-                  <li>
-                    <Link to="/signup" className="white-text">
-                      Sign Up
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/login" className="white-text">
-                      Log In
-                    </Link>
-                  </li>
-                  <li>
-                    <i className="material-icons" onClick={this.cartClicker}>
-                      shopping_cart
-                    </i>
-                    {this.state.isOpen && (
-                      <ul id="cart-options">
-                        {items.map((item, index) => {
-                          cartTotal += Number(item.price)
-                          return (
-                            <ul key={index}>
-                              <li>
-                                <a className="title bold">{item.name}</a>
-                                <a className="bold">${item.price} </a>
-                                <a
-                                  href="#!"
-                                  className="secondary-content"
-                                  onClick={() => handleDeleteItem(index)}>
-                                  <i className="material-icons">delete</i>
-                                </a>
-                              </li>
-                            </ul>
-                          )
-                        })}
-                        <a>Total: {cartTotal} </a>
-                        <Link
-                          to="/cart"
-                          className="white-text"
-                          onClick={this.cartClicker}>
-                          Show More
-                        </Link>
-                      </ul>
-                    )}
-                  </li>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <li>
-                    <i className="material-icons" onClick={this.cartClicker}>
-                      shopping_cart
-                    </i>
-                    {this.state.isOpen && (
-                      <ul id="cart-options">
-                        {items.map((item, index) => {
-                          cartTotal += Number(item.price)
-                          return (
-                            <ul key={index}>
-                              <li>
-                                <a className="title bold">{item.name}</a>
-                                <a className="bold">${item.price} </a>
-                                <a
-                                  href="#!"
-                                  className="secondary-content"
-                                  onClick={() => handleDeleteItem(index)}>
-                                  <i className="material-icons">delete</i>
-                                </a>
-                              </li>
-                            </ul>
-                          )
-                        })}
-                        <a>Total: {cartTotal} </a>
-                        <Link
-                          to="/cart"
-                          className="white-text"
-                          onClick={this.cartClicker}>
-                          Show More
-                        </Link>
-                      </ul>
-                    )}
-                  </li>
-
-                  <li>
-                    <i className="material-icons" onClick={this.clicker}>
-                      expand_more
-                    </i>
-                    {this.state.isOpened && (
-                      <ul id="cart-options">
-                        <Link to="/edit" className="white-text">
-                          Edit Account
-                        </Link>
-                        <a
-                          href="#"
-                          onClick={() => handleDeleteAccount(userId)}
-                          className="white-text">
-                          Delete Account
-                        </a>
-                        <a
-                          href="#"
-                          onClick={handleClick}
-                          className="white-text">
-                          Log Out
-                        </a>
-                      </ul>
-                    )}
-                  </li>
-                </React.Fragment>
-              )}
-            </ul>
+            {isLoggedIn ? (
+              <ul className="right">
+                <li>
+                  <a
+                    className="dropdown-trigger"
+                    data-target="dropdownLogin"
+                    onMouseEnter={this.handleDropDown}>
+                    My Account
+                    <i className="material-icons right">arrow_drop_down</i>
+                  </a>
+                </li>
+                <li>
+                  <a data-target="slide-out" className="sidenav-trigger">
+                    <i className="material-icons">shopping_cart</i>
+                  </a>
+                </li>
+              </ul>
+            ) : (
+              <ul className="right">
+                <li>
+                  <Link to="/signup" className="white-text">
+                    Sign Up
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/login" className="white-text">
+                    Log In
+                  </Link>
+                </li>
+                <li>
+                  <a data-target="slide-out" className="sidenav-trigger">
+                    <i className="material-icons">shopping_cart</i>
+                  </a>
+                </li>
+              </ul>
+            )}
           </div>
         </nav>
+        {/* THIS IS MY CODE */}
+        <ul id="dropdownLogin" className="dropdown-content">
+          <li>
+            <a href={`/orders/${this.props.loggedInUser.id}`}>My Orders</a>
+          </li>
+          <li className="divider" />
+          <li>
+            <a href="/edit">Edit Account</a>
+          </li>
+          <li className="divider" />
+          <li>
+            <a href="#" onClick={() => handleDeleteAccount(loggedInUser.id)}>
+              Delete Account
+            </a>
+          </li>
+          <li className="divider" />
+          <li>
+            <a href="#" onClick={handleClick}>
+              Log Out
+            </a>
+          </li>
+        </ul>
+
+        <ul id="slide-out" className="sidenav">
+          {isLoggedIn ? (
+            <li>
+              <div className="user-view">
+                <a href="#name">
+                  <span className="name">{`${loggedInUser.firstName} ${
+                    loggedInUser.lastName
+                  }`}</span>
+                </a>
+                <a href="#email">
+                  <span className="email">{loggedInUser.email}</span>
+                </a>
+              </div>
+            </li>
+          ) : (
+            ''
+          )}
+          <li>
+            <a href="#">
+              <i className="material-icons">shopping_cart</i>Your Shopping Cart
+            </a>
+          </li>
+          <li>
+            <div className="divider" />
+          </li>
+
+          {items.map((item, index) => {
+            cartTotal += Number(item.price)
+            return (
+              <li className="custom_cart-sidebar" key={index}>
+                <a className="custom_anchor">
+                  {item.name} ${item.price}
+                  <i
+                    className="material-icons custom_delete-btn"
+                    onClick={() => handleDeleteItem(index)}>
+                    delete
+                  </i>
+                </a>
+              </li>
+            )
+          })}
+          <li>
+            <a className="custom__price">Total ${cartTotal} </a>
+          </li>
+          <li>
+            <div className="divider" />
+          </li>
+          <li>
+            <a className="waves-effect" href="/cart">
+              <span className="teal-text">Show More</span>
+            </a>
+          </li>
+
+          <li>
+            <a className="waves-effect" href="/cart/checkout">
+              <span className="teal-text">Checkout</span>
+            </a>
+          </li>
+        </ul>
       </div>
     )
   }
@@ -174,7 +189,7 @@ class Navbar extends Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    userId: state.user.id,
+    loggedInUser: state.user,
     items: state.cart.items,
   }
 }

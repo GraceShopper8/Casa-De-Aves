@@ -6,11 +6,9 @@ router.post('/login', (req, res, next) => {
   User.findOne({where: {email: req.body.email}})
     .then(user => {
       if (!user) {
-        console.log('No such user found:', req.body.email)
-        res.status(401).send('Wrong username and/or password')
+       res.status(401).send('Wrong username and/or password')
       } else if (!user.correctPassword(req.body.password)) {
-        console.log('Incorrect password for user:', req.body.email)
-        res.status(401).send('Wrong username and/or password')
+       res.status(401).send('Wrong username and/or password')
       } else {
         req.login(user, err => (err ? next(err) : res.json(user)))
       }
@@ -34,7 +32,8 @@ router.post('/signup', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   User.update(req.body, {
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    individualHooks: true,
   })
     .then(async() => {
       const user = await User.findById(req.params.id)

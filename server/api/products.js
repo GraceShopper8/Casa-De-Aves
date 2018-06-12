@@ -16,10 +16,12 @@ router.get(
 router.get(
   '/:id',
   asyncHandler(async (req, res) => {
+
     const product = await Product.findOne({
       where: { id: req.params.id },
       include: [{ all: true }],
     })
+
     res.json(product)
   })
 )

@@ -5,19 +5,67 @@ import { connect } from 'react-redux';
 import { updateUser } from '../store/user';
 
 class EditUser extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+     firstName: ""
+    };
+  }
+
+     componentWillReceiveProps(nextProps) {
+      this.setState({
+        firstName: nextProps.user.firstName,
+        lastName: nextProps.user.lastName,
+        homeAddress: nextProps.user.homeAddress,
+        email: nextProps.user.email
+      });
+
+
+  }
   handleSubmit = (evt) => {
     evt.preventDefault();
-    const NU = {
-        id: this.props.user.id,
-      firstName: evt.target.firstName.value,
-      lastName: evt.target.lastName.value,
-      homeAddress: evt.target.homeAddress.value,
-      email: evt.target.email.value,
-      password: evt.target.password.value
-    };
+  const password = evt.target.password.value
+  let NU;
+     if (password){
+         NU = {
+          id: this.props.user.id,
+          firstName: evt.target.firstName.value,
+          lastName: evt.target.lastName.value,
+          homeAddress: evt.target.homeAddress.value,
+          email: evt.target.email.value,
+          password: evt.target.password.value
+        };
+     } else {
+        NU = {
+         id: this.props.user.id,
+         firstName: evt.target.firstName.value,
+         lastName: evt.target.lastName.value,
+         homeAddress: evt.target.homeAddress.value,
+         email: evt.target.email.value
+        };
+     }
+    console.log("this is password", evt.target.password.value)
+    console.log("this is lastName", evt.target.lastName.value)
     this.props.updateUser(NU);
   };
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
+    if (!this.props.user) {
+      console.log("Loading...");
+      return <h1>Loading...</h1>;
+    }
+    console.log("this.props.user", this.props.user)
+    console.log("this.state", this.state)
+    const disabled =
+     this.state.email
+
+    console.log("this.props.user", this.props.user)
+    console.log("this.state", this.state)
     return (
       <div className="container container__sign-in-form white z-depth-2">
         <div id="register" className="col s12">
@@ -26,11 +74,13 @@ class EditUser extends Component {
               <h4 className="teal-text">Update</h4>
               <div className="row">
                 <div className="input-field col s6">
+
                   <input
                     id="first_name"
                     type="text"
                     name="firstName"
-                    placeholder="First Name"
+                    value={this.state.firstName}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="input-field col s6">
@@ -38,7 +88,8 @@ class EditUser extends Component {
                     id="last_name"
                     type="text"
                     name="lastName"
-                    placeholder="Last Name"
+                    value={this.state.lastName}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -48,7 +99,8 @@ class EditUser extends Component {
                     id="homeAddress"
                     type="text"
                     name="homeAddress"
-                    placeholder="Address"
+                    value={this.state.homeAddress}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -58,7 +110,8 @@ class EditUser extends Component {
                     id="email"
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -73,7 +126,11 @@ class EditUser extends Component {
                 </div>
               </div>
               <center>
-                <button className="btn waves-effect waves-light teal" type="submit" name="action">
+                <button
+                 className="btn waves-effect waves-light teal"
+                  type="submit"
+                  disabled={!disabled}
+                  name="action">
                   Submit
                 </button>
               </center>
