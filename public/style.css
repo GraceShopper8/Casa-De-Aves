@@ -147,6 +147,10 @@ input {
 	width: 400px !important;
 }
 
+.container__payment{
+  margin-top: 80px;
+  widows: 500px;
+}
 
 .form-container
 {

@@ -8,8 +8,7 @@ import { getAllProducts, filterProducts } from '../store/product';
 class ProductList extends Component {
   async componentDidMount() {
     await this.props.getAllProducts();
-    const dropDown = document.querySelector('.dropdown-trigger');
-    M.Dropdown.init(dropDown);
+    M.Dropdown.init(this.domNode);
   }
 
   handleDropDown = async event => {
@@ -32,12 +31,19 @@ class ProductList extends Component {
         <main className="col s10">
           <h2 className="float-header teal-text text-darken-3 center">All Products</h2>
 
-          <a className="dropdown-trigger btn large" data-target="dropdown1">
-            Filter
-            <i className="material-icons right">arrow_drop_down</i>
+          <a
+            className="dropdown-trigger btn large"
+            ref={domNode => {
+              this.domNode = domNode;
+            }}
+            data-target="dropdown1">
+            Filter <i className="material-icons right">arrow_drop_down</i>
           </a>
 
-          <ul id="dropdown1" onClick={this.handleDropDown} className="dropdown-content">
+          <ul
+            id="dropdown1"
+            onClick={this.handleDropDown}
+            className="dropdown-content">
             <li>
               <a name="StarterHome">Starter Home</a>
             </li>
@@ -73,7 +79,4 @@ const mapDispatch = dispatch => ({
   getAllFilteredProducts: category => dispatch(filterProducts(category))
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(ProductList);
+export default connect(mapState, mapDispatch)(ProductList);

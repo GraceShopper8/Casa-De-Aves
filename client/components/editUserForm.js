@@ -67,7 +67,7 @@ class EditUser extends Component {
         <div id="register" className="col s12">
           <form className="col s12" onSubmit={this.handleSubmit}>
             <div className="form-container">
-              <h4 className="teal-text">Update</h4>
+              <h4 className="teal-text">Edit your info</h4>
               <div className="row">
                 <div className="input-field col s6">
                   <input
@@ -131,7 +131,7 @@ class EditUser extends Component {
                   type="submit"
                   disabled={!disabled}
                   name="action">
-                  Submit
+                  Save
                 </button>
               </center>
             </div>
