@@ -1,7 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { me } from '../store';
 import { getUsersOrders } from '../store/order';
@@ -33,7 +32,6 @@ class Orders extends Component {
 
           {orders.map((order, index) => {
             const cartItems = JSON.parse(order.cartContents);
-            console.log(cartItems);
             return (
               <li key={index}>
                 <div className="collapsible-header row">

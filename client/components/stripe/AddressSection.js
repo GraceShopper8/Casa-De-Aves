@@ -79,7 +79,7 @@ class AddressSection extends Component {
               type="text"
               name="homeAddress"
               placeholder="Shipping address"
-              value={form.homeAddress}
+              value={this.state.homeAddress}
               onChange={this.handleChange}
               required
             />
