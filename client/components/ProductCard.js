@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { me } from '../store';
 import { addedToCart } from '../store/cart';
-import { addToUserCart } from '../store/user';
 
 class ProductCard extends Component {
   constructor() {

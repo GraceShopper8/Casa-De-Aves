@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const asyncHandler = require('express-async-handler')
 
-const { Product, Review, User } = require('../db/models')
+const { Product, Review } = require('../db/models')
 
 module.exports = router
 
