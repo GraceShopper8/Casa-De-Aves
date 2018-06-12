@@ -1,15 +1,14 @@
-import axios from 'axios';
-import history from '../history';
-import userHome from '../components';
+import axios from 'axios'
+import history from '../history'
 
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER';
-const REMOVE_USER = 'REMOVE_USER';
-const ADD_NEW_USER = 'ADD_NEW_USER';
-const UPDATED_USER_CART = 'UPDATED_USER_CART';
-const UPDATE_USER = 'UPDATE_USER';
+const GET_USER = "GET_USER";
+const REMOVE_USER = "REMOVE_USER";
+const ADD_NEW_USER = "ADD_NEW_USER";
+const UPDATED_USER_CART = "UPDATED_USER_CART";
+const UPDATE_USER = "UPDATE_USER";
 /**
  * INITIAL STATE
  */
@@ -32,7 +31,8 @@ const getUser = user => {
           }
         }
       }
-    }}
+    };
+  }
   return { type: GET_USER, user };
 };
 const removeUser = () => ({ type: REMOVE_USER });
@@ -60,7 +60,7 @@ export const AddUser = user => dispatch =>
     .then(
       res => {
         dispatch(addNewUser(res.data));
-        history.push('/products');
+        history.push("/products");
       },
       authError => {
         dispatch(addNewUser({ error: authError }));
@@ -74,7 +74,7 @@ export const updateUser = user => dispatch =>
     .then(
       res => {
         dispatch(updatedUser(res.data));
-        history.push('/products');
+        history.push("/products");
       },
       authError => {
         dispatch(updatedUser({ error: authError }));
@@ -84,7 +84,7 @@ export const updateUser = user => dispatch =>
 
 export const me = () => dispatch =>
   axios
-    .get('/auth/me')
+    .get("/auth/me")
     .then(res => dispatch(getUser(res.data || defaultUser)))
     .catch(err => console.log(err));
 
@@ -94,7 +94,7 @@ export const auth = (email, password, method) => dispatch =>
     .then(
       res => {
         dispatch(getUser(res.data));
-        history.push('/home');
+        history.push("/home");
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
@@ -108,16 +108,16 @@ export const deleteUser = user => dispatch =>
     .delete(`/auth/${user}`)
     .then(_ => {
       dispatch(removeUser());
-      history.push('/login');
+      history.push("/login");
     })
     .catch(err => console.log(err));
 
 export const logout = () => dispatch =>
   axios
-    .post('/auth/logout')
+    .post("/auth/logout")
     .then(_ => {
       dispatch(removeUser());
-      history.push('/');
+      history.push("/");
     })
     .catch(err => console.log(err));
 
