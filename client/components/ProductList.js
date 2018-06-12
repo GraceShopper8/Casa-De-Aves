@@ -1,13 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import ProductCard from './ProductCard'
-import { getAllProducts, filterProducts } from '../store/product'
+import ProductCard from './ProductCard';
+import { getAllProducts, filterProducts } from '../store/product';
 
 class ProductList extends Component {
   async componentDidMount() {
-    await this.props.getAllProducts()
+    await this.props.getAllProducts();
   }
 
   handleDropDown = async(event) => {
@@ -21,7 +21,7 @@ class ProductList extends Component {
   }
 
   render() {
-    const productsList = this.props.allProducts
+    const productsList = this.props.allProducts;
 
 
     return (
@@ -50,20 +50,20 @@ class ProductList extends Component {
           </ul>
         </main>
       </div>
-    )
+    );
   }
 }
 
 const mapState = state => ({
-  allProducts: state.product.allProducts,
-})
+  allProducts: state.product.allProducts
+});
 
 const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(getAllProducts()),
-  getAllFilteredProducts: (category) => dispatch(filterProducts(category)),
-})
+  getAllFilteredProducts: category => dispatch(filterProducts(category))
+});
 
 export default connect(
   mapState,
   mapDispatch
-)(ProductList)
+)(ProductList);
