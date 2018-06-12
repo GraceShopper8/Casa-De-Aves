@@ -59,6 +59,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         items: [...state.items, {...action.item, quantity: 0}],
+        total: state.items.reduce((total, item) => total + item.price, 0),
       }
 
     case DELETE_FROM_GUEST_CART:
@@ -74,6 +75,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         items: action.data,
       }
+
     default:
       return state
   }

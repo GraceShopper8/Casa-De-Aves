@@ -110,12 +110,12 @@ export const logout = () => dispatch =>
  * REDUCER
  */
 
-export default function(state = {}, action) {
+const userReducer = (state = defaultUser, action) => {
   switch (action.type) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return state
+      return defaultUser
     case ADD_NEW_USER:
       return action.user
     case UPDATED_USER_CART:
@@ -126,3 +126,5 @@ export default function(state = {}, action) {
       return state
   }
 }
+
+export default userReducer

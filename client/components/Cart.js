@@ -1,6 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { me } from '../store'
 import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 import { updateUserCart } from '../store/user'
@@ -13,11 +14,6 @@ class Cart extends Component {
       this.props.addToLocalStorageData(items)
     }
     if (this.props.isLoggedIn) {
-      // const existingDBCart = JSON.parse(this.props.user.cart)
-      // const localStorageCart = this.props.items
-      // console.log(typeof existingDBCart)
-      // const combinedCart = localStorageCart
-      // console.log('THIS IS COMBINED CART: ', combinedCart)
       const updatedUser = {
         ...this.props.user,
         cart: JSON.stringify(this.props.items),
@@ -39,7 +35,8 @@ class Cart extends Component {
 
   render() {
     let cartTotal = 0
-    let items = [this.props.items]
+    let items = this.props.items
+    if(items.length === 0) return (<h3>LOADING....</h3>)
     return (
       <div className="container">
         <ul className="collection col s6">
@@ -69,9 +66,9 @@ class Cart extends Component {
             <li className="collection-item avatar blue-grey lighten-3">
               <h6>TOTAL PRICE:</h6>
               <h3>${cartTotal}</h3>
-              <a href="/cart/checkout" className="btn-small secondary-content">
+              <Link to="/cart/checkout" className="btn-small secondary-content">
                 Checkout
-              </a>
+              </Link>
             </li>
           ) : (
             <h2 className="center">NOTHING HERE, YOUR CART IS EMPTY!</h2>
