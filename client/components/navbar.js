@@ -1,41 +1,48 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { deleteUser, logout } from "../store";
-import { deleteFromGuestCart, addToLocalStorageData } from "../store/cart";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { deleteUser, logout } from '../store'
+import { deleteFromGuestCart, addToLocalStorageData } from '../store/cart'
 
 class Navbar extends Component {
   componentDidMount() {
-    const cartLocal = window.localStorage.getItem("cart");
+    const cartLocal = window.localStorage.getItem('cart')
     if (cartLocal && this.props.items.length === 0) {
-      let items = JSON.parse(cartLocal);
-      this.props.addToLocalStorageData(items);
+      let items = JSON.parse(cartLocal)
+      this.props.addToLocalStorageData(items)
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      const sideNav = document.querySelectorAll(".sidenav");
-      const sideNavInstance = M.Sidenav.init(sideNav, { edge: "right" });
+    document.addEventListener('DOMContentLoaded', function() {
+      const sideNav = document.querySelectorAll('.sidenav')
+      const sideNavInstance = M.Sidenav.init(sideNav, { edge: 'right' })
       // instances[0].open()
-    });
+    })
 
     setTimeout(() => {
-      const dropDown = document.querySelectorAll(".dropdown-trigger");
-      const dropDownInstance = M.Dropdown.init(dropDown);
-    }, 100);
+      const dropDown = document.querySelectorAll('.dropdown-trigger')
+      const dropDownInstance = M.Dropdown.init(dropDown)
+    }, 100)
   }
 
   handleDropDown = () => {
-    const dropDown = document.querySelectorAll(".dropdown-trigger");
-    const dropDownInstance = M.Dropdown.init(dropDown);
-  };
+    const dropDown = document.querySelectorAll('.dropdown-trigger')
+    const dropDownInstance = M.Dropdown.init(dropDown)
+  }
 
   render() {
-    var cartTotal = 0;
-    const { handleClick, isLoggedIn, handleDeleteItem, loggedInUser, items, handleDeleteAccount } = this.props;
+    var cartTotal = 0
+    const {
+      handleClick,
+      isLoggedIn,
+      handleDeleteItem,
+      loggedInUser,
+      items,
+      handleDeleteAccount,
+    } = this.props
 
     return (
-      <div className="navbar-fixed">
+      <div>
         <nav id="nav-bar" className="teal" role="navigation">
           <div className="nav-wrapper container">
             <ul className="left">
@@ -55,7 +62,10 @@ class Navbar extends Component {
             {isLoggedIn ? (
               <ul className="right">
                 <li>
-                  <a className="dropdown-trigger" data-target="dropdownLogin" onMouseEnter={this.handleDropDown}>
+                  <a
+                    className="dropdown-trigger"
+                    data-target="dropdownLogin"
+                    onMouseEnter={this.handleDropDown}>
                     My Account
                     <i className="material-icons right">arrow_drop_down</i>
                   </a>
@@ -115,7 +125,9 @@ class Navbar extends Component {
             <li>
               <div className="user-view">
                 <a href="#name">
-                  <span className="name">{`${loggedInUser.firstName} ${loggedInUser.lastName}`}</span>
+                  <span className="name">{`${loggedInUser.firstName} ${
+                    loggedInUser.lastName
+                  }`}</span>
                 </a>
                 <a href="#email">
                   <span className="email">{loggedInUser.email}</span>
@@ -123,10 +135,10 @@ class Navbar extends Component {
               </div>
             </li>
           ) : (
-            ""
+            ''
           )}
           <li>
-            <a href="#!">
+            <a href="#">
               <i className="material-icons">shopping_cart</i>Your Shopping Cart
             </a>
           </li>
@@ -135,17 +147,19 @@ class Navbar extends Component {
           </li>
 
           {items.map((item, index) => {
-            cartTotal += Number(item.price);
+            cartTotal += Number(item.price)
             return (
               <li className="custom_cart-sidebar" key={index}>
                 <a className="custom_anchor">
                   {item.name} ${item.price}
-                  <i className="material-icons custom_delete-btn" onClick={() => handleDeleteItem(index)}>
+                  <i
+                    className="material-icons custom_delete-btn"
+                    onClick={() => handleDeleteItem(index)}>
                     delete
                   </i>
                 </a>
               </li>
-            );
+            )
           })}
           <li>
             <a className="custom__price">Total ${cartTotal} </a>
@@ -158,53 +172,52 @@ class Navbar extends Component {
               <span className="teal-text">Show More</span>
             </a>
           </li>
-          
+
           <li>
             <a className="waves-effect" href="/cart/checkout">
               <span className="teal-text">Checkout</span>
             </a>
           </li>
         </ul>
-        {/* ///////////// */}
       </div>
-    );
+    )
   }
 }
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     loggedInUser: state.user,
-    items: state.cart.items
-  };
-};
+    items: state.cart.items,
+  }
+}
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(logout());
+      dispatch(logout())
     },
     handleDeleteAccount(evt) {
-      dispatch(deleteUser(evt));
+      dispatch(deleteUser(evt))
     },
     handleDeleteItem(index) {
-      dispatch(deleteFromGuestCart(index));
+      dispatch(deleteFromGuestCart(index))
     },
-    addToLocalStorageData: (data) => dispatch(addToLocalStorageData(data))
-  };
-};
+    addToLocalStorageData: data => dispatch(addToLocalStorageData(data)),
+  }
+}
 
 export default connect(
   mapState,
   mapDispatch
-)(Navbar);
+)(Navbar)
 
 /**
  * PROP TYPES
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-};
+  isLoggedIn: PropTypes.bool.isRequired,
+}
