@@ -1,28 +1,25 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { updatedForm } from "../../store/checkout";
+import { updatedForm } from '../../store/checkout';
 
 class AddressSection extends Component {
- 
   componentDidMount() {
     // ! DOESNT WORK
     // initially component will mount with empty USER
     const { user, updatedForm } = this.props;
-    if(user.firstName){
-      updatedForm({ firstName: user.firstName})
-    }else if(user.lastName){
-      updatedForm({ lastName: user.lastName})
-    }else if(user.homeAddress){
-      updatedForm({ homeAddress: user.homeAddress})
-    }else if(user.email){
-      updatedForm({ email: user.email})
+    if (user.firstName) {
+      updatedForm({ firstName: user.firstName });
+    } else if (user.lastName) {
+      updatedForm({ lastName: user.lastName });
+    } else if (user.homeAddress) {
+      updatedForm({ homeAddress: user.homeAddress });
+    } else if (user.email) {
+      updatedForm({ email: user.email });
     }
-    
   }
 
-  handleChange = (ev) => {
-    console.log(ev.target.name);
+  handleChange = ev => {
     this.props.updatedForm({ [ev.target.name]: ev.target.value });
   };
 
@@ -85,15 +82,15 @@ class AddressSection extends Component {
   }
 }
 
-const mapState = (state) => {
+const mapState = state => {
   return {
     form: state.checkout,
     user: state.user
   };
 };
 
-const mapDispatch = (dispatch) => ({
-  updatedForm: (field) => dispatch(updatedForm(field))
+const mapDispatch = dispatch => ({
+  updatedForm: field => dispatch(updatedForm(field))
 });
 
 export default connect(
