@@ -4,23 +4,31 @@ import { connect } from 'react-redux';
 import { updatedForm } from '../../store/checkout';
 
 class AddressSection extends Component {
-  componentDidMount() {
-    // ! DOESNT WORK
-    // initially component will mount with empty USER
-    const { user, updatedForm } = this.props;
-    if (user.firstName) {
-      updatedForm({ firstName: user.firstName });
-    } else if (user.lastName) {
-      updatedForm({ lastName: user.lastName });
-    } else if (user.homeAddress) {
-      updatedForm({ homeAddress: user.homeAddress });
-    } else if (user.email) {
-      updatedForm({ email: user.email });
+  constructor() {
+    super();
+    this.state = {
+      firstName: '',
+      lastName: '',
+      homeAddress: '',
+      email: '',
+      isInfoLoaded: false,
     }
   }
 
+  componentDidMount() {
+    this.setState(this.props.user);
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(!this.state.isInfoLoaded){
+      const { firstName, lastName, homeAddress, email } = nextProps.user;
+      this.setState({ firstName, lastName, homeAddress, email, isInfoLoaded: true });
+    }
+  };
+
   handleChange = ev => {
-    this.props.updatedForm({ [ev.target.name]: ev.target.value });
+    this.setState({[ev.target.name]: ev.target.value});
+    this.props.updatedForm(this.state);
   };
 
   render() {
@@ -34,7 +42,7 @@ class AddressSection extends Component {
               type="text"
               name="firstName"
               placeholder="First Name"
-              value={form.firstName}
+              value={this.state.firstName}
               onChange={this.handleChange}
               required
             />
@@ -45,7 +53,7 @@ class AddressSection extends Component {
               type="text"
               name="lastName"
               placeholder="Last Name"
-              value={form.lastName}
+              value={this.state.lastName}
               onChange={this.handleChange}
               required
             />
@@ -58,7 +66,7 @@ class AddressSection extends Component {
               type="text"
               name="email"
               placeholder="Email"
-              value={form.email}
+              value={this.state.email}
               onChange={this.handleChange}
               required
             />

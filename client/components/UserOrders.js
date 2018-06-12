@@ -25,11 +25,15 @@ class Orders extends Component {
               <h2 className="teal-text ">THANKS FOR SHOPPING WITH US!</h2>
             </li>
           ) : (
-            <h2 className="center teal-text">SORRY, DIDN'T FIND ANY PAST ORDERS</h2>
+            <li className="center">
+              <h2 className="center teal-text">SORRY, DIDN'T FIND ANY PAST ORDERS</h2>
+              <br/>
+            </li>
           )}
 
           {orders.map((order, index) => {
             const cartItems = JSON.parse(order.cartContents);
+            console.log(cartItems);
             return (
               <li key={index}>
                 <div className="collapsible-header row">
