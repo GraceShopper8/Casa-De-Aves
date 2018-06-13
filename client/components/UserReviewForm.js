@@ -42,7 +42,7 @@ class UserReviewForm extends Component {
 
   render() {
     if (!this.props.reviews) {
-      return <h1>Loading...</h1>;
+      return <h3 />
     }
 
     const prodReviews = this.props.reviews.filter(review => review.productId === this.props.prodId);
