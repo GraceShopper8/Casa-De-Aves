@@ -8,12 +8,12 @@ const initialState = {
 const ADDED_NEW_ORDER = 'ADDED_NEW_ORDER'
 const GOT_USERS_ORDERS = 'GOT_USERS_ORDERS'
 
-const addedNewOrder = order => ({
+export const addedNewOrder = order => ({
   type: ADDED_NEW_ORDER,
   order,
 })
 
-const gotUsersOrders = orders => ({
+export const gotUsersOrders = orders => ({
   type: GOT_USERS_ORDERS,
   orders,
 })

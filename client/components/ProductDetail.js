@@ -29,7 +29,7 @@ class ProductDetail extends Component {
     const product = this.props.singleProduct;
     const prodReviews = product.reviews;
     if (!prodReviews) {
-      return <h1>""</h1>;
+      return <h1 />;
     }
 
     const isAdmin = this.props.user.admin;
