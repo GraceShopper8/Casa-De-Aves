@@ -28,18 +28,20 @@ class ProductList extends Component {
     return (
       <div className="row container">
         <div className="col s1" />
-        <main className="col s10 center">
+        <main className="col s10">
           <h2 className="float-header teal-text text-darken-3 center">
-            All Products
+            Products
           </h2>
-
+          <div className="col m2 l3" />
           <a
-            className="dropdown-trigger btn large"
+            className="dropdown-trigger btn large col s12 m8 l6"
+
             ref={domNode => {
               this.domNode = domNode
             }}
             data-target="dropdown1">
-            Filter <i className="material-icons right">arrow_drop_down</i>
+            Filters
+            <i className="material-icons right">arrow_drop_down</i>
           </a>
 
           <ul

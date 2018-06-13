@@ -17,7 +17,7 @@ const AuthForm = props => {
   return (
     <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
       <div id="login" className="col s12">
-        <form className="col s12" onSubmit={handleSubmit} name={name}>
+        <form className="col s12 container__form" onSubmit={handleSubmit} name={name}>
           <div className="form-container">
             <h4 className="teal-text">Hello</h4>
             <div className="row">
@@ -47,7 +47,7 @@ const AuthForm = props => {
             <br />
             <center>
               <button
-                className="btn btn-small waves-effect waves-light teal"
+                className="btn custom_btn waves-effect waves-light teal"
                 type="submit"
                 name="action">
                 Sign In
@@ -59,8 +59,6 @@ const AuthForm = props => {
                   <p>Sign in with Google</p>
                 </div>
               </a>
-              <br />
-              <a href="">Forgotten password?</a>
             </center>
           </div>
         </form>

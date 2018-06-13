@@ -26,6 +26,58 @@ input {
   color: #535353
 }
 
+.custom_li{
+  position: relative;
+}
+
+.custom_a{
+  position: absolute;
+}
+
+.custom_badge{
+  position: absolute;
+  right: 0;
+  width: 15px;
+  height:15px;
+  display: block;
+  color: #fff;
+  font-size: 0.9rem;
+  border-radius: 12px;
+  line-height: 2;
+}
+
+@media only screen and (max-width: 600px) {
+  .container--top-gutter{
+    padding-top: 0px;
+  }
+  .container__form{
+    margin-top: 0;
+  }
+  .custom__text-size{
+    font-size: 1rem;
+  }
+  .container__sign-in-form{
+    margin: 0;
+    max-width: 100%;
+  }
+  .custom_btn{
+    height: 70px;
+    width: 200px;
+    font-size: 16px;
+    margin: 0px !important;
+  }
+  .custom_btn-large{
+    width: 45vw !important;
+  }
+
+  .custom_flex{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}
+
 .container--top-gutter{
   padding-top: 5%;
 }
@@ -136,15 +188,17 @@ input {
   margin: auto 0;
 }
 
-.container__receipt{
-	margin-top: 152px;
-	width: 600px !important;
-}
 
-.container__sign-in-form
-{
-	margin-top: 80px;
-	width: 400px !important;
+
+@media only screen and (min-width: 600px) {
+  .container__sign-in-form{
+    margin-top: 80px;
+    max-width: 400px !important;
+  }
+  .container__receipt{
+    margin-top: 152px;
+    width: 600px;
+  }
 }
 
 .container__payment{
@@ -3026,6 +3080,10 @@ video.responsive-video {
     overflow: hidden;
     white-space: nowrap;
   }
+  .container__receipt{
+    margin-top: 0;
+    width: 100%;
+  }
 }
 
 .breadcrumb {
@@ -4620,7 +4678,7 @@ nav .sidenav-trigger {
   position: relative;
   z-index: 1;
   height: 56px;
-  margin: 0 18px;
+  margin: 0 5px;
 }
 
 nav .sidenav-trigger i {
@@ -5205,7 +5263,7 @@ small {
   flex-direction: column;
   padding: 5px 60px 15px 18px;
   border-radius: 0 0 2px 2px;
-  min-height: 150px;
+  min-height: 115px;
 }
 
 .card .card-content p {

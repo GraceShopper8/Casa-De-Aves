@@ -4,7 +4,7 @@ const UPDATE_RESPONSE = 'UPDATE_RESPONSE';
 const initState = {
   firstName: '',
   lastName: '',
-  homeAddress: '',
+  shippingAddress: '',
   email: '',
   response: {}
 };

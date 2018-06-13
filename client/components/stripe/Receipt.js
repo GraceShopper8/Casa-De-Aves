@@ -9,7 +9,7 @@ class Receipt extends Component {
       return (
         <div className="container container__receipt white z-depth-2 animated fadeIn">
           <div className="col s12">
-            <form>
+            <form className="container__form">
               <div className="form-container">
                 <center>
                   <h4 className="teal-text">You have not ordered anything</h4>
@@ -31,7 +31,7 @@ class Receipt extends Component {
       return (
         <div className="container container__receipt white z-depth-2 animated fadeIn">
           <div className="col s12">
-            <form>
+            <form className="container__form">
               <div className="form-container">
                 <h4 className="teal-text">Thank You for you order.</h4>
                 <h6 className="teal-text">Confirmation #{id}</h6>
