@@ -8,14 +8,14 @@ const initialState = {
   allReviews: []
 }
 
-const createdReview = review => {
+export const createdReview = review => {
   return {
     type: CREATED_REVIEW,
     review
   }
 }
 
-const gotAllReviews = reviews => {
+export const gotAllReviews = reviews => {
   return {
     type: FETCH_ALL_REVIEWS,
     reviews

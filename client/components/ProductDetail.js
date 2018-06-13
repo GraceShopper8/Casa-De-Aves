@@ -28,9 +28,7 @@ class ProductDetail extends Component {
   render() {
     const product = this.props.singleProduct
     const prodReviews = product.reviews
-    if (!prodReviews) {
-      return <h1 />
-    }
+    if (!prodReviews) return <h1 />
 
     const isAdmin = this.props.user.admin
     return (
