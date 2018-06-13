@@ -39,7 +39,6 @@ class Navbar extends Component {
       items,
       handleDeleteAccount,
     } = this.props
-
     return (
       <div>
         <nav id="nav-bar" className="teal" role="navigation">
@@ -71,7 +70,8 @@ class Navbar extends Component {
                   </a>
                 </li>
                 <li>
-                  <a data-target="slide-out" className="sidenav-trigger">
+                  <a data-target="slide-out" className="sidenav-trigger custom_a">
+                    <span className="custom_badge">3</span>
                     <i className="material-icons">shopping_cart</i>
                   </a>
                 </li>
@@ -88,8 +88,9 @@ class Navbar extends Component {
                     Log In
                   </Link>
                 </li>
-                <li>
-                  <a data-target="slide-out" className="sidenav-trigger">
+                <li className="custom_li">
+                  <a data-target="slide-out" className="sidenav-trigger custom_a">
+                    <span id="cartBadge" className="custom_badge animated">{(items.length > 0) ? items.length : ''}</span>
                     <i className="material-icons">shopping_cart</i>
                   </a>
                 </li>
