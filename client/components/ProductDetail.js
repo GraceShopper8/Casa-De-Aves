@@ -22,7 +22,7 @@ class ProductDetail extends Component {
       const cartItems = this.props.items
       const str = JSON.stringify(cartItems)
       storage.setItem('cart', str)
-    }, 50)
+    }, 150)
   }
 
   render() {

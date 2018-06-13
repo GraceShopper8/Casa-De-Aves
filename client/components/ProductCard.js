@@ -14,7 +14,7 @@ class ProductCard extends Component {
   handleClick(itemID) {
     this.props.addedToCart(itemID);
     const badge = document.getElementById('cartBadge');
-    badge.classList.add('flipInX');
+    if(badge) badge.classList.add('flipInX');
     setTimeout(() => {
       let storage = window.localStorage;
       const cartItems = this.props.items;
@@ -23,7 +23,7 @@ class ProductCard extends Component {
       
     }, 150);
     setTimeout(() => {
-      badge.classList.remove('flipInX');
+      if(badge) badge.classList.remove('flipInX');
     }, 400);
   }
 

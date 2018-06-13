@@ -71,7 +71,7 @@ class CheckoutForm extends React.Component {
     return (
       <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
         <div id="payment-form" className="col s12">
-          <form className="col s12" onSubmit={this.handleSubmit}>
+          <form className="col s12 container__form" onSubmit={this.handleSubmit}>
             <div className="form-container">
               <h4 className="teal-text">Payment</h4>
               <h6 className="teal-text">Order details</h6>

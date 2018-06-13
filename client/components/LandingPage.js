@@ -18,15 +18,15 @@ class LandingPage extends Component {
                 </h3>
               </div>
               <br />
-              <div className="section row">
+              <div className="section row custom_flex">
                 <Link
                   to="/products"
-                  className="btn-large  waves-effect waves-light teal">
+                  className="btn-large custom_btn-large waves-effect waves-light teal">
                   Our Products
                 </Link>
                 <Link
                   to="/signup"
-                  className="btn-large waves-effect waves-light teal">
+                  className="btn-large custom_btn-large waves-effect waves-light teal">
                   Create an Account
                 </Link>
               </div>
