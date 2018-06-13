@@ -32,9 +32,10 @@ class ProductList extends Component {
           <h2 className="float-header teal-text text-darken-3 center">
             Products
           </h2>
-          <div className="col s5" />
+          <div className="col m2 l3" />
           <a
-            className="dropdown-trigger btn large col s2"
+            className="dropdown-trigger btn large col s12 m8 l6"
+
             ref={domNode => {
               this.domNode = domNode
             }}

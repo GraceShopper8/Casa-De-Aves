@@ -43,7 +43,7 @@ class Navbar extends Component {
       <div>
         <nav id="nav-bar" className="teal" role="navigation">
           <div className="nav-wrapper container">
-            <a href="/" className="brand-logo left">
+            <a href="/" className="brand-logo hide-on-small-only left">
               <img
                 src="/img/5935-200 white-version.png"
                 className="nav-bar-logo"
@@ -51,7 +51,7 @@ class Navbar extends Component {
             </a>
 
             <ul className="left">
-              <li> |</li>
+              <li className="hide-on-small-only"> |</li>
               <li>
                 <Link to="/products" className="white-text">
                   Products
@@ -71,7 +71,7 @@ class Navbar extends Component {
                 </li>
                 <li>
                   <a data-target="slide-out" className="sidenav-trigger custom_a">
-                    <span className="custom_badge">3</span>
+                    <span className="custom_badge">{(items.length > 0) ? items.length : ''}</span>
                     <i className="material-icons">shopping_cart</i>
                   </a>
                 </li>

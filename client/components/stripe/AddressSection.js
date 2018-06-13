@@ -7,28 +7,20 @@ class AddressSection extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: '',
-      lastName: '',
-      homeAddress: '',
-      email: '',
       isInfoLoaded: false,
     }
-  }
-
-  componentDidMount() {
-    this.setState(this.props.user);
   }
 
   componentWillReceiveProps(nextProps){
     if(!this.state.isInfoLoaded){
       const { firstName, lastName, homeAddress, email } = nextProps.user;
-      this.setState({ firstName, lastName, homeAddress, email, isInfoLoaded: true });
+      this.props.updatedForm({ firstName, lastName, shippingAddress: homeAddress || '', email });
+      this.setState({isInfoLoaded: true})
     }
   };
 
   handleChange = ev => {
-    this.setState({[ev.target.name]: ev.target.value});
-    this.props.updatedForm(this.state);
+    this.props.updatedForm({[ev.target.name]: ev.target.value});
   };
 
   render() {
@@ -36,24 +28,24 @@ class AddressSection extends Component {
     return (
       <div>
         <div className="row">
-          <div className="input-field col s6">
+          <div className="input-field col s12 m6 l6">
             <input
               id="first_name"
               type="text"
               name="firstName"
               placeholder="First Name"
-              value={this.state.firstName}
+              value={form.firstName}
               onChange={this.handleChange}
               required
             />
           </div>
-          <div className="input-field col s6">
+          <div className="input-field col s12 m6 l6">
             <input
               id="last_name"
               type="text"
               name="lastName"
               placeholder="Last Name"
-              value={this.state.lastName}
+              value={form.lastName}
               onChange={this.handleChange}
               required
             />
@@ -66,7 +58,7 @@ class AddressSection extends Component {
               type="text"
               name="email"
               placeholder="Email"
-              value={this.state.email}
+              value={form.email}
               onChange={this.handleChange}
               required
             />
@@ -77,9 +69,9 @@ class AddressSection extends Component {
             <input
               id="homeAddress"
               type="text"
-              name="homeAddress"
+              name="shippingAddress"
               placeholder="Shipping address"
-              value={this.state.homeAddress}
+              value={form.shippingAddress}
               onChange={this.handleChange}
               required
             />
