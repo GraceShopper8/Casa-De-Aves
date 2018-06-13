@@ -26,6 +26,26 @@ input {
   color: #535353
 }
 
+.custom_li{
+  position: relative;
+}
+
+.custom_a{
+  position: absolute;
+}
+
+.custom_badge{
+  position: absolute;
+  right: 0;
+  width: 15px;
+  height:15px;
+  display: block;
+  color: #fff;
+  font-size: 0.9rem;
+  border-radius: 12px;
+  line-height: 2;
+}
+
 .container--top-gutter{
   padding-top: 5%;
 }
@@ -4620,7 +4640,7 @@ nav .sidenav-trigger {
   position: relative;
   z-index: 1;
   height: 56px;
-  margin: 0 18px;
+  margin: 0 5px;
 }
 
 nav .sidenav-trigger i {
