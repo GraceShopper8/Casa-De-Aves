@@ -35,6 +35,7 @@ class ProductList extends Component {
           <div className="col m2 l3" />
           <a
             className="dropdown-trigger btn large col s12 m8 l6"
+
             ref={domNode => {
               this.domNode = domNode
             }}
