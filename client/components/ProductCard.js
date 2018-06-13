@@ -25,7 +25,7 @@ class ProductCard extends Component {
     const product = this.props.product
     return (
       <li className="side-by-side">
-        <div className="row center">
+        <div className="row">
           <div className="col s12 m6">
             <div className="card">
               <div className="card-image">

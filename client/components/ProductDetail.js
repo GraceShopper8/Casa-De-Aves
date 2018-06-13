@@ -1,38 +1,36 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getSingleProducts } from '../store/product';
-import UserReviewForm from './UserReviewForm';
-import { addedToCart } from '../store/cart';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getSingleProducts } from '../store/product'
+import UserReviewForm from './UserReviewForm'
+import { addedToCart } from '../store/cart'
 
 class ProductDetail extends Component {
   constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
+    super()
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
-    this.props.getSingleProducts(this.props.match.params.id);
+    this.props.getSingleProducts(this.props.match.params.id)
   }
 
   handleClick(itemID) {
-    this.props.addedToCart(itemID);
+    this.props.addedToCart(itemID)
     setTimeout(() => {
-      let storage = window.localStorage;
-      const cartItems = this.props.items;
-      const str = JSON.stringify(cartItems);
-      storage.setItem('cart', str);
-    }, 50);
+      let storage = window.localStorage
+      const cartItems = this.props.items
+      const str = JSON.stringify(cartItems)
+      storage.setItem('cart', str)
+    }, 50)
   }
 
   render() {
-    const product = this.props.singleProduct;
-    const prodReviews = product.reviews;
-    if (!prodReviews) {
-      return <h1 />;
-    }
+    const product = this.props.singleProduct
+    const prodReviews = product.reviews
+    if (!prodReviews) return <h1 />
 
-    const isAdmin = this.props.user.admin;
+    const isAdmin = this.props.user.admin
     return (
       <div className="row container container--top-gutter animated fadeIn">
         <div className="col s11 l1" />
@@ -46,7 +44,9 @@ class ProductDetail extends Component {
                 <h5>
                   {product.name}
                   {isAdmin ? (
-                    <a href={`/products/${product.id}/edit`} className="btn-floating btn-small right red">
+                    <a
+                      href={`/products/${product.id}/edit`}
+                      className="btn-floating btn-small right red">
                       <i className="material-icons">edit</i>
                     </a>
                   ) : (
@@ -57,11 +57,15 @@ class ProductDetail extends Component {
                 <p className="custom__description">{product.description}</p>
               </div>
               <div className="card-action">
-                <a className="waves-effect waves-light btn-small" onClick={() => this.handleClick(product.id)}>
+                <a
+                  className="waves-effect waves-light btn-small"
+                  onClick={() => this.handleClick(product.id)}>
                   <i className="material-icons left">add_shopping_cart</i>
                   Add to Cart
                 </a>
-                <a href="/cart/checkout" className="waves-effect waves-light btn-small">
+                <a
+                  href="/cart/checkout"
+                  className="waves-effect waves-light btn-small">
                   Checkout
                 </a>
               </div>
@@ -70,22 +74,22 @@ class ProductDetail extends Component {
           <UserReviewForm prodId={product.id} />
         </div>
       </div>
-    );
+    )
   }
 }
 
 const mapState = state => ({
   items: state.cart.items,
   singleProduct: state.product.singleProduct,
-  user: state.user
-});
+  user: state.user,
+})
 
 const mapDispatch = dispatch => ({
   getSingleProducts: id => dispatch(getSingleProducts(id)),
-  addedToCart: id => dispatch(addedToCart(id))
-});
+  addedToCart: id => dispatch(addedToCart(id)),
+})
 
 export default connect(
   mapState,
   mapDispatch
-)(ProductDetail);
+)(ProductDetail)
