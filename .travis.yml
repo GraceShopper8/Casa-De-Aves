@@ -22,6 +22,6 @@ before_deploy:
 deploy:
   skip_cleanup: true # prevents travis from deleting the build
   provider: heroku
-  app: calm-brook-79071
+  app: casa-de-aves
   api_key:
     secure: "CYKyMnZ5u6q5G1yNxr1ZyNG/DspPTK7xwEaCANL75FD+ZgLyPcfwqW3r2y135Jz1MVW1GYW2wqmr7loENxcCcBy9jI/BO/NcaDjhQwWtdhOsblp5LCogvzuEJY2yC3JA3T46cHnlG87DYNOnEEzhtEh64fMkDQvYdk8nM41P9/ULjS9R4M0uD6LOdKNwVzubfS4WnFQwtQO53LitEy2UHZV1hL40Jkl/9DVciY4CAXuD0GoiXDUbTYlptmNI7w4LCTDKoiTS69R2Snr/It5R6l7sDxZn3ZsMu5C7ts89aYktXpl1+g1bMF9sNWTpOVhSCdmrx+OZMMq9YGdGP2qkskABLpji+ch7mbf3ZO4/jZVuE3GqgF0isMt9dVJIfNdb2wROvd1Ux+iAJa7ctyPR6tjIezZjqxAFCf5OlY+WuarACn3vKYKNNeJbxpV22liox5ih1UgnaDMuOK1fN06l1cbMlBlnttrp0lLx222qV+3FmjG3KbK2kWOtIrzOmFCSNd+J8A6NLQbuQG22NVx9m5ERKO7cMeAk63WmsrlJZPpMnabTKcSiLwEukyF3DGr7M1mSsAxVV+tTTQYlG+foB1MsIX4j6vQpKMmSOkmoCdbVxMJrOWeYvlp3pjG+Qc5Gbu+HPrVGw3Qx6tRimn2Yxp6u7Z+7XDoDSQZJpBO2Z5k="
