@@ -1,6 +1,8 @@
 const {expect} = require('chai')
 const db = require('../index')
 const Review = db.model('review')
+const User = db.model('user')
+const Product = db.model('product')
 
 
 describe('Review model', () => {
@@ -15,9 +17,19 @@ const contentDetail = "The Capitals have this because ... their team defense is 
 
 let review;
 beforeEach(() => {
+const user = User.create({
+    id: 100,
+    email: 'scott@email.com',
+    name: 'Peter Smith'
+  })
+
+
   review = Review.build({
      rating: rating,
-     reviewDetail: contentDetail
+     reviewDetail: contentDetail,
+     userId: 100
+
+
   })
 })
 
@@ -37,19 +49,20 @@ describe('attributes definition', () => {
 })
 
 
-it('it can handle a long review', () => {
-      return review.save()
-      .then((savedReview) => {
-        expect(savedReview.reviewDetail).to.equal(contentDetail);
-        expect(savedReview.rating).to.equal(4);
-      });
-    });
+    it('it can handle a long review', () => {
+       return review.save()
+        .then((savedReview) => {
+         expect(savedReview.reviewDetail).to.equal(contentDetail);
+         expect(savedReview.rating).to.equal(4);
+       });
+     });
 
     it('it belongs to a User', () => {
           return review.save()
           .then((savedReview) => {
-            expect(savedReview.userId).to.equal(null)
+            expect(savedReview.userId).to.equal(100)
           });
         });
+
 
 }) // end describe('User model')
