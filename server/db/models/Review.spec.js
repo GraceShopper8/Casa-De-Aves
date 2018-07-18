@@ -25,7 +25,6 @@ describe('Review model', () => {
       rating: rating,
       reviewDetail: contentDetail
     });
-    review.userId = 100;
   });
 
   afterEach(() => {
@@ -47,9 +46,4 @@ describe('Review model', () => {
     });
   });
 
-  it('it belongs to a User', () => {
-    return review.save().then(savedReview => {
-      expect(savedReview.userId).to.equal(100);
-    });
-  });
 }); // end describe('User model')
