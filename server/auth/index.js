@@ -64,7 +64,9 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
+  console.log('REQ USER', req.user);
   res.json(req.user)
 })
 
 router.use('/google', require('./google'))
+router.use('/alythia', require('./alythia'))

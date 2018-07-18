@@ -31,6 +31,7 @@
     "history": "^4.6.3",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
+    "passport-custom": "^1.0.5",
     "passport-google-oauth": "^1.0.0",
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",
@@ -48,7 +49,8 @@
     "sinon": "^5.1.0",
     "sinon-chai": "^3.1.0",
     "socket.io": "^2.0.3",
-    "stripe": "^6.1.0"
+    "stripe": "^6.1.0",
+    "volleyball": "^1.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.40",

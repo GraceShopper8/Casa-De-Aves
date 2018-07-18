@@ -2,10 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { auth } from '../store'
+import Alythia from '../alythia-button'
 
-/**
- * COMPONENT
- */
 const AuthForm = props => {
   const {
     name,
@@ -57,6 +55,11 @@ const AuthForm = props => {
                 <div className="btn_google">
                   <img src="/img/btn_google.svg" />
                   <p>Sign in with Google</p>
+                </div>
+              </a>
+              <a href="http://localhost:8080/api/clients/b8bced90-8092-11e8-9258-c589ce6a06d5">
+                <div className="btn_google">
+                  <p>Sign in with Alythia</p>
                 </div>
               </a>
             </center>
