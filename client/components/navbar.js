@@ -71,7 +71,7 @@ class Navbar extends Component {
                 </li>
                 <li>
                   <a data-target="slide-out" className="sidenav-trigger custom_a">
-                    <span className="custom_badge">{(items.length > 0) ? items.length : ''}</span>
+                    <span id="cartBadge" className="custom_badge animated">{(items.length > 0) ? items.length : ''}</span>
                     <i className="material-icons">shopping_cart</i>
                   </a>
                 </li>
